@@ -10,36 +10,16 @@
 
 <meta name="theme-color" content="#0b0b0c">
 
-<link
-  rel="manifest"
-  href="/project40/manifest.webmanifest"
->
+<link rel="manifest" href="/project40/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/project40/icon-180.png">
 
-<link
-  rel="apple-touch-icon"
-  href="/project40/icon-180.png"
->
-
-<meta
-  name="apple-mobile-web-app-capable"
-  content="yes"
->
-
-<meta
-  name="apple-mobile-web-app-status-bar-style"
-  content="black"
->
-
-<meta
-  name="apple-mobile-web-app-title"
-  content="PROJECT 40"
->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="PROJECT 40">
 
 <title>PROJECT 40 🦍</title>
 
-
 <style>
-
 :root{
   --bg:#0b0b0c;
   --panel:#171719;
@@ -49,965 +29,640 @@
   --yellow:#f5c518;
   --green:#39d98a;
   --red:#ff6464;
+  --orange:#ffbf69;
   --line:#2c2c30;
 }
 
-
-*{
-  box-sizing:border-box;
-}
-
+*{box-sizing:border-box}
 
 body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    Arial,
-    sans-serif;
-
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
 }
 
-
-button,
-input{
-  font:inherit;
-}
-
+button,input{font:inherit}
 
 button{
   cursor:pointer;
   touch-action:manipulation;
 }
 
-
-.hidden{
-  display:none!important;
-}
-
+.hidden{display:none!important}
 
 .screen{
   width:min(100%,600px);
   min-height:100vh;
-
   margin:0 auto;
-
-  padding:
-    20px
-    16px
-    calc(110px + env(safe-area-inset-bottom));
+  padding:20px 16px calc(110px + env(safe-area-inset-bottom));
 }
-
 
 .center-screen{
   display:flex;
-
   min-height:100vh;
-
   align-items:center;
   justify-content:center;
-
   padding:20px;
 }
-
 
 .logo{
   font-size:38px;
   font-weight:950;
-
   line-height:.95;
-
   letter-spacing:-1.8px;
 }
 
-
-.logo span{
-  color:var(--yellow);
-}
-
+.logo span{color:var(--yellow)}
 
 .subtitle{
   color:var(--muted);
-
   margin-top:9px;
-
   font-size:14px;
   line-height:1.45;
 }
 
-
 .card{
   background:var(--panel);
-
   border:1px solid var(--line);
-
   border-radius:20px;
-
   padding:17px;
-
   margin-bottom:12px;
 }
 
-
-.auth-card{
-  width:min(100%,460px);
-}
-
-
-.auth-card .logo{
-  margin-bottom:24px;
-}
-
+.auth-card{width:min(100%,460px)}
+.auth-card .logo{margin-bottom:24px}
 
 label{
   display:block;
-
   color:#d4d4d7;
-
   font-size:13px;
   font-weight:850;
-
   margin:14px 0 7px;
 }
 
-
 input{
   display:block;
-
   width:100%;
-
   border:1px solid var(--line);
-
   background:#101012;
   color:white;
-
   padding:15px;
-
   border-radius:14px;
-
   outline:none;
 }
 
-
-input:focus{
-  border-color:var(--yellow);
-}
-
+input:focus{border-color:var(--yellow)}
 
 .btn{
   border:0;
-
   border-radius:14px;
-
   padding:14px 12px;
-
   background:var(--panel2);
   color:var(--text);
-
   font-weight:900;
 }
 
-
-.btn:active{
-  transform:scale(.98);
-}
-
+.btn:active{transform:scale(.98)}
 
 .btn.primary{
   background:var(--yellow);
   color:#111;
 }
 
-
 .btn.green{
   background:var(--green);
   color:#071911;
 }
-
 
 .btn.red{
   background:rgba(255,100,100,.14);
   color:#ff8585;
 }
 
-
 .btn.full{
   width:100%;
-
   margin-top:18px;
-
   padding:16px;
 }
 
-
 .btn:disabled{
-  opacity:.35;
-
+  opacity:.32;
   transform:none;
-
   cursor:default;
 }
 
-
 .message{
   margin-top:14px;
-
   padding:12px;
-
   border-radius:12px;
-
   font-size:13px;
   line-height:1.45;
-
   background:var(--panel2);
-
   color:var(--muted);
 }
 
-
-.message.ok{
-  color:var(--green);
-}
-
-
-.message.error{
-  color:#ff8d8d;
-}
-
+.message.ok{color:var(--green)}
+.message.error{color:#ff8d8d}
 
 .topbar{
   display:flex;
-
   align-items:center;
   justify-content:space-between;
-
   gap:12px;
-
   margin-bottom:16px;
 }
 
-
-.topbar .logo{
-  font-size:27px;
-}
-
+.topbar .logo{font-size:27px}
 
 .userpill{
   border:1px solid var(--line);
-
   border-radius:999px;
-
   padding:8px 10px;
-
   background:var(--panel);
-
   color:var(--muted);
-
   font-size:12px;
   font-weight:850;
 }
 
-
 .hero{
-  background:
-    linear-gradient(
-      135deg,
-      #f5c518,
-      #dca900
-    );
-
+  background:linear-gradient(135deg,#f5c518,#dca900);
   color:#111;
-
   border-radius:22px;
-
   padding:19px;
-
   margin-bottom:14px;
 }
 
-
 .hero-row{
   display:flex;
-
   justify-content:space-between;
-
   gap:12px;
 }
-
 
 .hero-day{
   font-size:35px;
   font-weight:950;
-
   letter-spacing:-1.5px;
 }
 
-
 .hero-date{
   margin-top:4px;
-
   font-size:12px;
   font-weight:850;
-
   opacity:.7;
 }
 
-
 .hero-right{
   text-align:right;
-
   font-size:12px;
   font-weight:950;
 }
-
 
 .progressbar{
   margin-top:16px;
-
   height:9px;
-
   border-radius:99px;
-
   background:rgba(0,0,0,.16);
-
   overflow:hidden;
 }
 
-
 .progressbar div{
   height:100%;
-
   width:0%;
-
   border-radius:99px;
-
   background:#111;
-
   transition:.25s;
 }
 
-
 .complete-banner{
   display:none;
-
   margin-bottom:12px;
-
   background:var(--green);
-
   color:#071911;
-
-  border-radius:18px;
-
+  border-radius:19px;
   text-align:center;
-
-  padding:17px;
-
-  font-weight:950;
-  font-size:19px;
-}
-
-
-.complete-banner.show{
-  display:block;
-}
-
-
-.nav{
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:7px;
-
-  margin-bottom:8px;
-}
-
-
-.nav button{
-  border:1px solid var(--line);
-
-  border-radius:13px;
-
-  background:var(--panel);
-  color:var(--muted);
-
-  padding:11px 4px;
-
-  font-weight:900;
-  font-size:12px;
-}
-
-
-.nav button.active{
-  background:var(--yellow);
-
-  color:#111;
-
-  border-color:var(--yellow);
-}
-
-
-/* ========================================
-   SAVE STATUS
-   ======================================== */
-
-.save-status{
-  min-height:18px;
-
-  margin:0 0 10px;
-
-  text-align:center;
-
-  font-size:11px;
-  font-weight:900;
-
-  color:var(--muted);
-}
-
-
-.save-status.saving{
-  color:var(--yellow);
-}
-
-
-.save-status.saved{
-  color:var(--green);
-}
-
-
-.save-status.local{
-  color:#ffbf69;
-}
-
-
-.save-status.offline{
-  color:#ffbf69;
-}
-
-
-/* ========================================
-   TASK CARDS
-   ======================================== */
-
-.card-title{
-  display:flex;
-
-  justify-content:space-between;
-  align-items:center;
-
-  gap:10px;
-}
-
-
-.card-title h2{
-  margin:0;
-
-  font-size:18px;
-
-  letter-spacing:-.3px;
-}
-
-
-.badge{
-  border-radius:999px;
-
-  background:var(--panel2);
-
-  color:var(--muted);
-
-  padding:6px 9px;
-
-  font-size:12px;
-  font-weight:900;
-
-  white-space:nowrap;
-}
-
-
-.card.done{
-  border-color:
-    rgba(57,217,138,.48);
-}
-
-
-.badge.done{
-  background:
-    rgba(57,217,138,.14);
-
-  color:var(--green);
-}
-
-
-.big-number{
-  margin:17px 0 5px;
-
-  font-size:44px;
-
-  line-height:1;
-
-  font-weight:950;
-
-  letter-spacing:-2px;
-}
-
-
-.target{
-  color:var(--muted);
-
-  font-size:13px;
-}
-
-
-.btnrow{
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:8px;
-
-  margin-top:16px;
-}
-
-
-.btnrow.three{
-  grid-template-columns:
-    repeat(3,1fr);
-}
-
-
-/* ========================================
-   PLANK
-   ======================================== */
-
-.timer{
-  text-align:center;
-
-  font-size:68px;
-
-  line-height:1;
-
-  font-weight:950;
-
-  letter-spacing:-3px;
-
-  font-variant-numeric:
-    tabular-nums;
-
-  margin:22px 0 6px;
-}
-
-
-.timer-sub{
-  text-align:center;
-
-  color:var(--muted);
-
-  font-size:12px;
-}
-
-
-.timer-buttons{
-  display:grid;
-
-  grid-template-columns:
-    2fr 1fr;
-
-  gap:9px;
-
-  margin-top:17px;
-}
-
-
-.timer-buttons button{
   padding:16px;
 }
 
+.complete-banner.show{display:block}
+
+.complete-title{
+  font-size:20px;
+  font-weight:950;
+}
+
+.complete-sub{
+  margin-top:4px;
+  font-size:12px;
+  font-weight:850;
+  opacity:.72;
+}
+
+.nav{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-bottom:7px;
+}
+
+.nav button{
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--panel);
+  color:var(--muted);
+  padding:11px 4px;
+  font-weight:900;
+  font-size:12px;
+}
+
+.nav button.active{
+  background:var(--yellow);
+  color:#111;
+  border-color:var(--yellow);
+}
+
+/* SAVE STATUS */
+
+.save-status{
+  min-height:20px;
+  margin:0 0 9px;
+  text-align:center;
+  font-size:11px;
+  font-weight:900;
+  color:var(--muted);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+
+.save-status::before{
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--muted);
+}
+
+.save-status.saving{color:var(--yellow)}
+.save-status.saving::before{background:var(--yellow)}
+
+.save-status.saved{color:var(--green)}
+.save-status.saved::before{background:var(--green)}
+
+.save-status.local,
+.save-status.offline{
+  color:var(--orange);
+}
+
+.save-status.local::before,
+.save-status.offline::before{
+  background:var(--orange);
+}
+
+/* TASKS */
+
+.card-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.card-title h2{
+  margin:0;
+  font-size:18px;
+  letter-spacing:-.3px;
+}
+
+.badge{
+  border-radius:999px;
+  background:var(--panel2);
+  color:var(--muted);
+  padding:6px 9px;
+  font-size:12px;
+  font-weight:900;
+  white-space:nowrap;
+}
+
+.card.done{
+  border-color:rgba(57,217,138,.5);
+  box-shadow:inset 0 0 0 1px rgba(57,217,138,.05);
+}
+
+.badge.done{
+  background:rgba(57,217,138,.14);
+  color:var(--green);
+}
+
+.big-number{
+  margin:17px 0 5px;
+  font-size:44px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-2px;
+}
+
+.target{
+  color:var(--muted);
+  font-size:13px;
+}
+
+.btnrow{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:16px;
+}
+
+.btnrow.three{
+  grid-template-columns:repeat(3,1fr);
+}
+
+.locked-note{
+  margin-top:12px;
+  padding:10px;
+  border-radius:12px;
+  background:rgba(57,217,138,.1);
+  color:var(--green);
+  text-align:center;
+  font-size:12px;
+  font-weight:900;
+}
+
+/* PLANK */
+
+.timer{
+  text-align:center;
+  font-size:68px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-3px;
+  font-variant-numeric:tabular-nums;
+  margin:22px 0 6px;
+}
+
+.timer-sub{
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.timer-buttons{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:9px;
+  margin-top:17px;
+}
+
+.timer-buttons button{padding:16px}
 
 .sets{
   color:var(--muted);
-
   font-size:12px;
-
   line-height:1.5;
-
   margin-top:13px;
 }
 
-
-/* ========================================
-   RULES
-   ======================================== */
+/* RULES */
 
 .rulebox{
-  border-color:
-    rgba(245,197,24,.4);
-
-  background:
-    rgba(245,197,24,.06);
+  border-color:rgba(245,197,24,.4);
+  background:rgba(245,197,24,.06);
 }
 
-
-.rulebox strong{
-  color:var(--yellow);
-}
-
+.rulebox strong{color:var(--yellow)}
 
 .rules{
   margin:9px 0 0 19px;
-
   padding:0;
-
   color:#d4d4d7;
-
   font-size:13px;
-
   line-height:1.6;
 }
 
-
 .actionrow{
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:9px;
 }
 
+/* GROUP */
 
-/* ========================================
-   HISTORY
-   ======================================== */
-
-.section-title{
-  margin:23px 2px 10px;
-
-  font-size:12px;
-
-  color:var(--muted);
-
-  font-weight:950;
-
-  letter-spacing:1.2px;
-}
-
-
-.history{
+.group-summary{
   display:grid;
-
-  grid-template-columns:
-    repeat(5,1fr);
-
-  gap:7px;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin:15px 0 8px;
 }
 
-
-.daybox{
-  min-height:58px;
-
-  border:1px solid var(--line);
-
-  border-radius:13px;
-
-  background:var(--panel);
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-  justify-content:center;
-
-  gap:2px;
+.statbox{
+  background:var(--panel2);
+  border-radius:14px;
+  padding:12px 6px;
+  text-align:center;
 }
 
-
-.daybox strong{
-  font-size:15px;
+.statbox strong{
+  display:block;
+  font-size:22px;
+  color:var(--yellow);
 }
 
-
-.daybox span{
-  font-size:11px;
-
+.statbox span{
+  display:block;
+  margin-top:3px;
   color:var(--muted);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.5px;
 }
-
-
-.daybox.complete{
-  border-color:
-    rgba(57,217,138,.5);
-
-  background:
-    rgba(57,217,138,.13);
-}
-
-
-.daybox.partial{
-  border-color:
-    rgba(245,197,24,.4);
-
-  background:
-    rgba(245,197,24,.08);
-}
-
-
-.daybox.prejoin{
-  opacity:.35;
-}
-
-
-.daybox.future{
-  opacity:.22;
-}
-
-
-.daybox.today{
-  outline:
-    2px solid var(--yellow);
-}
-
-
-/* ========================================
-   GROUP
-   ======================================== */
 
 .member{
   display:flex;
-
   align-items:center;
-
   gap:11px;
-
-  padding:13px 0;
-
-  border-bottom:
-    1px solid var(--line);
+  padding:14px 0;
+  border-bottom:1px solid var(--line);
 }
 
-
-.member:last-child{
-  border-bottom:0;
-}
-
+.member:last-child{border-bottom:0}
 
 .avatar{
-  width:40px;
-  height:40px;
-
-  flex:0 0 40px;
-
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
   border-radius:50%;
-
   background:var(--yellow);
-
   color:#111;
-
   display:flex;
-
   align-items:center;
   justify-content:center;
-
   font-size:18px;
   font-weight:950;
 }
 
-
 .member-main{
   flex:1;
-
   min-width:0;
 }
 
-
-.member-name{
-  font-weight:900;
-}
-
+.member-name{font-weight:900}
 
 .member-status{
   color:var(--muted);
-
-  font-size:12px;
-
+  font-size:11px;
   margin-top:3px;
 }
 
+.member-streak{
+  color:#d4d4d7;
+  font-size:10px;
+  margin-top:4px;
+}
 
 .member-score{
   text-align:right;
-
   font-size:12px;
   font-weight:900;
 }
 
-
-.member-score .green{
-  color:var(--green);
-}
-
+.member-score .green{color:var(--green)}
 
 .joincode{
   font-size:27px;
-
   font-weight:950;
-
   letter-spacing:3px;
-
   color:var(--yellow);
-
   margin-top:8px;
 }
 
+/* HISTORY */
+
+.section-title{
+  margin:23px 2px 10px;
+  font-size:12px;
+  color:var(--muted);
+  font-weight:950;
+  letter-spacing:1.2px;
+}
+
+.history{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+}
+
+.daybox{
+  min-height:58px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--panel);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+}
+
+.daybox strong{font-size:15px}
+
+.daybox span{
+  font-size:11px;
+  color:var(--muted);
+}
+
+.daybox.complete{
+  border-color:rgba(57,217,138,.5);
+  background:rgba(57,217,138,.13);
+}
+
+.daybox.partial{
+  border-color:rgba(245,197,24,.4);
+  background:rgba(245,197,24,.08);
+}
+
+.daybox.prejoin{opacity:.35}
+.daybox.future{opacity:.22}
+
+.daybox.today{
+  outline:2px solid var(--yellow);
+}
+
+/* OTHER */
 
 .rest{
   text-align:center;
-
   padding:38px 20px;
 }
 
-
-.rest .emoji{
-  font-size:60px;
-}
-
+.rest .emoji{font-size:60px}
 
 .rest h2{
   margin:10px 0 5px;
-
   font-size:29px;
 }
 
-
 .rest p{
   color:var(--muted);
-
   line-height:1.55;
 }
 
-
 .choice-grid{
   display:grid;
-
   grid-template-columns:1fr;
-
   gap:12px;
 }
 
-
-.choice-card h2{
-  margin:0 0 7px;
-}
-
+.choice-card h2{margin:0 0 7px}
 
 .choice-card p{
   color:var(--muted);
-
   margin:0;
-
   line-height:1.45;
-
   font-size:13px;
 }
-
 
 .small{
   color:var(--muted);
-
   font-size:12px;
-
   line-height:1.5;
 }
 
-
-/* ========================================
-   TOAST
-   ======================================== */
-
 .toast{
   position:fixed;
-
   left:50%;
-  bottom:
-    calc(
-      20px +
-      env(safe-area-inset-bottom)
-    );
-
+  bottom:calc(20px + env(safe-area-inset-bottom));
   z-index:999;
-
-  transform:
-    translateX(-50%);
-
-  width:
-    min(
-      calc(100% - 32px),
-      500px
-    );
-
+  transform:translateX(-50%);
+  width:min(calc(100% - 32px),500px);
   background:#27272b;
-
-  border:
-    1px solid #3b3b40;
-
+  border:1px solid #3b3b40;
   color:white;
-
   padding:13px 15px;
-
   border-radius:14px;
-
   font-size:13px;
-
   opacity:0;
-
   pointer-events:none;
-
   transition:.2s;
 }
 
-
-.toast.show{
-  opacity:1;
-}
-
+.toast.show{opacity:1}
 
 @media(min-width:700px){
-
-  body{
-    padding-top:15px;
-  }
-
+  body{padding-top:15px}
 }
-
 </style>
 </head>
 
-
 <body>
 
+<div id="toast" class="toast"></div>
 
-<div
-  id="toast"
-  class="toast"
-></div>
+<!-- LOGIN -->
 
-
-<!-- =====================================
-     LOGIN
-     ===================================== -->
-
-<div
-  id="loginView"
-  class="center-screen"
->
+<div id="loginView" class="center-screen">
 
   <div class="card auth-card">
 
@@ -1016,16 +671,11 @@ input:focus{
     </div>
 
     <div class="subtitle">
-      40 vardagar.
-      Exakt dos.
-      Ingen ikappträning.
+      40 vardagar. Exakt dos. Ingen ikappträning.
       Vägen mot första BMU:n.
     </div>
 
-
-    <label>
-      Ditt namn
-    </label>
+    <label>Ditt namn</label>
 
     <input
       id="loginName"
@@ -1033,10 +683,7 @@ input:focus{
       autocomplete="name"
     >
 
-
-    <label>
-      E-post
-    </label>
+    <label>E-post</label>
 
     <input
       id="loginEmail"
@@ -1045,7 +692,6 @@ input:focus{
       autocomplete="email"
     >
 
-
     <button
       id="magicButton"
       class="btn primary full"
@@ -1053,7 +699,6 @@ input:focus{
     >
       SKICKA MAGIC LINK
     </button>
-
 
     <div
       id="loginMessage"
@@ -1065,14 +710,9 @@ input:focus{
 </div>
 
 
-<!-- =====================================
-     CREATE / JOIN CHALLENGE
-     ===================================== -->
+<!-- CREATE / JOIN -->
 
-<div
-  id="challengeView"
-  class="screen hidden"
->
+<div id="challengeView" class="screen hidden">
 
   <div class="topbar">
 
@@ -1088,7 +728,6 @@ input:focus{
       ></div>
 
     </div>
-
 
     <button
       class="userpill"
@@ -1110,35 +749,26 @@ input:focus{
 
     <div class="card choice-card">
 
-      <h2>
-        🦍 Skapa PROJECT 40
-      </h2>
+      <h2>🦍 Skapa PROJECT 40</h2>
 
       <p>
         Skapa gruppen och få en kod
         som du skickar till de andra.
       </p>
 
-
-      <label>
-        Challenge-namn
-      </label>
+      <label>Challenge-namn</label>
 
       <input
         id="createName"
         value="PROJECT 40"
       >
 
-
-      <label>
-        Startdatum
-      </label>
+      <label>Startdatum</label>
 
       <input
         id="createStart"
         type="date"
       >
-
 
       <button
         class="btn primary full"
@@ -1152,19 +782,14 @@ input:focus{
 
     <div class="card choice-card">
 
-      <h2>
-        🤝 Gå med
-      </h2>
+      <h2>🤝 Gå med</h2>
 
       <p>
         Har gruppen redan startat?
         Skriv in join-koden.
       </p>
 
-
-      <label>
-        Join-kod
-      </label>
+      <label>Join-kod</label>
 
       <input
         id="joinCode"
@@ -1172,7 +797,6 @@ input:focus{
         autocapitalize="characters"
         maxlength="8"
       >
-
 
       <button
         class="btn full"
@@ -1188,15 +812,9 @@ input:focus{
 </div>
 
 
-<!-- =====================================
-     MAIN APP
-     ===================================== -->
+<!-- APP -->
 
-<div
-  id="appView"
-  class="screen hidden"
->
-
+<div id="appView" class="screen hidden">
 
   <div class="topbar">
 
@@ -1213,7 +831,6 @@ input:focus{
 
     </div>
 
-
     <button
       class="userpill"
       onclick="signOut()"
@@ -1228,7 +845,15 @@ input:focus{
     id="completeBanner"
     class="complete-banner"
   >
-    🦍 DAGEN KLAR!
+
+    <div class="complete-title">
+      🦍 DAGEN KLAR!
+    </div>
+
+    <div class="complete-sub">
+      Exakt dos. Ingen bonusvolym. Nu räcker det.
+    </div>
+
   </div>
 
 
@@ -1252,7 +877,6 @@ input:focus{
 
       </div>
 
-
       <div
         class="hero-right"
         id="heroProgress"
@@ -1260,19 +884,12 @@ input:focus{
 
     </div>
 
-
     <div class="progressbar">
-
-      <div
-        id="progressFill"
-      ></div>
-
+      <div id="progressFill"></div>
     </div>
 
   </div>
 
-
-  <!-- NAV -->
 
   <div class="nav">
 
@@ -1284,14 +901,12 @@ input:focus{
       MIN DAG
     </button>
 
-
     <button
       id="navGroup"
       onclick="showTab('group')"
     >
       GRUPP
     </button>
-
 
     <button
       id="navHistory"
@@ -1311,25 +926,18 @@ input:focus{
   </div>
 
 
-  <!-- ===================================
-       MIN DAG
-       =================================== -->
+  <!-- MIN DAG -->
 
   <div id="tabDay">
-
 
     <div
       id="restCard"
       class="card rest hidden"
     >
 
-      <div class="emoji">
-        🛋️
-      </div>
+      <div class="emoji">🛋️</div>
 
-      <h2>
-        VILA
-      </h2>
+      <h2>VILA</h2>
 
       <p>
         Ingen challenge-volym idag.
@@ -1345,7 +953,7 @@ input:focus{
     <div id="taskArea">
 
 
-      <!-- MAIN 100 -->
+      <!-- MAIN -->
 
       <div
         id="mainCard"
@@ -1367,7 +975,6 @@ input:focus{
 
         </div>
 
-
         <div
           id="mainNumber"
           class="big-number"
@@ -1375,13 +982,14 @@ input:focus{
           0
         </div>
 
-
         <div class="target">
           av 100
         </div>
 
-
-        <div class="btnrow">
+        <div
+          id="mainButtons"
+          class="btnrow"
+        >
 
           <button
             class="btn"
@@ -1413,6 +1021,13 @@ input:focus{
 
         </div>
 
+        <div
+          id="mainLockedNote"
+          class="locked-note hidden"
+        >
+          ✓ 100/100 KLART — inga bonusreps
+        </div>
+
       </div>
 
 
@@ -1425,9 +1040,7 @@ input:focus{
 
         <div class="card-title">
 
-          <h2>
-            PLANKA
-          </h2>
+          <h2>PLANKA</h2>
 
           <span
             id="plankBadge"
@@ -1438,7 +1051,6 @@ input:focus{
 
         </div>
 
-
         <div
           id="timerDisplay"
           class="timer"
@@ -1446,11 +1058,9 @@ input:focus{
           0:00
         </div>
 
-
         <div class="timer-sub">
           Dagens sammanlagda tid
         </div>
-
 
         <div class="timer-buttons">
 
@@ -1462,7 +1072,6 @@ input:focus{
             ▶ STARTA
           </button>
 
-
           <button
             id="undoButton"
             class="btn"
@@ -1472,7 +1081,6 @@ input:focus{
           </button>
 
         </div>
-
 
         <div
           id="plankSets"
@@ -1502,7 +1110,6 @@ input:focus{
 
         </div>
 
-
         <div
           id="bmu1Number"
           class="big-number"
@@ -1510,12 +1117,10 @@ input:focus{
           0
         </div>
 
-
         <div
           id="bmu1Target"
           class="target"
         ></div>
-
 
         <div
           id="bmu1Buttons"
@@ -1543,7 +1148,6 @@ input:focus{
 
         </div>
 
-
         <div
           id="bmu2Number"
           class="big-number"
@@ -1551,12 +1155,10 @@ input:focus{
           0
         </div>
 
-
         <div
           id="bmu2Target"
           class="target"
         ></div>
-
 
         <div
           id="bmu2Buttons"
@@ -1574,12 +1176,10 @@ input:focus{
           DEN HELIGA REGELN
         </strong>
 
-
         <ul class="rules">
 
           <li>
-            Gör exakt dagens dos —
-            inte mer.
+            Gör exakt dagens dos — inte mer.
           </li>
 
           <li>
@@ -1587,8 +1187,7 @@ input:focus{
           </li>
 
           <li>
-            BMU-reps görs aldrig
-            till failure.
+            BMU-reps görs aldrig till failure.
           </li>
 
           <li>
@@ -1609,12 +1208,11 @@ input:focus{
           DELA STATUS
         </button>
 
-
         <button
           class="btn red"
           onclick="resetToday()"
         >
-          ÅTERSTÄLL IDAG
+          ÅTERSTÄLL DAGEN
         </button>
 
       </div>
@@ -1624,9 +1222,7 @@ input:focus{
   </div>
 
 
-  <!-- ===================================
-       GROUP
-       =================================== -->
+  <!-- GROUP -->
 
   <div
     id="tabGroup"
@@ -1649,6 +1245,12 @@ input:focus{
       </div>
 
 
+      <div
+        id="groupSummary"
+        class="group-summary"
+      ></div>
+
+
       <div id="memberList"></div>
 
     </div>
@@ -1660,23 +1262,19 @@ input:focus{
         BJUD IN EN KOMPIS
       </div>
 
-
       <div
         id="displayJoinCode"
         class="joincode"
       ></div>
 
-
       <div
         class="small"
         style="margin-top:8px"
       >
-        Den som går med börjar på
-        gruppens aktuella dag.
-        Tidigare dagar räknas inte
-        som missade.
+        Den som går med börjar på gruppens
+        aktuella dag. Tidigare dagar räknas
+        inte som missade.
       </div>
-
 
       <button
         class="btn primary full"
@@ -1690,9 +1288,7 @@ input:focus{
   </div>
 
 
-  <!-- ===================================
-       HISTORY
-       =================================== -->
+  <!-- HISTORY -->
 
   <div
     id="tabHistory"
@@ -1714,7 +1310,6 @@ input:focus{
 
       </div>
 
-
       <div
         id="history"
         class="history"
@@ -1723,19 +1318,12 @@ input:focus{
 
     </div>
 
-
     <div class="small">
-
-      ✅ klar
-      &nbsp;
-      ◐ påbörjad
-      &nbsp;
+      ✅ klar &nbsp;
+      ◐ påbörjad &nbsp;
       ○ missad
-
       <br>
-
       ➖ innan du gick med
-
     </div>
 
   </div>
@@ -1743,33 +1331,20 @@ input:focus{
 </div>
 
 
-<!-- =====================================
-     SUPABASE
-     ===================================== -->
-
-<script
-  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
-></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
-
-/* ========================================
-   CONFIG
-   ======================================== */
+/* CONFIG */
 
 const SUPABASE_URL =
   "https://ewvljphdblgfgbtoieyj.supabase.co";
 
-
 const SUPABASE_PUBLISHABLE_KEY =
   "sb_publishable_TXjgBvoHFSVmwhED6xeaNg_83ytcRQ7";
 
-
 const APP_URL =
   "https://philip1904.github.io/project40/";
-
 
 const sb =
   window.supabase.createClient(
@@ -1785,9 +1360,7 @@ const sb =
   );
 
 
-/* ========================================
-   BMU PLAN
-   ======================================== */
+/* BMU PLAN */
 
 const BMU_PLAN = {
 
@@ -1806,7 +1379,6 @@ const BMU_PLAN = {
     }
   ],
 
-
   2:[
     {
       name:"STRICT PULL-UPS",
@@ -1821,7 +1393,6 @@ const BMU_PLAN = {
       buttons:[1,5,10]
     }
   ],
-
 
   3:[
     {
@@ -1838,7 +1409,6 @@ const BMU_PLAN = {
     }
   ],
 
-
   4:[
     {
       name:"SCAP PULL-UPS",
@@ -1853,7 +1423,6 @@ const BMU_PLAN = {
       buttons:[15,30,60]
     }
   ],
-
 
   5:[
     {
@@ -1873,55 +1442,39 @@ const BMU_PLAN = {
 };
 
 
-/* ========================================
-   APP STATE
-   ======================================== */
+/* STATE */
 
 let user = null;
-
 let profile = null;
-
 let membership = null;
-
 let challenge = null;
 
 let todayProgress = null;
-
 let members = [];
-
 let allProgress = [];
 
 let realtimeChannel = null;
-
 let realtimeRefreshTimer = null;
 
 let plankInterval = null;
-
 let plankStopping = false;
 
 let saveInFlight = false;
-
 let savePending = false;
 
 let magicCooldownInterval = null;
 
 
-/* ========================================
-   BASIC STORAGE HELPERS
-   ======================================== */
+/* STORAGE */
 
 function safeRead(key){
 
   try{
-
     return JSON.parse(
       localStorage.getItem(key)
     );
-
   }catch{
-
     return null;
-
   }
 
 }
@@ -1930,27 +1483,21 @@ function safeRead(key){
 function safeWrite(key,value){
 
   try{
-
     localStorage.setItem(
       key,
       JSON.stringify(value)
     );
-
   }catch(error){
-
     console.error(
       "Local storage error:",
       error
     );
-
   }
 
 }
 
 
-/* ========================================
-   DATE HELPERS
-   ======================================== */
+/* DATE */
 
 function localDateKey(
   date = new Date()
@@ -1969,7 +1516,6 @@ function localDateKey(
       date.getDate()
     ).padStart(2,"0");
 
-
   return `${y}-${m}-${d}`;
 
 }
@@ -1982,14 +1528,8 @@ function parseDate(str){
       .split("-")
       .map(Number);
 
-
   return new Date(
-    y,
-    m-1,
-    d,
-    12,
-    0,
-    0
+    y,m-1,d,12,0,0
   );
 
 }
@@ -2000,14 +1540,11 @@ function todayDate(){
   const now =
     new Date();
 
-
   return new Date(
     now.getFullYear(),
     now.getMonth(),
     now.getDate(),
-    12,
-    0,
-    0
+    12,0,0
   );
 
 }
@@ -2018,11 +1555,9 @@ function addDays(date,n){
   const copy =
     new Date(date);
 
-
   copy.setDate(
     copy.getDate()+n
   );
-
 
   return copy;
 
@@ -2033,7 +1568,6 @@ function isWeekday(date){
 
   const d =
     date.getDay();
-
 
   return (
     d >= 1 &&
@@ -2058,9 +1592,7 @@ function formatSwedishDate(date){
 }
 
 
-/* ========================================
-   OFFLINE CACHE KEYS
-   ======================================== */
+/* CACHE KEYS */
 
 function profileCacheKey(){
 
@@ -2104,13 +1636,9 @@ function progressCacheKey(
   date = todayDate()
 ){
 
-  if(
-    !user ||
-    !challenge
-  ){
+  if(!user || !challenge){
     return null;
   }
-
 
   return [
     "p40_progress",
@@ -2122,9 +1650,7 @@ function progressCacheKey(
 }
 
 
-/* ========================================
-   PROGRESS LOCAL BACKUP
-   ======================================== */
+/* PROGRESS CACHE */
 
 function buildProgressPayload(row){
 
@@ -2177,14 +1703,9 @@ function saveLocalProgress(
   const key =
     progressCacheKey();
 
-
-  if(
-    !key ||
-    !row
-  ){
+  if(!key || !row){
     return;
   }
-
 
   safeWrite(
     key,
@@ -2209,20 +1730,16 @@ function loadLocalProgress(
   const key =
     progressCacheKey(date);
 
-
   if(!key){
     return null;
   }
-
 
   return safeRead(key);
 
 }
 
 
-/* ========================================
-   SAVE STATUS
-   ======================================== */
+/* SAVE STATUS */
 
 function setSaveStatus(mode){
 
@@ -2231,53 +1748,38 @@ function setSaveStatus(mode){
       "saveStatus"
     );
 
-
   if(!el){
     return;
   }
-
 
   el.className =
     "save-status " + mode;
 
 
   if(mode === "saving"){
-
     el.textContent =
       "SPARAR…";
-
   }
-
 
   if(mode === "saved"){
-
     el.textContent =
       "SPARAT ✓";
-
   }
-
 
   if(mode === "local"){
-
     el.textContent =
       "SPARAT PÅ TELEFONEN • VÄNTAR PÅ NÄT";
-
   }
 
-
   if(mode === "offline"){
-
     el.textContent =
       "OFFLINE • DATA SPARAS PÅ TELEFONEN";
-
   }
 
 }
 
 
-/* ========================================
-   CHALLENGE DATES
-   ======================================== */
+/* CHALLENGE DATES */
 
 function challengeDates(){
 
@@ -2285,39 +1787,26 @@ function challengeDates(){
     return [];
   }
 
-
   let d =
     parseDate(
       challenge.start_date
     );
 
-
   const result = [];
-
 
   while(
     result.length < 40
   ){
 
-    if(
-      isWeekday(d)
-    ){
-
+    if(isWeekday(d)){
       result.push(
         new Date(d)
       );
-
     }
 
-
     d =
-      addDays(
-        d,
-        1
-      );
-
+      addDays(d,1);
   }
-
 
   return result;
 
@@ -2329,10 +1818,8 @@ function challengeDayForDate(date){
   const key =
     localDateKey(date);
 
-
   const dates =
     challengeDates();
-
 
   const index =
     dates.findIndex(
@@ -2340,7 +1827,6 @@ function challengeDayForDate(date){
         localDateKey(d)
         === key
     );
-
 
   return (
     index === -1
@@ -2351,48 +1837,29 @@ function challengeDayForDate(date){
 }
 
 
-/* ========================================
-   TRAINING PLAN
-   ======================================== */
+/* TRAINING PLAN */
 
 function trainingPlanForDate(date){
 
   const dayNumber =
     challengeDayForDate(date);
 
-
   if(
     !dayNumber ||
     !isWeekday(date)
   ){
-
     return null;
-
   }
-
-
-  /*
-    Dag 1 Push
-    Dag 2 Squat
-    Dag 3 Push
-    osv.
-
-    Det betyder automatiskt:
-    Vecka A = Push M/W/F
-    Vecka B = Squat M/W/F
-  */
 
   const mainName =
     dayNumber % 2 === 1
       ? "PUSH-UPS"
       : "AIR SQUATS";
 
-
   const bmu =
     BMU_PLAN[
       date.getDay()
     ];
-
 
   return {
 
@@ -2403,11 +1870,8 @@ function trainingPlanForDate(date){
       target:100
     },
 
-    bmu1:
-      bmu[0],
-
-    bmu2:
-      bmu[1]
+    bmu1:bmu[0],
+    bmu2:bmu[1]
 
   };
 
@@ -2454,34 +1918,21 @@ function progressComplete(
     return false;
   }
 
-
   const plan =
     trainingPlanForDate(date);
-
 
   if(!plan){
     return false;
   }
 
-
   return (
-
     row.main_reps >= 100
-
     &&
-
     row.plank_seconds >= 300
-
     &&
-
-    row.bmu1_value
-      >= plan.bmu1.target
-
+    row.bmu1_value >= plan.bmu1.target
     &&
-
-    row.bmu2_value
-      >= plan.bmu2.target
-
+    row.bmu2_value >= plan.bmu2.target
   );
 
 }
@@ -2493,31 +1944,20 @@ function progressPartial(row){
     return false;
   }
 
-
   return (
-
     row.main_reps > 0
-
     ||
-
     row.plank_seconds > 0
-
     ||
-
     row.bmu1_value > 0
-
     ||
-
     row.bmu2_value > 0
-
   );
 
 }
 
 
-/* ========================================
-   AUTH
-   ======================================== */
+/* AUTH */
 
 async function sendMagicLink(){
 
@@ -2529,7 +1969,6 @@ async function sendMagicLink(){
       .value
       .trim();
 
-
   const email =
     document
       .getElementById(
@@ -2538,11 +1977,7 @@ async function sendMagicLink(){
       .value
       .trim();
 
-
-  if(
-    !name ||
-    !email
-  ){
+  if(!name || !email){
 
     showLoginMessage(
       "Fyll i både namn och e-post.",
@@ -2553,27 +1988,22 @@ async function sendMagicLink(){
 
   }
 
-
   const button =
     document.getElementById(
       "magicButton"
     );
 
-
   button.disabled = true;
-
-  button.textContent =
-    "SKICKAR…";
-
+  button.textContent = "SKICKAR…";
 
   localStorage.setItem(
     "p40_pending_name",
     name
   );
 
-
   const {error} =
     await sb.auth.signInWithOtp({
+
       email,
 
       options:{
@@ -2587,8 +2017,8 @@ async function sendMagicLink(){
           display_name:name
         }
       }
-    });
 
+    });
 
   if(error){
 
@@ -2598,17 +2028,13 @@ async function sendMagicLink(){
     button.textContent =
       "SKICKA MAGIC LINK";
 
-
     let text =
       error.message;
-
 
     if(
       text
         .toLowerCase()
-        .includes(
-          "rate limit"
-        )
+        .includes("rate limit")
     ){
 
       text =
@@ -2616,23 +2042,19 @@ async function sendMagicLink(){
 
     }
 
-
     showLoginMessage(
       text,
       true
     );
 
-
     return;
 
   }
-
 
   showLoginMessage(
     "✅ Klart! Öppna mejlet och tryck på Sign in.",
     false
   );
-
 
   startMagicCooldown(60);
 
@@ -2645,31 +2067,25 @@ function startMagicCooldown(seconds){
     magicCooldownInterval
   );
 
-
   const button =
     document.getElementById(
       "magicButton"
     );
 
-
   let remaining =
     seconds;
-
 
   button.disabled =
     true;
 
-
   button.textContent =
     `SKICKAT ✓ (${remaining}s)`;
-
 
   magicCooldownInterval =
     setInterval(
       ()=>{
 
         remaining--;
-
 
         if(
           remaining <= 0
@@ -2679,19 +2095,15 @@ function startMagicCooldown(seconds){
             magicCooldownInterval
           );
 
-
           button.disabled =
             false;
-
 
           button.textContent =
             "SKICKA MAGIC LINK";
 
-
           return;
 
         }
-
 
         button.textContent =
           `SKICKAT ✓ (${remaining}s)`;
@@ -2713,17 +2125,14 @@ function showLoginMessage(
       "loginMessage"
     );
 
-
   el.textContent =
     text;
-
 
   el.classList.remove(
     "hidden",
     "ok",
     "error"
   );
-
 
   el.classList.add(
     error
@@ -2737,12 +2146,9 @@ function showLoginMessage(
 async function signOut(){
 
   stopRealtime();
-
   stopPlankInterval();
 
-
   await sb.auth.signOut();
-
 
   location.href =
     APP_URL;
@@ -2750,9 +2156,7 @@ async function signOut(){
 }
 
 
-/* ========================================
-   INITIAL LOAD
-   ======================================== */
+/* BOOT */
 
 async function boot(){
 
@@ -2760,7 +2164,6 @@ async function boot(){
     data:{session}
   } =
     await sb.auth.getSession();
-
 
   if(!session){
 
@@ -2770,13 +2173,10 @@ async function boot(){
 
   }
 
-
   user =
     session.user;
 
-
   await loadProfile();
-
 
   if(!profile){
 
@@ -2788,33 +2188,27 @@ async function boot(){
 
   }
 
-
   await loadMembership();
 
 }
 
 
-/* ========================================
-   PROFILE
-   ======================================== */
+/* PROFILE */
 
 async function loadProfile(){
 
   const key =
     profileCacheKey();
 
-
   const cached =
     key
       ? safeRead(key)
       : null;
 
-
   const pendingName =
     localStorage.getItem(
       "p40_pending_name"
     );
-
 
   if(
     pendingName &&
@@ -2833,7 +2227,6 @@ async function loadProfile(){
           user.id
         );
 
-
     if(!error){
 
       localStorage.removeItem(
@@ -2843,7 +2236,6 @@ async function loadProfile(){
     }
 
   }
-
 
   if(navigator.onLine){
 
@@ -2857,7 +2249,6 @@ async function loadProfile(){
         )
         .maybeSingle();
 
-
     if(
       !error &&
       data
@@ -2865,7 +2256,6 @@ async function loadProfile(){
 
       profile =
         data;
-
 
       if(key){
 
@@ -2876,34 +2266,24 @@ async function loadProfile(){
 
       }
 
-
       return;
 
     }
 
-
     if(error){
-
-      console.error(
-        error
-      );
-
+      console.error(error);
     }
 
   }
-
 
   if(cached){
 
     profile =
       cached;
 
-
     if(pendingName){
-
       profile.display_name =
         pendingName;
-
     }
 
   }
@@ -2911,24 +2291,19 @@ async function loadProfile(){
 }
 
 
-/* ========================================
-   MEMBERSHIP
-   ======================================== */
+/* MEMBERSHIP */
 
 async function loadMembership(){
 
   const key =
     membershipCacheKey();
 
-
   const cached =
     key
       ? safeRead(key)
       : null;
 
-
   let remote = null;
-
 
   if(navigator.onLine){
 
@@ -2953,26 +2328,17 @@ async function loadMembership(){
         .limit(1)
         .maybeSingle();
 
-
     if(error){
-
-      console.error(
-        error
-      );
-
+      console.error(error);
     }else{
-
       remote =
         data;
-
     }
 
   }
 
-
   membership =
     remote || cached;
-
 
   if(
     remote &&
@@ -2986,7 +2352,6 @@ async function loadMembership(){
 
   }
 
-
   if(!membership){
 
     showChallengeChooser();
@@ -2995,41 +2360,29 @@ async function loadMembership(){
 
   }
 
-
   await loadChallenge();
 
 }
 
 
-/* ========================================
-   CREATE / JOIN
-   ======================================== */
+/* CREATE / JOIN */
 
 function showChallengeChooser(){
 
   document
-    .getElementById(
-      "loginView"
-    )
+    .getElementById("loginView")
     .classList
     .add("hidden");
 
-
   document
-    .getElementById(
-      "appView"
-    )
+    .getElementById("appView")
     .classList
     .add("hidden");
 
-
   document
-    .getElementById(
-      "challengeView"
-    )
+    .getElementById("challengeView")
     .classList
     .remove("hidden");
-
 
   document
     .getElementById(
@@ -3037,7 +2390,6 @@ function showChallengeChooser(){
     )
     .textContent =
       `${profile.display_name} • ${user.email}`;
-
 
   document
     .getElementById(
@@ -3061,7 +2413,6 @@ async function createChallenge(){
 
   }
 
-
   const name =
     document
       .getElementById(
@@ -3072,14 +2423,12 @@ async function createChallenge(){
       ||
       "PROJECT 40";
 
-
   const start =
     document
       .getElementById(
         "createStart"
       )
       .value;
-
 
   if(!start){
 
@@ -3091,7 +2440,6 @@ async function createChallenge(){
 
   }
 
-
   const {data,error} =
     await sb.rpc(
       "create_project40_challenge",
@@ -3101,28 +2449,21 @@ async function createChallenge(){
       }
     );
 
-
   if(error){
 
-    console.error(
-      error
-    );
-
+    console.error(error);
 
     toast(
       error.message
     );
 
-
     return;
 
   }
 
-
   toast(
     `🦍 Challenge skapad! Kod: ${data[0].join_code}`
   );
-
 
   await loadMembership();
 
@@ -3141,7 +2482,6 @@ async function joinChallenge(){
 
   }
 
-
   const code =
     document
       .getElementById(
@@ -3150,7 +2490,6 @@ async function joinChallenge(){
       .value
       .trim()
       .toUpperCase();
-
 
   if(!code){
 
@@ -3162,7 +2501,6 @@ async function joinChallenge(){
 
   }
 
-
   const {error} =
     await sb.rpc(
       "join_project40_challenge",
@@ -3172,13 +2510,9 @@ async function joinChallenge(){
       }
     );
 
-
   if(error){
 
-    console.error(
-      error
-    );
-
+    console.error(error);
 
     toast(
       error.message
@@ -3188,21 +2522,12 @@ async function joinChallenge(){
           : error.message
     );
 
-
     return;
 
   }
 
-
-  /*
-    Rensa eventuell gammal
-    membership-cache så att
-    rätt challenge laddas.
-  */
-
   const key =
     membershipCacheKey();
-
 
   if(key){
 
@@ -3212,20 +2537,16 @@ async function joinChallenge(){
 
   }
 
-
   toast(
     "🦍 Du är med!"
   );
-
 
   await loadMembership();
 
 }
 
 
-/* ========================================
-   LOAD CHALLENGE
-   ======================================== */
+/* CHALLENGE */
 
 async function loadChallenge(){
 
@@ -3234,23 +2555,18 @@ async function loadChallenge(){
       membership.challenge_id
     );
 
-
   const cached =
     key
       ? safeRead(key)
       : null;
 
-
   let remote = null;
-
 
   if(navigator.onLine){
 
     const {data,error} =
       await sb
-        .from(
-          "challenges"
-        )
+        .from("challenges")
         .select("*")
         .eq(
           "id",
@@ -3258,12 +2574,9 @@ async function loadChallenge(){
         )
         .single();
 
-
     if(error){
 
-      console.error(
-        error
-      );
+      console.error(error);
 
     }else{
 
@@ -3274,10 +2587,8 @@ async function loadChallenge(){
 
   }
 
-
   challenge =
     remote || cached;
-
 
   if(!challenge){
 
@@ -3288,7 +2599,6 @@ async function loadChallenge(){
     return;
 
   }
-
 
   if(
     remote &&
@@ -3302,14 +2612,12 @@ async function loadChallenge(){
 
   }
 
-
   document
     .getElementById(
       "challengeView"
     )
     .classList
     .add("hidden");
-
 
   document
     .getElementById(
@@ -3318,14 +2626,12 @@ async function loadChallenge(){
     .classList
     .add("hidden");
 
-
   document
     .getElementById(
       "appView"
     )
     .classList
     .remove("hidden");
-
 
   document
     .getElementById(
@@ -3334,7 +2640,6 @@ async function loadChallenge(){
     .textContent =
       `${profile.display_name} • ${challenge.name}`;
 
-
   document
     .getElementById(
       "displayJoinCode"
@@ -3342,22 +2647,16 @@ async function loadChallenge(){
     .textContent =
       challenge.join_code;
 
-
   await refreshAll();
 
-
   if(navigator.onLine){
-
     startRealtime();
-
   }
 
 }
 
 
-/* ========================================
-   LOAD DATA
-   ======================================== */
+/* LOAD DATA */
 
 async function refreshAll(){
 
@@ -3366,39 +2665,18 @@ async function refreshAll(){
     loadGroupData()
   ]);
 
-
-  /*
-    Om dagens data kommer från
-    lokal backup ska den synas även
-    i historik och gruppvy.
-  */
-
   mergeTodayIntoAllProgress();
-
 
   const cached =
     loadLocalProgress();
 
+  if(cached?.dirty){
 
-  if(
-    cached?.dirty
-  ){
-
-    if(
+    setSaveStatus(
       navigator.onLine
-    ){
-
-      setSaveStatus(
-        "saving"
-      );
-
-    }else{
-
-      setSaveStatus(
-        "local"
-      );
-
-    }
+        ? "saving"
+        : "local"
+    );
 
   }else{
 
@@ -3410,15 +2688,7 @@ async function refreshAll(){
 
   }
 
-
   renderEverything();
-
-
-  /*
-    Om vi startade appen med
-    osynkade lokala ändringar
-    försöker vi synka direkt.
-  */
 
   if(
     cached?.dirty &&
@@ -3432,19 +2702,15 @@ async function refreshAll(){
 }
 
 
-/* ========================================
-   LOAD TODAY
-   ======================================== */
+/* TODAY */
 
 async function loadTodayProgress(){
 
   const t =
     todayDate();
 
-
   const day =
     challengeDayForDate(t);
-
 
   if(!day){
 
@@ -3455,13 +2721,10 @@ async function loadTodayProgress(){
 
   }
 
-
   if(
     parseDate(
       membership.joined_at
-    )
-    >
-    t
+    ) > t
   ){
 
     todayProgress =
@@ -3471,14 +2734,11 @@ async function loadTodayProgress(){
 
   }
 
-
   const cached =
     loadLocalProgress(t);
 
-
   let remote =
     null;
-
 
   if(navigator.onLine){
 
@@ -3502,12 +2762,9 @@ async function loadTodayProgress(){
         )
         .maybeSingle();
 
-
     if(error){
 
-      console.error(
-        error
-      );
+      console.error(error);
 
     }else{
 
@@ -3517,12 +2774,6 @@ async function loadTodayProgress(){
     }
 
   }
-
-
-  /*
-    Osynkade lokala ändringar
-    går före Supabase.
-  */
 
   if(
     cached?.dirty &&
@@ -3538,7 +2789,6 @@ async function loadTodayProgress(){
 
     todayProgress =
       remote;
-
 
     saveLocalProgress(
       remote,
@@ -3566,20 +2816,16 @@ async function loadTodayProgress(){
 }
 
 
-/* ========================================
-   GROUP CACHE
-   ======================================== */
+/* GROUP CACHE */
 
 function saveGroupCache(){
 
   const key =
     groupCacheKey();
 
-
   if(!key){
     return;
   }
-
 
   safeWrite(
     key,
@@ -3599,37 +2845,29 @@ function loadCachedGroup(){
   const key =
     groupCacheKey();
 
-
   if(!key){
     return false;
   }
 
-
   const cached =
     safeRead(key);
-
 
   if(!cached){
     return false;
   }
 
-
   members =
     cached.members || [];
 
-
   allProgress =
     cached.allProgress || [];
-
 
   return true;
 
 }
 
 
-/* ========================================
-   LOAD GROUP
-   ======================================== */
+/* LOAD GROUP */
 
 async function loadGroupData(){
 
@@ -3640,7 +2878,6 @@ async function loadGroupData(){
     return;
 
   }
-
 
   const memberResult =
     await sb
@@ -3655,13 +2892,11 @@ async function loadGroupData(){
         challenge.id
       );
 
-
   if(memberResult.error){
 
     console.error(
       memberResult.error
     );
-
 
     loadCachedGroup();
 
@@ -3669,24 +2904,19 @@ async function loadGroupData(){
 
   }
 
-
   members =
     memberResult.data || [];
-
 
   const ids =
     members.map(
       m => m.user_id
     );
 
-
   if(ids.length){
 
     const profileResult =
       await sb
-        .from(
-          "profiles"
-        )
+        .from("profiles")
         .select(
           "id,display_name"
         )
@@ -3694,7 +2924,6 @@ async function loadGroupData(){
           "id",
           ids
         );
-
 
     if(
       !profileResult.error
@@ -3713,7 +2942,6 @@ async function loadGroupData(){
             ]
           )
         );
-
 
       members =
         members.map(
@@ -3736,7 +2964,6 @@ async function loadGroupData(){
 
   }
 
-
   const progressResult =
     await sb
       .from(
@@ -3748,13 +2975,11 @@ async function loadGroupData(){
         challenge.id
       );
 
-
   if(progressResult.error){
 
     console.error(
       progressResult.error
     );
-
 
     loadCachedGroup();
 
@@ -3762,26 +2987,21 @@ async function loadGroupData(){
 
   }
 
-
   allProgress =
     progressResult.data || [];
-
 
   saveGroupCache();
 
 }
 
 
-/* ========================================
-   MERGE TODAY INTO GROUP DATA
-   ======================================== */
+/* MERGE LOCAL TODAY */
 
 function mergeTodayIntoAllProgress(){
 
   if(!todayProgress){
     return;
   }
-
 
   const index =
     allProgress.findIndex(
@@ -3792,7 +3012,6 @@ function mergeTodayIntoAllProgress(){
         p.workout_date ===
           todayProgress.workout_date
     );
-
 
   if(index >= 0){
 
@@ -3807,15 +3026,12 @@ function mergeTodayIntoAllProgress(){
 
   }
 
-
   saveGroupCache();
 
 }
 
 
-/* ========================================
-   SAVE TODAY
-   ======================================== */
+/* SAVE */
 
 async function saveToday(){
 
@@ -3823,26 +3039,12 @@ async function saveToday(){
     return;
   }
 
-
-  /*
-    STEG 1:
-    Spara omedelbart på telefonen.
-  */
-
   saveLocalProgress(
     todayProgress,
     true
   );
 
-
   mergeTodayIntoAllProgress();
-
-
-  /*
-    STEG 2:
-    Om vi saknar internet slutar vi här.
-    Datan finns tryggt på telefonen.
-  */
 
   if(!navigator.onLine){
 
@@ -3854,37 +3056,25 @@ async function saveToday(){
 
   }
 
-
-  /*
-    Om en Supabase-save redan körs
-    markerar vi att ytterligare en
-    save behövs när den första är klar.
-  */
-
   if(saveInFlight){
 
     savePending =
       true;
 
-
     setSaveStatus(
       "saving"
     );
-
 
     return;
 
   }
 
-
   saveInFlight =
     true;
-
 
   setSaveStatus(
     "saving"
   );
-
 
   try{
 
@@ -3893,18 +3083,10 @@ async function saveToday(){
       savePending =
         false;
 
-
       const payload =
         buildProgressPayload(
           todayProgress
         );
-
-
-      /*
-        ID skickas INTE med.
-        Det var det som orsakade
-        vårt tidigare Supabase-fel.
-      */
 
       const {data,error} =
         await sb
@@ -3921,43 +3103,26 @@ async function saveToday(){
           .select()
           .single();
 
-
       if(error){
 
-        console.error(
-          error
-        );
-
+        console.error(error);
 
         saveLocalProgress(
           todayProgress,
           true
         );
 
-
         setSaveStatus(
           "local"
         );
 
-
         toast(
-          "Sparat på telefonen – Supabase synkar senare."
+          "Sparat på telefonen – synkar senare."
         );
-
 
         return;
 
       }
-
-
-      /*
-        Vi kopierar bara metadata
-        tillbaka från Supabase.
-        Vi ersätter INTE hela
-        todayProgress eftersom någon
-        kan ha tryckt på fler knappar
-        medan requesten kördes.
-      */
 
       if(data?.id){
 
@@ -3966,19 +3131,12 @@ async function saveToday(){
 
       }
 
-
       if(data?.updated_at){
 
         todayProgress.updated_at =
           data.updated_at;
 
       }
-
-
-      /*
-        Om inga nya knapptryck kom
-        under sparningen är vi klara.
-      */
 
       if(!savePending){
 
@@ -3987,20 +3145,16 @@ async function saveToday(){
           false
         );
 
-
         setSaveStatus(
           "saved"
         );
 
       }
 
-
     }while(
-      savePending
-      &&
+      savePending &&
       navigator.onLine
     );
-
 
   }finally{
 
@@ -4009,18 +3163,14 @@ async function saveToday(){
 
   }
 
-
   mergeTodayIntoAllProgress();
-
 
   renderEverything();
 
 }
 
 
-/* ========================================
-   MAIN REPS
-   ======================================== */
+/* MAIN REPS */
 
 async function addMain(amount){
 
@@ -4028,6 +3178,11 @@ async function addMain(amount){
     return;
   }
 
+  if(
+    todayProgress.main_reps >= 100
+  ){
+    return;
+  }
 
   todayProgress.main_reps =
     Math.min(
@@ -4036,18 +3191,14 @@ async function addMain(amount){
         + amount
     );
 
-
   renderDay();
-
 
   await saveToday();
 
 }
 
 
-/* ========================================
-   BMU REPS
-   ======================================== */
+/* BMU */
 
 async function addBmu(
   index,
@@ -4058,24 +3209,27 @@ async function addBmu(
     return;
   }
 
-
   const plan =
     trainingPlanForDate(
       todayDate()
     );
-
 
   const task =
     index === 1
       ? plan.bmu1
       : plan.bmu2;
 
-
   const key =
     index === 1
       ? "bmu1_value"
       : "bmu2_value";
 
+  if(
+    todayProgress[key]
+      >= task.target
+  ){
+    return;
+  }
 
   todayProgress[key] =
     Math.min(
@@ -4084,25 +3238,20 @@ async function addBmu(
         + amount
     );
 
-
   renderDay();
-
 
   await saveToday();
 
 }
 
 
-/* ========================================
-   PLANK
-   ======================================== */
+/* PLANK */
 
 function plankStorageKey(){
 
   if(!user){
     return null;
   }
-
 
   return [
     "p40_plank",
@@ -4118,11 +3267,9 @@ function activePlank(){
   const key =
     plankStorageKey();
 
-
   if(!key){
     return null;
   }
-
 
   return safeRead(key);
 
@@ -4135,10 +3282,8 @@ function displayedPlankSeconds(){
     return 0;
   }
 
-
   const active =
     activePlank();
-
 
   if(!active){
 
@@ -4150,7 +3295,6 @@ function displayedPlankSeconds(){
 
   }
 
-
   const elapsed =
     Math.floor(
       (
@@ -4158,14 +3302,11 @@ function displayedPlankSeconds(){
         -
         active.startedAt
       )
-      /
-      1000
+      / 1000
     );
-
 
   return Math.min(
     300,
-
     todayProgress.plank_seconds
       +
       Math.max(
@@ -4198,18 +3339,12 @@ function startPlank(){
     return;
   }
 
-
   if(
     todayProgress
-      .plank_seconds
-    >=
-    300
+      .plank_seconds >= 300
   ){
-
     return;
-
   }
-
 
   safeWrite(
     plankStorageKey(),
@@ -4219,9 +3354,7 @@ function startPlank(){
     }
   );
 
-
   startPlankInterval();
-
 
   renderPlank();
 
@@ -4236,24 +3369,18 @@ async function stopPlank(
     return;
   }
 
-
   const active =
     activePlank();
-
 
   if(
     !active ||
     !todayProgress
   ){
-
     return;
-
   }
-
 
   plankStopping =
     true;
-
 
   let elapsed =
     Math.floor(
@@ -4262,17 +3389,14 @@ async function stopPlank(
         -
         active.startedAt
       )
-      /
-      1000
+      / 1000
     );
-
 
   elapsed =
     Math.max(
       1,
       elapsed
     );
-
 
   const remaining =
     Math.max(
@@ -4283,20 +3407,17 @@ async function stopPlank(
         .plank_seconds
     );
 
-
   const added =
     Math.min(
       elapsed,
       remaining
     );
 
-
   if(added > 0){
 
     todayProgress
       .plank_seconds
       += added;
-
 
     if(
       !Array.isArray(
@@ -4311,7 +3432,6 @@ async function stopPlank(
 
     }
 
-
     todayProgress
       .plank_sets
       .push(
@@ -4320,26 +3440,19 @@ async function stopPlank(
 
   }
 
-
   localStorage.removeItem(
     plankStorageKey()
   );
 
-
   stopPlankInterval();
 
-
   await saveToday();
-
 
   plankStopping =
     false;
 
-
   if(!auto){
-
     renderPlank();
-
   }
 
 }
@@ -4348,15 +3461,11 @@ async function stopPlank(
 async function undoPlank(){
 
   if(
-    !todayProgress
-    ||
+    !todayProgress ||
     activePlank()
   ){
-
     return;
-
   }
-
 
   const sets =
     Array.isArray(
@@ -4371,20 +3480,16 @@ async function undoPlank(){
       :
       [];
 
-
   if(!sets.length){
     return;
   }
 
-
   const last =
     sets.pop();
-
 
   todayProgress
     .plank_sets =
       sets;
-
 
   todayProgress
     .plank_seconds =
@@ -4396,7 +3501,6 @@ async function undoPlank(){
         last
       );
 
-
   await saveToday();
 
 }
@@ -4406,13 +3510,11 @@ function startPlankInterval(){
 
   stopPlankInterval();
 
-
   plankInterval =
     setInterval(
       async ()=>{
 
         renderPlank();
-
 
         if(
           displayedPlankSeconds()
@@ -4442,7 +3544,6 @@ function stopPlankInterval(){
       plankInterval
     );
 
-
     plankInterval =
       null;
 
@@ -4451,16 +3552,13 @@ function stopPlankInterval(){
 }
 
 
-/* ========================================
-   RESET TODAY
-   ======================================== */
+/* RESET */
 
 async function resetToday(){
 
   if(!todayProgress){
     return;
   }
-
 
   if(!navigator.onLine){
 
@@ -4472,23 +3570,14 @@ async function resetToday(){
 
   }
 
-
   const ok =
     confirm(
       "Återställa ALLT för idag?\n\nDetta tar bort reps, planktid och BMU-data."
     );
 
-
   if(!ok){
     return;
   }
-
-
-  /*
-    Radera först från Supabase.
-    Om detta misslyckas låter vi
-    telefonens data vara kvar.
-  */
 
   const {error} =
     await sb
@@ -4509,32 +3598,20 @@ async function resetToday(){
         localDateKey()
       );
 
-
   if(error){
 
-    console.error(
-      error
-    );
-
+    console.error(error);
 
     toast(
       "Kunde inte återställa. Försök igen."
     );
 
-
     return;
 
   }
 
-
-  /*
-    Supabase är nu rensat.
-    Rensa även telefonens backup.
-  */
-
   const plankKey =
     plankStorageKey();
-
 
   if(plankKey){
 
@@ -4544,10 +3621,8 @@ async function resetToday(){
 
   }
 
-
   const progressKey =
     progressCacheKey();
-
 
   if(progressKey){
 
@@ -4557,9 +3632,7 @@ async function resetToday(){
 
   }
 
-
   stopPlankInterval();
-
 
   allProgress =
     allProgress.filter(
@@ -4573,34 +3646,23 @@ async function resetToday(){
         )
     );
 
-
   todayProgress =
     emptyProgress(
       todayDate()
     );
-
-
-  /*
-    Spara rent 0-läge lokalt
-    som "redan synkat".
-  */
 
   saveLocalProgress(
     todayProgress,
     false
   );
 
-
   saveGroupCache();
-
 
   setSaveStatus(
     "saved"
   );
 
-
   renderEverything();
-
 
   toast(
     "Dagen är återställd."
@@ -4609,49 +3671,38 @@ async function resetToday(){
 }
 
 
-/* ========================================
-   RENDER EVERYTHING
-   ======================================== */
+/* RENDER */
 
 function renderEverything(){
 
   renderHeader();
-
   renderDay();
-
   renderGroup();
-
   renderHistory();
 
 }
 
 
-/* ========================================
-   HEADER
-   ======================================== */
+/* HEADER */
 
 function renderHeader(){
 
   const t =
     todayDate();
 
-
   const day =
     challengeDayForDate(t);
-
 
   const eligible =
     eligibleDaysForMember(
       membership.joined_at
     );
 
-
   const completed =
     completedDaysForMember(
       user.id,
       membership.joined_at
     );
-
 
   document
     .getElementById(
@@ -4660,20 +3711,16 @@ function renderHeader(){
     .innerHTML =
       `${completed}/${eligible}<br>KLARA`;
 
-
   const pct =
     eligible
       ?
       Math.round(
-        completed
-        /
-        eligible
-        *
+        completed /
+        eligible *
         100
       )
       :
       0;
-
 
   document
     .getElementById(
@@ -4683,7 +3730,6 @@ function renderHeader(){
     .width =
       `${pct}%`;
 
-
   if(day){
 
     document
@@ -4692,7 +3738,6 @@ function renderHeader(){
       )
       .textContent =
         `DAG ${day}`;
-
 
     document
       .getElementById(
@@ -4707,10 +3752,7 @@ function renderHeader(){
     const dates =
       challengeDates();
 
-
-    if(
-      t < dates[0]
-    ){
+    if(t < dates[0]){
 
       document
         .getElementById(
@@ -4721,9 +3763,7 @@ function renderHeader(){
 
     }
 
-    else if(
-      t > dates[39]
-    ){
+    else if(t > dates[39]){
 
       document
         .getElementById(
@@ -4745,7 +3785,6 @@ function renderHeader(){
 
     }
 
-
     document
       .getElementById(
         "dateTitle"
@@ -4759,49 +3798,38 @@ function renderHeader(){
 }
 
 
-/* ========================================
-   RENDER DAY
-   ======================================== */
+/* DAY */
 
 function renderDay(){
 
   const t =
     todayDate();
 
-
   const plan =
     trainingPlanForDate(t);
-
 
   const rest =
     document.getElementById(
       "restCard"
     );
 
-
   const taskArea =
     document.getElementById(
       "taskArea"
     );
 
-
   if(
-    !plan
-    ||
+    !plan ||
     parseDate(
       membership.joined_at
-    )
-    >
-    t
+    ) > t
   ){
 
     rest.classList
       .remove("hidden");
 
-
     taskArea.classList
       .add("hidden");
-
 
     document
       .getElementById(
@@ -4810,19 +3838,15 @@ function renderDay(){
       .classList
       .remove("show");
 
-
     return;
 
   }
 
-
   rest.classList
     .add("hidden");
 
-
   taskArea.classList
     .remove("hidden");
-
 
   if(!todayProgress){
 
@@ -4832,9 +3856,7 @@ function renderDay(){
   }
 
 
-  /*
-    MAIN
-  */
+  /* MAIN */
 
   document
     .getElementById(
@@ -4843,14 +3865,12 @@ function renderDay(){
     .textContent =
       `100 ${plan.main.name}`;
 
-
   document
     .getElementById(
       "mainNumber"
     )
     .textContent =
       todayProgress.main_reps;
-
 
   document
     .getElementById(
@@ -4859,32 +3879,49 @@ function renderDay(){
     .textContent =
       `${todayProgress.main_reps} / 100`;
 
+  const mainDone =
+    todayProgress.main_reps >= 100;
 
   toggleDone(
     "mainCard",
     "mainBadge",
-    todayProgress.main_reps
-      >= 100
+    mainDone
   );
 
+  document
+    .querySelectorAll(
+      "#mainButtons button"
+    )
+    .forEach(
+      button=>{
+        button.disabled =
+          mainDone;
+      }
+    );
 
-  /*
-    PLANK
-  */
+  document
+    .getElementById(
+      "mainLockedNote"
+    )
+    .classList
+    .toggle(
+      "hidden",
+      !mainDone
+    );
+
+
+  /* PLANK */
 
   renderPlank();
 
 
-  /*
-    BMU
-  */
+  /* BMU */
 
   renderBmu(
     1,
     plan.bmu1,
     todayProgress.bmu1_value
   );
-
 
   renderBmu(
     2,
@@ -4893,9 +3930,7 @@ function renderDay(){
   );
 
 
-  /*
-    COMPLETE
-  */
+  /* DAY COMPLETE */
 
   document
     .getElementById(
@@ -4913,9 +3948,7 @@ function renderDay(){
 }
 
 
-/* ========================================
-   RENDER PLANK
-   ======================================== */
+/* PLANK RENDER */
 
 function renderPlank(){
 
@@ -4923,10 +3956,8 @@ function renderPlank(){
     return;
   }
 
-
   const total =
     displayedPlankSeconds();
-
 
   document
     .getElementById(
@@ -4935,7 +3966,6 @@ function renderPlank(){
     .textContent =
       formatSeconds(total);
 
-
   document
     .getElementById(
       "plankBadge"
@@ -4943,33 +3973,27 @@ function renderPlank(){
     .textContent =
       `${formatSeconds(total)} / 5:00`;
 
-
   toggleDone(
     "plankCard",
     "plankBadge",
     total >= 300
   );
 
-
   const active =
     activePlank();
-
 
   const button =
     document.getElementById(
       "timerButton"
     );
 
-
   if(total >= 300){
 
     button.textContent =
       "✓ KLAR";
 
-
     button.disabled =
       true;
-
 
     button.className =
       "btn green";
@@ -4981,10 +4005,8 @@ function renderPlank(){
     button.textContent =
       "■ STOPPA";
 
-
     button.disabled =
       false;
-
 
     button.className =
       "btn red";
@@ -4996,16 +4018,13 @@ function renderPlank(){
     button.textContent =
       "▶ STARTA";
 
-
     button.disabled =
       false;
-
 
     button.className =
       "btn primary";
 
   }
-
 
   const sets =
     Array.isArray(
@@ -5018,16 +4037,13 @@ function renderPlank(){
       :
       [];
 
-
   document
     .getElementById(
       "undoButton"
     )
     .disabled =
-      !!active
-      ||
+      !!active ||
       sets.length === 0;
-
 
   document
     .getElementById(
@@ -5049,9 +4065,7 @@ function renderPlank(){
 }
 
 
-/* ========================================
-   RENDER BMU
-   ======================================== */
+/* BMU RENDER */
 
 function renderBmu(
   index,
@@ -5062,14 +4076,12 @@ function renderBmu(
   const prefix =
     `bmu${index}`;
 
-
   document
     .getElementById(
       `${prefix}Name`
     )
     .textContent =
       task.name;
-
 
   document
     .getElementById(
@@ -5082,7 +4094,6 @@ function renderBmu(
         :
         value;
 
-
   document
     .getElementById(
       `${prefix}Target`
@@ -5093,7 +4104,6 @@ function renderBmu(
         `av ${formatSeconds(task.target)} totalt`
         :
         `av ${task.target} reps totalt`;
-
 
   document
     .getElementById(
@@ -5106,23 +4116,19 @@ function renderBmu(
         :
         `${value} / ${task.target}`;
 
-
   toggleDone(
     `${prefix}Card`,
     `${prefix}Badge`,
     value >= task.target
   );
 
-
   const holder =
     document.getElementById(
       `${prefix}Buttons`
     );
 
-
   holder.innerHTML =
     "";
-
 
   task.buttons.forEach(
     (amount,i)=>{
@@ -5132,20 +4138,17 @@ function renderBmu(
           "button"
         );
 
-
       button.className =
         "btn"
         +
         (
-          i
-          ===
+          i ===
           task.buttons.length-1
             ?
             " primary"
             :
             ""
         );
-
 
       button.textContent =
         task.unit === "sec"
@@ -5154,17 +4157,14 @@ function renderBmu(
           :
           `+${amount}`;
 
-
       button.disabled =
         value >= task.target;
-
 
       button.onclick =
         ()=>addBmu(
           index,
           amount
         );
-
 
       holder.appendChild(
         button
@@ -5176,9 +4176,7 @@ function renderBmu(
 }
 
 
-/* ========================================
-   RENDER GROUP
-   ======================================== */
+/* GROUP */
 
 function renderGroup(){
 
@@ -5189,19 +4187,100 @@ function renderGroup(){
     .textContent =
       `${members.length} PERSONER`;
 
-
   const holder =
     document.getElementById(
       "memberList"
     );
 
-
   holder.innerHTML =
     "";
 
-
   const t =
     todayDate();
+
+  const plan =
+    trainingPlanForDate(t);
+
+
+  let doneToday =
+    0;
+
+  let activeToday =
+    0;
+
+
+  members.forEach(
+    member=>{
+
+      const row =
+        allProgress.find(
+          p =>
+            p.user_id ===
+              member.user_id
+            &&
+            p.workout_date ===
+              localDateKey(t)
+        );
+
+      if(
+        plan &&
+        progressComplete(
+          row,
+          t
+        )
+      ){
+        doneToday++;
+      }
+
+      else if(
+        progressPartial(row)
+      ){
+        activeToday++;
+      }
+
+    }
+  );
+
+
+  const avg =
+    members.length
+      ?
+      Math.round(
+        members.reduce(
+          (sum,m)=>
+            sum +
+            memberCompletionPercent(m),
+          0
+        )
+        /
+        members.length
+      )
+      :
+      0;
+
+
+  document
+    .getElementById(
+      "groupSummary"
+    )
+    .innerHTML = `
+
+      <div class="statbox">
+        <strong>${members.length}</strong>
+        <span>MED</span>
+      </div>
+
+      <div class="statbox">
+        <strong>${plan ? doneToday : "–"}</strong>
+        <span>${plan ? "KLARA IDAG" : "VILODAG"}</span>
+      </div>
+
+      <div class="statbox">
+        <strong>${avg}%</strong>
+        <span>GENOMFÖRT</span>
+      </div>
+
+    `;
 
 
   members
@@ -5221,32 +4300,30 @@ function renderGroup(){
           ||
           "Medlem";
 
-
         const todayRow =
           allProgress.find(
             p =>
-              p.user_id
-                ===
+              p.user_id ===
                 member.user_id
               &&
-              p.workout_date
-                ===
+              p.workout_date ===
                 localDateKey(t)
           );
 
-
         const completeToday =
-          progressComplete(
-            todayRow,
-            t
-          );
-
+          plan
+            ?
+            progressComplete(
+              todayRow,
+              t
+            )
+            :
+            false;
 
         const eligible =
           eligibleDaysForMember(
             member.joined_at
           );
-
 
         const completed =
           completedDaysForMember(
@@ -5254,16 +4331,19 @@ function renderGroup(){
             member.joined_at
           );
 
+        const streak =
+          currentStreakForMember(
+            member.user_id,
+            member.joined_at
+          );
 
         const row =
           document.createElement(
             "div"
           );
 
-
         row.className =
           "member";
-
 
         row.innerHTML = `
 
@@ -5295,15 +4375,27 @@ function renderGroup(){
             <div class="member-status">
 
               ${
-                completeToday
+                !plan
                   ?
-                  "Dagen klar 🦍"
+                  "Vilodag 🛋️"
                   :
-                  todayStatusText(
-                    todayRow
-                  )
+                  completeToday
+                    ?
+                    "Dagen klar 🦍"
+                    :
+                    todayStatusText(
+                      todayRow
+                    )
               }
 
+            </div>
+
+            <div class="member-streak">
+              🔥 ${streak} ${
+                streak === 1
+                  ? "dag"
+                  : "dagar"
+              } i rad
             </div>
 
           </div>
@@ -5319,25 +4411,20 @@ function renderGroup(){
                   ""
               }"
             >
-
               ${completed}/${eligible}
-
             </div>
 
             <div class="small">
-
               ${
                 memberCompletionPercent(
                   member
                 )
               }%
-
             </div>
 
           </div>
 
         `;
-
 
         holder.appendChild(
           row
@@ -5349,9 +4436,7 @@ function renderGroup(){
 }
 
 
-/* ========================================
-   RENDER HISTORY
-   ======================================== */
+/* HISTORY */
 
 function renderHistory(){
 
@@ -5360,24 +4445,19 @@ function renderHistory(){
       "history"
     );
 
-
   holder.innerHTML =
     "";
 
-
   const dates =
     challengeDates();
-
 
   const join =
     parseDate(
       membership.joined_at
     );
 
-
   const t =
     todayDate();
-
 
   dates.forEach(
     (date,index)=>{
@@ -5385,36 +4465,28 @@ function renderHistory(){
       const row =
         allProgress.find(
           p =>
-            p.user_id
-              ===
-              user.id
+            p.user_id === user.id
             &&
-            p.workout_date
-              ===
+            p.workout_date ===
               localDateKey(date)
         );
-
 
       const box =
         document.createElement(
           "div"
         );
 
-
       box.className =
         "daybox";
 
-
       let symbol =
         "○";
-
 
       if(date < join){
 
         box.classList.add(
           "prejoin"
         );
-
 
         symbol =
           "➖";
@@ -5426,7 +4498,6 @@ function renderHistory(){
         box.classList.add(
           "future"
         );
-
 
         symbol =
           "·";
@@ -5444,7 +4515,6 @@ function renderHistory(){
           "complete"
         );
 
-
         symbol =
           "✅";
 
@@ -5458,12 +4528,10 @@ function renderHistory(){
           "partial"
         );
 
-
         symbol =
           "◐";
 
       }
-
 
       if(
         localDateKey(date)
@@ -5477,19 +4545,10 @@ function renderHistory(){
 
       }
 
-
       box.innerHTML = `
-
-        <strong>
-          ${index+1}
-        </strong>
-
-        <span>
-          ${symbol}
-        </span>
-
+        <strong>${index+1}</strong>
+        <span>${symbol}</span>
       `;
-
 
       holder.appendChild(
         box
@@ -5498,19 +4557,16 @@ function renderHistory(){
     }
   );
 
-
   const completed =
     completedDaysForMember(
       user.id,
       membership.joined_at
     );
 
-
   const eligible =
     eligibleDaysForMember(
       membership.joined_at
     );
-
 
   document
     .getElementById(
@@ -5522,23 +4578,17 @@ function renderHistory(){
 }
 
 
-/* ========================================
-   SCORE HELPERS
-   ======================================== */
+/* SCORE HELPERS */
 
 function eligibleDaysForMember(
   joinedAt
 ){
 
   const join =
-    parseDate(
-      joinedAt
-    );
-
+    parseDate(joinedAt);
 
   const t =
     todayDate();
-
 
   return challengeDates()
     .filter(
@@ -5558,14 +4608,10 @@ function completedDaysForMember(
 ){
 
   const join =
-    parseDate(
-      joinedAt
-    );
-
+    parseDate(joinedAt);
 
   const t =
     todayDate();
-
 
   return challengeDates()
 
@@ -5582,15 +4628,11 @@ function completedDaysForMember(
         const row =
           allProgress.find(
             p =>
-              p.user_id
-                ===
-                userId
+              p.user_id === userId
               &&
-              p.workout_date
-                ===
+              p.workout_date ===
                 localDateKey(date)
           );
-
 
         return progressComplete(
           row,
@@ -5614,11 +4656,9 @@ function memberCompletionPercent(
       member.joined_at
     );
 
-
   if(!eligible){
     return 0;
   }
-
 
   const complete =
     completedDaysForMember(
@@ -5626,14 +4666,117 @@ function memberCompletionPercent(
       member.joined_at
     );
 
-
   return Math.round(
-    complete
-    /
-    eligible
-    *
+    complete /
+    eligible *
     100
   );
+
+}
+
+
+function currentStreakForMember(
+  userId,
+  joinedAt
+){
+
+  const join =
+    parseDate(joinedAt);
+
+  const t =
+    todayDate();
+
+  let dates =
+    challengeDates()
+      .filter(
+        date =>
+          date >= join
+          &&
+          date <= t
+      );
+
+  if(!dates.length){
+    return 0;
+  }
+
+  /*
+    En pågående dag bryter inte streaken
+    förrän den faktiskt blivit en missad dag.
+  */
+
+  const last =
+    dates[
+      dates.length-1
+    ];
+
+  if(
+    localDateKey(last)
+      ===
+      localDateKey(t)
+  ){
+
+    const row =
+      allProgress.find(
+        p =>
+          p.user_id === userId
+          &&
+          p.workout_date ===
+            localDateKey(t)
+      );
+
+    if(
+      !progressComplete(
+        row,
+        t
+      )
+    ){
+
+      dates.pop();
+
+    }
+
+  }
+
+  let streak =
+    0;
+
+  for(
+    let i =
+      dates.length-1;
+    i >= 0;
+    i--
+  ){
+
+    const date =
+      dates[i];
+
+    const row =
+      allProgress.find(
+        p =>
+          p.user_id === userId
+          &&
+          p.workout_date ===
+            localDateKey(date)
+      );
+
+    if(
+      progressComplete(
+        row,
+        date
+      )
+    ){
+
+      streak++;
+
+    }else{
+
+      break;
+
+    }
+
+  }
+
+  return streak;
 
 }
 
@@ -5641,33 +4784,53 @@ function memberCompletionPercent(
 function todayStatusText(row){
 
   if(!row){
-
     return "Inte påbörjad";
-
   }
 
+  const plan =
+    trainingPlanForDate(
+      todayDate()
+    );
+
+  if(!plan){
+    return "Vilodag";
+  }
+
+  const bmuDone =
+    (
+      row.bmu1_value
+        >= plan.bmu1.target
+        ? 1
+        : 0
+    )
+    +
+    (
+      row.bmu2_value
+        >= plan.bmu2.target
+        ? 1
+        : 0
+    );
 
   return (
     `${row.main_reps}/100`
     +
     " • "
     +
-    `${formatSeconds(
-      row.plank_seconds
-    )}/5:00 plank`
+    `${formatSeconds(row.plank_seconds)}/5:00`
+    +
+    " • "
+    +
+    `BMU ${bmuDone}/2`
   );
 
 }
 
 
-/* ========================================
-   REALTIME
-   ======================================== */
+/* REALTIME */
 
 function startRealtime(){
 
   stopRealtime();
-
 
   realtimeChannel =
     sb
@@ -5710,27 +4873,17 @@ function scheduleRealtimeRefresh(){
     realtimeRefreshTimer
   );
 
-
   realtimeRefreshTimer =
     setTimeout(
       async ()=>{
 
         await loadGroupData();
 
-
         const cached =
           loadLocalProgress();
 
-
-        /*
-          Om våra egna ändringar är
-          osynkade ska de lokala värdena
-          fortsätta vinna.
-        */
-
         if(
-          cached?.dirty
-          &&
+          cached?.dirty &&
           cached?.row
         ){
 
@@ -5739,16 +4892,11 @@ function scheduleRealtimeRefresh(){
 
         }
 
-
         mergeTodayIntoAllProgress();
 
-
         renderGroup();
-
         renderHistory();
-
         renderHeader();
-
         renderDay();
 
       },
@@ -5766,7 +4914,6 @@ function stopRealtime(){
       realtimeChannel
     );
 
-
     realtimeChannel =
       null;
 
@@ -5775,9 +4922,7 @@ function stopRealtime(){
 }
 
 
-/* ========================================
-   SHARE STATUS
-   ======================================== */
+/* SHARE */
 
 async function shareStatus(){
 
@@ -5785,24 +4930,20 @@ async function shareStatus(){
     return;
   }
 
-
   const plan =
     trainingPlanForDate(
       todayDate()
     );
 
-
   if(!plan){
     return;
   }
-
 
   const complete =
     progressComplete(
       todayProgress,
       todayDate()
     );
-
 
   const text =
 
@@ -5816,7 +4957,6 @@ ${plan.bmu2.name}: ${formatTask(todayProgress.bmu2_value,plan.bmu2)} ${todayProg
 
 ${complete ? "🦍 DAGEN KLAR!" : "⏳ PÅGÅR"}`;
 
-
   await shareText(
     "PROJECT 40",
     text
@@ -5824,10 +4964,6 @@ ${complete ? "🦍 DAGEN KLAR!" : "⏳ PÅGÅR"}`;
 
 }
 
-
-/* ========================================
-   SHARE JOIN CODE
-   ======================================== */
 
 async function shareJoinCode(){
 
@@ -5838,7 +4974,6 @@ async function shareJoinCode(){
 Kod: ${challenge.join_code}
 
 ${APP_URL}`;
-
 
   await shareText(
     "PROJECT 40",
@@ -5866,10 +5001,7 @@ async function shareText(
 
       await navigator
         .clipboard
-        .writeText(
-          text
-        );
-
+        .writeText(text);
 
       toast(
         "Kopierat!"
@@ -5877,22 +5009,12 @@ async function shareText(
 
     }
 
-  }catch(error){
-
-    /*
-      Användaren kan själv avbryta
-      delningsdialogen.
-      Det behöver inte visas som fel.
-    */
-
-  }
+  }catch{}
 
 }
 
 
-/* ========================================
-   NAVIGATION
-   ======================================== */
+/* NAV */
 
 function showTab(tab){
 
@@ -5913,7 +5035,6 @@ function showTab(tab){
           "hidden",
           name !== tab
         );
-
 
       document
         .getElementById(
@@ -5944,9 +5065,7 @@ function capitalize(s){
 }
 
 
-/* ========================================
-   GENERAL HELPERS
-   ======================================== */
+/* HELPERS */
 
 function toggleDone(
   cardId,
@@ -5963,7 +5082,6 @@ function toggleDone(
       "done",
       done
     );
-
 
   document
     .getElementById(
@@ -5988,16 +5106,13 @@ function formatSeconds(sec){
       )
     );
 
-
   const min =
     Math.floor(
       sec / 60
     );
 
-
   const seconds =
     sec % 60;
-
 
   return (
     `${min}:`
@@ -6027,7 +5142,6 @@ function formatTask(
 
   }
 
-
   return (
     `${value}/${task.target}`
   );
@@ -6042,10 +5156,8 @@ function escapeHtml(text){
       "div"
     );
 
-
   div.textContent =
     text || "";
-
 
   return div.innerHTML;
 
@@ -6059,15 +5171,12 @@ function toast(text){
       "toast"
     );
 
-
   el.textContent =
     text;
-
 
   el.classList.add(
     "show"
   );
-
 
   setTimeout(
     ()=>{
@@ -6083,10 +5192,6 @@ function toast(text){
 }
 
 
-/* ========================================
-   VIEW HELPERS
-   ======================================== */
-
 function showLogin(){
 
   document
@@ -6096,14 +5201,12 @@ function showLogin(){
     .classList
     .remove("hidden");
 
-
   document
     .getElementById(
       "challengeView"
     )
     .classList
     .add("hidden");
-
 
   document
     .getElementById(
@@ -6115,9 +5218,7 @@ function showLogin(){
 }
 
 
-/* ========================================
-   NETWORK EVENTS
-   ======================================== */
+/* NETWORK */
 
 window.addEventListener(
   "offline",
@@ -6130,7 +5231,6 @@ window.addEventListener(
 
       const cached =
         loadLocalProgress();
-
 
       setSaveStatus(
         cached?.dirty
@@ -6155,20 +5255,12 @@ window.addEventListener(
       return;
     }
 
-
     const cached =
       loadLocalProgress();
-
 
     if(
       cached?.dirty
     ){
-
-      /*
-        Viktigt:
-        ladda tillbaka senaste lokala
-        version innan sync.
-      */
 
       if(cached.row){
 
@@ -6177,11 +5269,9 @@ window.addEventListener(
 
       }
 
-
       setSaveStatus(
         "saving"
       );
-
 
       await saveToday();
 
@@ -6193,15 +5283,11 @@ window.addEventListener(
 
     }
 
-
     await loadGroupData();
-
 
     mergeTodayIntoAllProgress();
 
-
     renderEverything();
-
 
     startRealtime();
 
@@ -6209,9 +5295,7 @@ window.addEventListener(
 );
 
 
-/* ========================================
-   AUTH LISTENER
-   ======================================== */
+/* AUTH LISTENER */
 
 sb.auth.onAuthStateChange(
   async (
@@ -6228,11 +5312,9 @@ sb.auth.onAuthStateChange(
       user =
         session.user;
 
-
       await boot();
 
     }
-
 
     if(
       event === "SIGNED_OUT"
@@ -6246,26 +5328,20 @@ sb.auth.onAuthStateChange(
 );
 
 
-/* ========================================
-   START APP
-   ======================================== */
+/* START */
 
 boot();
-
 
 </script>
 
 
-<!-- =====================================
-     SERVICE WORKER
-     ===================================== -->
+<!-- SERVICE WORKER -->
 
 <script>
 
 if(
   "serviceWorker"
-  in
-  navigator
+  in navigator
 ){
 
   window.addEventListener(
@@ -6279,12 +5355,10 @@ if(
         )
         .catch(
           error=>{
-
             console.error(
               "Service Worker error:",
               error
             );
-
           }
         );
 
@@ -6294,7 +5368,6 @@ if(
 }
 
 </script>
-
 
 </body>
 </html>
