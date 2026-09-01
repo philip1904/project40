@@ -1,9 +1,12 @@
-const CACHE_NAME = "project40-v1";
+const CACHE_NAME = "project40-v2";
 
 const APP_FILES = [
-  "/project40/",
+   "/project40/",
   "/project40/index.html",
-  "/project40/manifest.webmanifest"
+  "/project40/manifest.webmanifest",
+  "/project40/icon-180.png",
+  "/project40/icon-192.png",
+  "/project40/icon-512.png"
 ];
 
 self.addEventListener("install", event => {
