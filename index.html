@@ -1599,7 +1599,7 @@ async function saveToday(){
 
   if(error){
     console.error(error);
-    toast("Kunde inte spara.");
+    alert("SPARFEL:\n" + error.message);
     return;
   }
 
