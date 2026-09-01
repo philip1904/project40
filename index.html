@@ -2,6 +2,7 @@
 <html lang="sv">
 
 <head>
+
 <meta charset="utf-8">
 
 <meta
@@ -36,7 +37,7 @@
   content="PROJECT 40"
 >
 
-<title>PROJECT 40 ðŸ¦</title>
+<title>PROJECT 40 🦍</title>
 
 
 <style>
@@ -92,25 +93,39 @@ button{
   display:none!important;
 }
 
+
+/* ========================================
+   LAYOUT
+   ======================================== */
+
 .screen{
   width:min(100%,600px);
-  min-height:100vh;
+  min-height:100dvh;
+
   margin:0 auto;
 
   padding:
-    20px
+    calc(20px + env(safe-area-inset-top))
     16px
     calc(110px + env(safe-area-inset-bottom));
 }
 
 .center-screen{
   display:flex;
-  min-height:100vh;
 
-  align-items:center;
+  min-height:100dvh;
+
+  align-items:flex-start;
   justify-content:center;
 
-  padding:20px;
+  padding:
+    calc(20px + env(safe-area-inset-top))
+    20px
+    calc(30px + env(safe-area-inset-bottom));
+}
+
+#installGate.center-screen{
+  align-items:center;
 }
 
 .logo{
@@ -126,15 +141,19 @@ button{
 
 .subtitle{
   color:var(--muted);
+
   margin-top:9px;
+
   font-size:14px;
   line-height:1.45;
 }
 
 .card{
   background:var(--panel);
+
   border:1px solid var(--line);
   border-radius:20px;
+
   padding:17px;
   margin-bottom:12px;
 }
@@ -149,14 +168,18 @@ button{
 
 label{
   display:block;
+
   color:#d4d4d7;
+
   font-size:13px;
   font-weight:850;
+
   margin:14px 0 7px;
 }
 
 input{
   display:block;
+
   width:100%;
 
   border:1px solid var(--line);
@@ -165,7 +188,9 @@ input{
   color:white;
 
   padding:15px;
+
   border-radius:14px;
+
   outline:none;
 }
 
@@ -173,9 +198,16 @@ input:focus{
   border-color:var(--yellow);
 }
 
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
 .btn{
   border:0;
+
   border-radius:14px;
+
   padding:14px 12px;
 
   background:var(--panel2);
@@ -203,20 +235,37 @@ input:focus{
   color:#ff8585;
 }
 
+.btn.orange{
+  background:rgba(255,191,105,.13);
+  color:#ffd19b;
+
+  border:1px solid rgba(255,191,105,.25);
+}
+
 .btn.full{
   width:100%;
+
   margin-top:18px;
+
   padding:16px;
 }
 
 .btn:disabled{
   opacity:.32;
+
   cursor:default;
+
   transform:none;
 }
 
+
+/* ========================================
+   MESSAGES
+   ======================================== */
+
 .message{
   margin-top:14px;
+
   padding:12px;
 
   border-radius:12px;
@@ -225,6 +274,7 @@ input:focus{
   line-height:1.5;
 
   background:var(--panel2);
+
   color:var(--muted);
 }
 
@@ -238,7 +288,9 @@ input:focus{
 
 .divider{
   display:flex;
+
   align-items:center;
+
   gap:12px;
 
   margin:25px 0 10px;
@@ -247,14 +299,18 @@ input:focus{
 
   font-size:10px;
   font-weight:900;
+
   letter-spacing:1px;
 }
 
 .divider::before,
 .divider::after{
   content:"";
+
   height:1px;
+
   flex:1;
+
   background:var(--line);
 }
 
@@ -262,14 +318,17 @@ input:focus{
   margin:23px 2px 10px;
 
   font-size:12px;
+
   color:var(--muted);
 
   font-weight:950;
+
   letter-spacing:1.2px;
 }
 
 .small{
   color:var(--muted);
+
   font-size:12px;
   line-height:1.5;
 }
@@ -295,6 +354,7 @@ input:focus{
   color:#111;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
@@ -304,26 +364,34 @@ input:focus{
 
 .install-gate h1{
   margin:0;
+
   text-align:center;
+
   font-size:27px;
 }
 
 .install-gate .intro{
   margin:12px 0 20px;
+
   text-align:center;
+
   color:#d7d7da;
+
   line-height:1.5;
 }
 
 .install-steps{
   background:#101012;
+
   border:1px solid var(--line);
   border-radius:17px;
 
   padding:15px;
+
   margin-top:15px;
 
   line-height:1.6;
+
   font-size:13px;
 }
 
@@ -335,6 +403,7 @@ input:focus{
   margin-top:15px;
 
   border:1px solid rgba(245,197,24,.35);
+
   background:rgba(245,197,24,.07);
 
   border-radius:15px;
@@ -347,12 +416,13 @@ input:focus{
 
   font-size:12px;
   font-weight:900;
+
   line-height:1.5;
 }
 
 
 /* ========================================
-   LOGIN CHOICES
+   LOGIN
    ======================================== */
 
 .choice-block{
@@ -382,11 +452,12 @@ input:focus{
 
 
 /* ========================================
-   RECOVERY OVERLAY
+   OVERLAY
    ======================================== */
 
 .overlay{
   position:fixed;
+
   inset:0;
 
   z-index:2000;
@@ -394,24 +465,27 @@ input:focus{
   background:rgba(0,0,0,.94);
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
   padding:
-    20px
+    calc(20px + env(safe-area-inset-top))
     16px
     calc(20px + env(safe-area-inset-bottom));
 }
 
 .overlay-card{
   width:min(100%,480px);
-  max-height:90vh;
+
+  max-height:90dvh;
 
   overflow:auto;
 
   background:var(--panel);
 
   border:1px solid rgba(245,197,24,.4);
+
   border-radius:24px;
 
   padding:20px;
@@ -424,30 +498,38 @@ input:focus{
 
 .overlay-card h2{
   margin:8px 0;
+
   text-align:center;
+
   font-size:25px;
 }
 
 .overlay-card p{
   color:#d4d4d7;
+
   line-height:1.5;
+
   font-size:13px;
 }
 
 .recovery-code{
   margin:17px 0;
+
   padding:17px 10px;
 
   border:1px solid rgba(245,197,24,.4);
+
   border-radius:15px;
 
   background:#0d0d0f;
+
   color:var(--yellow);
 
   text-align:center;
 
   font-size:19px;
   font-weight:950;
+
   letter-spacing:1px;
 
   word-break:break-word;
@@ -455,16 +537,19 @@ input:focus{
 
 .warning-box{
   margin-top:15px;
+
   padding:13px;
 
   border-radius:14px;
 
   background:rgba(255,191,105,.08);
+
   border:1px solid rgba(255,191,105,.25);
 
   color:#ffd19b;
 
   font-size:12px;
+
   line-height:1.5;
 }
 
@@ -475,9 +560,12 @@ input:focus{
 
 .topbar{
   display:flex;
+
   align-items:center;
   justify-content:space-between;
+
   gap:12px;
+
   margin-bottom:16px;
 }
 
@@ -487,11 +575,13 @@ input:focus{
 
 .userpill{
   border:1px solid var(--line);
+
   border-radius:999px;
 
   padding:8px 10px;
 
   background:var(--panel);
+
   color:var(--muted);
 
   font-size:12px;
@@ -499,42 +589,59 @@ input:focus{
 }
 
 .hero{
-  background:linear-gradient(135deg,#f5c518,#dca900);
+  background:
+    linear-gradient(
+      135deg,
+      #f5c518,
+      #dca900
+    );
+
   color:#111;
 
   border-radius:22px;
 
   padding:19px;
+
   margin-bottom:14px;
 }
 
 .hero-row{
   display:flex;
+
   justify-content:space-between;
+
   gap:12px;
 }
 
 .hero-day{
   font-size:35px;
+
   font-weight:950;
+
   letter-spacing:-1.5px;
 }
 
 .hero-date{
   margin-top:4px;
+
   font-size:12px;
+
   font-weight:850;
+
   opacity:.7;
 }
 
 .hero-right{
   text-align:right;
+
   font-size:12px;
+
   font-weight:950;
 }
 
 .progressbar{
   margin-top:16px;
+
   height:9px;
 
   border-radius:99px;
@@ -546,6 +653,7 @@ input:focus{
 
 .progressbar div{
   height:100%;
+
   width:0%;
 
   border-radius:99px;
@@ -561,6 +669,7 @@ input:focus{
   margin-bottom:12px;
 
   background:var(--green);
+
   color:#071911;
 
   border-radius:19px;
@@ -576,13 +685,17 @@ input:focus{
 
 .complete-title{
   font-size:20px;
+
   font-weight:950;
 }
 
 .complete-sub{
   margin-top:4px;
+
   font-size:12px;
+
   font-weight:850;
+
   opacity:.72;
 }
 
@@ -593,27 +706,35 @@ input:focus{
 
 .nav{
   display:grid;
+
   grid-template-columns:repeat(3,1fr);
+
   gap:7px;
+
   margin-bottom:7px;
 }
 
 .nav button{
   border:1px solid var(--line);
+
   border-radius:13px;
 
   background:var(--panel);
+
   color:var(--muted);
 
   padding:11px 4px;
 
   font-weight:900;
+
   font-size:12px;
 }
 
 .nav button.active{
   background:var(--yellow);
+
   color:#111;
+
   border-color:var(--yellow);
 }
 
@@ -635,8 +756,10 @@ input:focus{
   color:var(--muted);
 
   display:flex;
+
   align-items:center;
   justify-content:center;
+
   gap:6px;
 }
 
@@ -684,14 +807,18 @@ input:focus{
 
 .card-title{
   display:flex;
+
   justify-content:space-between;
   align-items:center;
+
   gap:10px;
 }
 
 .card-title h2{
   margin:0;
+
   font-size:18px;
+
   letter-spacing:-.3px;
 }
 
@@ -699,6 +826,7 @@ input:focus{
   border-radius:999px;
 
   background:var(--panel2);
+
   color:var(--muted);
 
   padding:6px 9px;
@@ -715,6 +843,7 @@ input:focus{
 
 .badge.done{
   background:rgba(57,217,138,.14);
+
   color:var(--green);
 }
 
@@ -722,20 +851,45 @@ input:focus{
   margin:17px 0 5px;
 
   font-size:44px;
+
   line-height:1;
+
   font-weight:950;
+
   letter-spacing:-2px;
 }
 
 .target{
   color:var(--muted);
+
   font-size:13px;
+
+  line-height:1.5;
+}
+
+.exercise-note{
+  margin-top:11px;
+
+  padding:10px 11px;
+
+  border-radius:12px;
+
+  background:#101012;
+
+  color:#cfcfd3;
+
+  font-size:12px;
+
+  line-height:1.5;
 }
 
 .btnrow{
   display:grid;
+
   grid-template-columns:repeat(4,1fr);
+
   gap:8px;
+
   margin-top:16px;
 }
 
@@ -745,17 +899,88 @@ input:focus{
 
 .locked-note{
   margin-top:12px;
+
   padding:10px;
 
   border-radius:12px;
 
   background:rgba(57,217,138,.1);
+
   color:var(--green);
 
   text-align:center;
 
   font-size:12px;
   font-weight:900;
+}
+
+
+/* ========================================
+   SHOULDER MODE
+   ======================================== */
+
+.shoulder-toggle{
+  border-color:rgba(255,191,105,.22);
+}
+
+.shoulder-toggle.active{
+  border-color:rgba(255,191,105,.6);
+
+  background:rgba(255,191,105,.08);
+}
+
+.shoulder-title{
+  font-size:16px;
+
+  font-weight:950;
+}
+
+.shoulder-sub{
+  margin-top:6px;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  line-height:1.5;
+}
+
+.shoulder-active-label{
+  display:inline-block;
+
+  margin-top:10px;
+
+  padding:6px 9px;
+
+  border-radius:999px;
+
+  background:rgba(255,191,105,.14);
+
+  color:#ffd19b;
+
+  font-size:10px;
+
+  font-weight:950;
+
+  letter-spacing:.5px;
+}
+
+.shoulder-tech{
+  border-color:rgba(255,191,105,.4);
+
+  background:rgba(255,191,105,.06);
+}
+
+.shoulder-tech h2{
+  color:#ffd19b;
+}
+
+.shoulder-tech p{
+  color:#d5d5d9;
+
+  font-size:12px;
+
+  line-height:1.55;
 }
 
 
@@ -767,8 +992,11 @@ input:focus{
   text-align:center;
 
   font-size:68px;
+
   line-height:1;
+
   font-weight:950;
+
   letter-spacing:-3px;
 
   font-variant-numeric:tabular-nums;
@@ -778,14 +1006,19 @@ input:focus{
 
 .timer-sub{
   text-align:center;
+
   color:var(--muted);
+
   font-size:12px;
 }
 
 .timer-buttons{
   display:grid;
+
   grid-template-columns:2fr 1fr;
+
   gap:9px;
+
   margin-top:17px;
 }
 
@@ -795,8 +1028,11 @@ input:focus{
 
 .sets{
   color:var(--muted);
+
   font-size:12px;
+
   line-height:1.5;
+
   margin-top:13px;
 }
 
@@ -807,6 +1043,7 @@ input:focus{
 
 .rulebox{
   border-color:rgba(245,197,24,.4);
+
   background:rgba(245,197,24,.06);
 }
 
@@ -816,17 +1053,21 @@ input:focus{
 
 .rules{
   margin:9px 0 0 19px;
+
   padding:0;
 
   color:#d4d4d7;
 
   font-size:13px;
+
   line-height:1.6;
 }
 
 .actionrow{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:9px;
 }
 
@@ -837,8 +1078,11 @@ input:focus{
 
 .group-summary{
   display:grid;
+
   grid-template-columns:repeat(3,1fr);
+
   gap:8px;
+
   margin:15px 0 8px;
 }
 
@@ -854,7 +1098,9 @@ input:focus{
 
 .statbox strong{
   display:block;
+
   font-size:22px;
+
   color:var(--yellow);
 }
 
@@ -867,12 +1113,15 @@ input:focus{
 
   font-size:9px;
   font-weight:900;
+
   letter-spacing:.5px;
 }
 
 .member{
   display:flex;
+
   align-items:center;
+
   gap:11px;
 
   padding:14px 0;
@@ -887,14 +1136,17 @@ input:focus{
 .avatar{
   width:42px;
   height:42px;
+
   flex:0 0 42px;
 
   border-radius:50%;
 
   background:var(--yellow);
+
   color:#111;
 
   display:flex;
+
   align-items:center;
   justify-content:center;
 
@@ -904,6 +1156,7 @@ input:focus{
 
 .member-main{
   flex:1;
+
   min-width:0;
 }
 
@@ -913,19 +1166,25 @@ input:focus{
 
 .member-status{
   color:var(--muted);
+
   font-size:11px;
+
   margin-top:3px;
 }
 
 .member-streak{
   color:#d4d4d7;
+
   font-size:10px;
+
   margin-top:4px;
 }
 
 .member-score{
   text-align:right;
+
   font-size:12px;
+
   font-weight:900;
 }
 
@@ -935,9 +1194,13 @@ input:focus{
 
 .joincode{
   font-size:27px;
+
   font-weight:950;
+
   letter-spacing:3px;
+
   color:var(--yellow);
+
   margin-top:8px;
 }
 
@@ -952,23 +1215,29 @@ input:focus{
   color:var(--muted);
 
   font-size:10px;
+
   font-weight:900;
+
   letter-spacing:.8px;
 }
 
 .profile-code{
   margin-top:7px;
+
   padding:13px 9px;
 
   border-radius:13px;
 
   background:#101012;
+
   color:var(--yellow);
 
   text-align:center;
 
   font-size:15px;
+
   font-weight:950;
+
   letter-spacing:.7px;
 
   word-break:break-word;
@@ -976,8 +1245,11 @@ input:focus{
 
 .profile-actions{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:8px;
+
   margin-top:9px;
 }
 
@@ -988,7 +1260,9 @@ input:focus{
 
 .history{
   display:grid;
+
   grid-template-columns:repeat(5,1fr);
+
   gap:7px;
 }
 
@@ -996,11 +1270,13 @@ input:focus{
   min-height:58px;
 
   border:1px solid var(--line);
+
   border-radius:13px;
 
   background:var(--panel);
 
   display:flex;
+
   flex-direction:column;
 
   align-items:center;
@@ -1015,16 +1291,19 @@ input:focus{
 
 .daybox span{
   font-size:11px;
+
   color:var(--muted);
 }
 
 .daybox.complete{
   border-color:rgba(57,217,138,.5);
+
   background:rgba(57,217,138,.13);
 }
 
 .daybox.partial{
   border-color:rgba(245,197,24,.4);
+
   background:rgba(245,197,24,.08);
 }
 
@@ -1047,6 +1326,7 @@ input:focus{
 
 .rest{
   text-align:center;
+
   padding:38px 20px;
 }
 
@@ -1056,17 +1336,21 @@ input:focus{
 
 .rest h2{
   margin:10px 0 5px;
+
   font-size:29px;
 }
 
 .rest p{
   color:var(--muted);
+
   line-height:1.55;
 }
 
 .choice-grid{
   display:grid;
+
   grid-template-columns:1fr;
+
   gap:12px;
 }
 
@@ -1076,8 +1360,11 @@ input:focus{
 
 .choice-card p{
   color:var(--muted);
+
   margin:0;
+
   line-height:1.45;
+
   font-size:13px;
 }
 
@@ -1085,6 +1372,7 @@ input:focus{
   position:fixed;
 
   left:50%;
+
   bottom:calc(20px + env(safe-area-inset-bottom));
 
   z-index:3000;
@@ -1116,20 +1404,18 @@ input:focus{
   opacity:1;
 }
 
-@media(min-width:700px){
-  body{
-    padding-top:15px;
-  }
-}
-
 </style>
+
 </head>
 
 
 <body>
 
 
-<div id="toast" class="toast"></div>
+<div
+  id="toast"
+  class="toast"
+></div>
 
 
 <!-- =====================================
@@ -1152,11 +1438,11 @@ input:focus{
     </h1>
 
     <div class="intro">
-      PROJECT 40 Ã¤r byggd fÃ¶r att anvÃ¤ndas
-      som en app pÃ¥ telefonen.
+      PROJECT 40 är byggd för att användas
+      som en app på telefonen.
       <br><br>
-      Installera den fÃ¶rst och Ã¶ppna sedan
-      PROJECT 40 frÃ¥n ikonen pÃ¥ hemskÃ¤rmen.
+      Installera den först och öppna sedan
+      PROJECT 40 från ikonen på hemskärmen.
     </div>
 
     <div
@@ -1173,8 +1459,8 @@ input:focus{
     </button>
 
     <div class="install-required">
-      INSTALLERA â†’ Ã–PPNA FRÃ…N HEMSKÃ„RMEN â†’
-      GÃ… MED / SKAPA / Ã…TERSTÃ„LL
+      INSTALLERA → ÖPPNA FRÅN HEMSKÄRMEN →
+      GÅ MED / SKAPA / ÅTERSTÄLL
     </div>
 
   </div>
@@ -1183,7 +1469,7 @@ input:focus{
 
 
 <!-- =====================================
-     LOGGED OUT
+     LOGIN
      ===================================== -->
 
 <div
@@ -1194,27 +1480,25 @@ input:focus{
   <div class="card auth-card">
 
     <div class="logo">
-      PROJECT <span>40</span> ðŸ¦
+      PROJECT <span>40</span> 🦍
     </div>
 
     <div class="subtitle">
       40 vardagar.
       Exakt dos.
-      Ingen ikapptrÃ¤ning.
-      VÃ¤gen mot fÃ¶rsta BMU:n.
+      Ingen ikappträning.
+      En dag i taget.
     </div>
 
-
-    <!-- JOIN -->
 
     <div class="choice-block">
 
       <div class="choice-heading">
-        ðŸ¤ GÃ… MED I EN GRUPP
+        🤝 GÅ MED I EN GRUPP
       </div>
 
       <div class="choice-text">
-        Har du fÃ¥tt en join-kod?
+        Har du fått en join-kod?
         Skriv ditt namn och koden.
       </div>
 
@@ -1244,7 +1528,7 @@ input:focus{
         class="btn primary full"
         onclick="joinAsNewUser()"
       >
-        GÃ… MED I PROJECT 40
+        GÅ MED I PROJECT 40
       </button>
 
     </div>
@@ -1255,16 +1539,14 @@ input:focus{
     </div>
 
 
-    <!-- CREATE -->
-
     <div class="choice-block">
 
       <div class="choice-heading">
-        ðŸ¦ SKAPA NY PROJECT 40
+        🦍 SKAPA NY PROJECT 40
       </div>
 
       <div class="choice-text">
-        Starta en egen grupp och fÃ¥ en
+        Starta en egen grupp och få en
         join-kod att skicka vidare.
       </div>
 
@@ -1279,7 +1561,7 @@ input:focus{
       >
 
       <label>
-        Namn pÃ¥ challengen
+        Namn på challengen
       </label>
 
       <input
@@ -1312,21 +1594,19 @@ input:focus{
     </div>
 
 
-    <!-- RECOVER -->
-
     <div class="choice-block">
 
       <div class="choice-heading">
-        ðŸ” REDAN VARIT MED?
+        🔐 REDAN VARIT MED?
       </div>
 
       <div class="choice-text">
         Har du loggat ut eller bytt telefon?
-        AnvÃ¤nd din personliga Ã¥terstÃ¤llningskod.
+        Använd din personliga återställningskod.
       </div>
 
       <label>
-        Ã…terstÃ¤llningskod
+        Återställningskod
       </label>
 
       <input
@@ -1340,7 +1620,7 @@ input:focus{
         class="btn full"
         onclick="recoverProfile()"
       >
-        Ã…TERSTÃ„LL MIN PROFIL
+        ÅTERSTÄLL MIN PROFIL
       </button>
 
     </div>
@@ -1368,24 +1648,24 @@ input:focus{
   <div class="overlay-card">
 
     <div class="overlay-icon">
-      ðŸ”
+      🔐
     </div>
 
     <h2 id="recoveryOverlayTitle">
-      DU Ã„R MED ðŸ¦
+      DU ÄR MED 🦍
     </h2>
 
     <p>
-      Det hÃ¤r Ã¤r din personliga
-      Ã¥terstÃ¤llningskod.
+      Det här är din personliga
+      återställningskod.
     </p>
 
     <p>
       <strong>
-        Spara den utanfÃ¶r appen.
+        Spara den utanför appen.
       </strong>
       Om du byter telefon eller loggar ut
-      anvÃ¤nder du den fÃ¶r att fÃ¥ tillbaka
+      använder du den för att få tillbaka
       din profil och historik.
     </p>
 
@@ -1398,11 +1678,11 @@ input:focus{
       class="btn primary full"
       onclick="copyWelcomeRecoveryCode()"
     >
-      KOPIERA Ã…TERSTÃ„LLNINGSKOD
+      KOPIERA ÅTERSTÄLLNINGSKOD
     </button>
 
     <div class="warning-box">
-      âš ï¸ Koden Ã¤r nyckeln till din
+      ⚠️ Koden är nyckeln till din
       PROJECT 40-profil.
       Spara den privat.
     </div>
@@ -1411,7 +1691,7 @@ input:focus{
       class="btn green full"
       onclick="closeRecoveryOverlay()"
     >
-      JAG HAR SPARAT KODEN â†’ KÃ–R
+      JAG HAR SPARAT KODEN → KÖR
     </button>
 
   </div>
@@ -1420,7 +1700,7 @@ input:focus{
 
 
 <!-- =====================================
-     AUTH USER WITHOUT CHALLENGE
+     AUTHENTICATED WITHOUT CHALLENGE
      ===================================== -->
 
 <div
@@ -1433,7 +1713,7 @@ input:focus{
     <div>
 
       <div class="logo">
-        PROJECT <span>40</span> ðŸ¦
+        PROJECT <span>40</span> 🦍
       </div>
 
       <div
@@ -1454,7 +1734,7 @@ input:focus{
 
 
   <div class="section-title">
-    STARTA ELLER GÃ… MED
+    STARTA ELLER GÅ MED
   </div>
 
 
@@ -1463,11 +1743,11 @@ input:focus{
     <div class="card choice-card">
 
       <h2>
-        ðŸ¦ Skapa PROJECT 40
+        🦍 Skapa PROJECT 40
       </h2>
 
       <p>
-        Skapa en ny grupp och fÃ¥ en join-kod.
+        Skapa en ny grupp och få en join-kod.
       </p>
 
       <label>
@@ -1501,7 +1781,7 @@ input:focus{
     <div class="card choice-card">
 
       <h2>
-        ðŸ¤ GÃ¥ med
+        🤝 Gå med
       </h2>
 
       <p>
@@ -1523,7 +1803,7 @@ input:focus{
         class="btn full"
         onclick="joinChallenge()"
       >
-        GÃ… MED
+        GÅ MED
       </button>
 
     </div>
@@ -1542,12 +1822,13 @@ input:focus{
   class="screen hidden"
 >
 
+
   <div class="topbar">
 
     <div>
 
       <div class="logo">
-        PROJECT <span>40</span> ðŸ¦
+        PROJECT <span>40</span> 🦍
       </div>
 
       <div
@@ -1573,13 +1854,13 @@ input:focus{
   >
 
     <div class="complete-title">
-      ðŸ¦ DAGEN KLAR!
+      🦍 DAGEN KLAR!
     </div>
 
     <div class="complete-sub">
       Exakt dos.
       Ingen bonusvolym.
-      Nu rÃ¤cker det.
+      Nu räcker det.
     </div>
 
   </div>
@@ -1650,39 +1931,79 @@ input:focus{
     id="saveStatus"
     class="save-status saved"
   >
-    SPARAT âœ“
+    SPARAT ✓
   </div>
 
 
-  <!-- DAY -->
+  <!-- ===================================
+       DAY
+       =================================== -->
 
   <div id="tabDay">
+
 
     <div
       id="restCard"
       class="card rest hidden"
     >
 
-      <div class="emoji">
-        ðŸ›‹ï¸
+      <div
+        id="restEmoji"
+        class="emoji"
+      >
+        🛋️
       </div>
 
-      <h2>
+      <h2 id="restTitle">
         VILA
       </h2>
 
-      <p>
+      <p id="restText">
         Ingen challenge-volym idag.
-        <br>
-        Inga reps tas igen.
-        <br>
-        CrossFit kÃ¶rs som vanligt.
       </p>
 
     </div>
 
 
     <div id="taskArea">
+
+
+      <!-- SHOULDER -->
+
+      <div
+        id="shoulderToggleCard"
+        class="card shoulder-toggle"
+      >
+
+        <div class="shoulder-title">
+          🩹 Ont i en axel?
+        </div>
+
+        <div class="shoulder-sub">
+          Träna aldrig igenom axelsmärta.
+          Byt till dagens axelvänliga version
+          och fortsätt challengen smart.
+        </div>
+
+        <div
+          id="shoulderActiveLabel"
+          class="shoulder-active-label hidden"
+        >
+          AXELALTERNATIV AKTIVT
+        </div>
+
+        <button
+          id="shoulderToggleButton"
+          class="btn orange full"
+          onclick="toggleShoulderMode()"
+        >
+          VISA AXELALTERNATIV
+        </button>
+
+      </div>
+
+
+      <!-- MAIN -->
 
       <div
         id="mainCard"
@@ -1711,9 +2032,17 @@ input:focus{
           0
         </div>
 
-        <div class="target">
+        <div
+          id="mainTarget"
+          class="target"
+        >
           av 100
         </div>
+
+        <div
+          id="mainExerciseNote"
+          class="exercise-note"
+        ></div>
 
         <div
           id="mainButtons"
@@ -1754,7 +2083,7 @@ input:focus{
           id="mainLockedNote"
           class="locked-note hidden"
         >
-          âœ“ 100/100 KLART â€” inga bonusreps
+          ✓ 100/100 KLART — inga bonusreps
         </div>
 
       </div>
@@ -1769,7 +2098,7 @@ input:focus{
 
         <div class="card-title">
 
-          <h2>
+          <h2 id="plankName">
             PLANKA
           </h2>
 
@@ -1789,7 +2118,10 @@ input:focus{
           0:00
         </div>
 
-        <div class="timer-sub">
+        <div
+          id="timerSub"
+          class="timer-sub"
+        >
           Dagens sammanlagda tid
         </div>
 
@@ -1800,7 +2132,7 @@ input:focus{
             class="btn primary"
             onclick="togglePlank()"
           >
-            â–¶ STARTA
+            ▶ STARTA
           </button>
 
           <button
@@ -1808,7 +2140,7 @@ input:focus{
             class="btn"
             onclick="undoPlank()"
           >
-            Ã…NGRA
+            ÅNGRA
           </button>
 
         </div>
@@ -1817,13 +2149,13 @@ input:focus{
           id="plankSets"
           class="sets"
         >
-          Inga plank-set registrerade Ã¤nnu.
+          Inga set registrerade ännu.
         </div>
 
       </div>
 
 
-      <!-- BMU 1 -->
+      <!-- BMU NORMAL -->
 
       <div
         id="bmu1Card"
@@ -1861,8 +2193,6 @@ input:focus{
       </div>
 
 
-      <!-- BMU 2 -->
-
       <div
         id="bmu2Card"
         class="card"
@@ -1899,6 +2229,56 @@ input:focus{
       </div>
 
 
+      <!-- SHOULDER TECHNIQUE -->
+
+      <div
+        id="shoulderTechniqueCard"
+        class="card shoulder-tech hidden"
+      >
+
+        <div class="card-title">
+
+          <h2>
+            🩹 AXELANPASSAD TEKNIKDEL
+          </h2>
+
+          <span
+            id="shoulderTechniqueBadge"
+            class="badge"
+          >
+            ANPASSAD
+          </span>
+
+        </div>
+
+        <p>
+          Skippa dagens häng-, drag-, kip- eller
+          pressarbete om det provocerar axeln.
+        </p>
+
+        <p>
+          Smärtfri core på golvet är okej,
+          men du behöver inte ersätta BMU-arbetet
+          med mer axelbelastning.
+        </p>
+
+        <button
+          id="shoulderTechniqueButton"
+          class="btn primary full"
+          onclick="completeShoulderTechnique()"
+        >
+          MARKERA AXELANPASSAD TEKNIKDEL KLAR
+        </button>
+
+        <div class="warning-box">
+          Skarp eller ökande smärta, tydlig svaghet
+          eller kraftigt begränsad rörelse =
+          avbryt axelbelastningen och få axeln bedömd.
+        </div>
+
+      </div>
+
+
       <!-- RULES -->
 
       <div class="card rulebox">
@@ -1910,7 +2290,7 @@ input:focus{
         <ul class="rules">
 
           <li>
-            GÃ¶r exakt dagens dos â€” inte mer.
+            Gör exakt dagens dos — inte mer.
           </li>
 
           <li>
@@ -1918,11 +2298,15 @@ input:focus{
           </li>
 
           <li>
-            Teknikreps gÃ¶rs aldrig till failure.
+            Teknikreps görs aldrig till failure.
           </li>
 
           <li>
-            Kvalitet slÃ¥r ego.
+            Smärta ska aldrig tränas igenom.
+          </li>
+
+          <li>
+            Kvalitet slår ego.
           </li>
 
         </ul>
@@ -1943,7 +2327,7 @@ input:focus{
           class="btn red"
           onclick="resetToday()"
         >
-          Ã…TERSTÃ„LL DAGEN
+          ÅTERSTÄLL DAGEN
         </button>
 
       </div>
@@ -1953,7 +2337,9 @@ input:focus{
   </div>
 
 
-  <!-- GROUP -->
+  <!-- ===================================
+       GROUP
+       =================================== -->
 
   <div
     id="tabGroup"
@@ -1965,7 +2351,7 @@ input:focus{
       <div class="card-title">
 
         <h2>
-          ðŸ¦ Gruppen
+          🦍 Gruppen
         </h2>
 
         <span
@@ -2000,10 +2386,8 @@ input:focus{
         class="small"
         style="margin-top:8px"
       >
-        Den som gÃ¥r med bÃ¶rjar pÃ¥
-        gruppens aktuella dag.
-        Tidigare dagar rÃ¤knas inte
-        som missade.
+        Den som går med börjar på gruppens aktuella dag.
+        Tidigare dagar räknas inte som missade.
       </div>
 
       <button
@@ -2021,7 +2405,7 @@ input:focus{
       <div class="card-title">
 
         <h2>
-          ðŸ” Min profil
+          🔐 Min profil
         </h2>
 
       </div>
@@ -2030,20 +2414,19 @@ input:focus{
         class="small"
         style="margin-top:8px"
       >
-        Din personliga Ã¥terstÃ¤llningskod
-        behÃ¶vs om du byter telefon eller
-        loggar ut.
+        Din personliga återställningskod behövs
+        om du byter telefon eller loggar ut.
       </div>
 
       <div class="profile-code-label">
-        MIN Ã…TERSTÃ„LLNINGSKOD
+        MIN ÅTERSTÄLLNINGSKOD
       </div>
 
       <div
         id="profileRecoveryCode"
         class="profile-code"
       >
-        Ingen kod sparad pÃ¥ denna telefon
+        Ingen kod sparad på denna telefon
       </div>
 
       <div class="profile-actions">
@@ -2067,9 +2450,9 @@ input:focus{
       </div>
 
       <div class="warning-box">
-        Spara koden privat utanfÃ¶r appen.
-        Om du skapar en ny kod slutar den
-        gamla att fungera.
+        Spara koden privat utanför appen.
+        Om du skapar en ny kod slutar den gamla
+        att fungera.
       </div>
 
     </div>
@@ -2077,7 +2460,9 @@ input:focus{
   </div>
 
 
-  <!-- HISTORY -->
+  <!-- ===================================
+       HISTORY
+       =================================== -->
 
   <div
     id="tabHistory"
@@ -2108,19 +2493,23 @@ input:focus{
     </div>
 
     <div class="small">
-      âœ… klar
+      ✅ klar
       &nbsp;
-      â— pÃ¥bÃ¶rjad
+      ◐ påbörjad
       &nbsp;
-      â—‹ missad
+      ○ missad
       <br>
-      âž– innan du gick med
+      ➖ innan du gick med
     </div>
 
   </div>
 
 </div>
 
+
+<!-- =====================================
+     SUPABASE
+     ===================================== -->
 
 <script
   src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
@@ -2143,6 +2532,7 @@ const SUPABASE_PUBLISHABLE_KEY =
 const APP_URL =
   "https://philip1904.github.io/project40/";
 
+
 const sb =
   window.supabase.createClient(
     SUPABASE_URL,
@@ -2158,7 +2548,7 @@ const sb =
 
 
 /* ========================================
-   PLAN
+   BMU PLAN
    ======================================== */
 
 const BMU_PLAN = {
@@ -2246,22 +2636,29 @@ const BMU_PLAN = {
    ======================================== */
 
 let user = null;
+
 let profile = null;
+
 let membership = null;
+
 let challenge = null;
 
 let todayProgress = null;
 
 let members = [];
+
 let allProgress = [];
 
 let realtimeChannel = null;
+
 let realtimeRefreshTimer = null;
 
 let plankInterval = null;
+
 let plankStopping = false;
 
 let saveInFlight = false;
+
 let savePending = false;
 
 let authFlowBusy = false;
@@ -2291,7 +2688,9 @@ function isStandalone(){
 function isIOS(){
 
   return /iPhone|iPad|iPod/i
-    .test(navigator.userAgent);
+    .test(
+      navigator.userAgent
+    );
 
 }
 
@@ -2299,7 +2698,9 @@ function isIOS(){
 function isAndroid(){
 
   return /Android/i
-    .test(navigator.userAgent);
+    .test(
+      navigator.userAgent
+    );
 
 }
 
@@ -2321,15 +2722,26 @@ function renderInstallGate(){
 
     instructions.innerHTML = `
       <strong>IPHONE / IPAD</strong><br><br>
-      1. Ã–ppna PROJECT 40 i <strong>Safari</strong>.<br>
-      2. Tryck pÃ¥ <strong>Dela</strong>.<br>
-      3. VÃ¤lj <strong>LÃ¤gg till pÃ¥ hemskÃ¤rmen</strong>.<br>
-      4. Tryck <strong>LÃ¤gg till</strong>.<br>
-      5. Ã–ppna sedan
-      <strong>PROJECT 40 frÃ¥n appikonen</strong>.
+
+      1. Öppna PROJECT 40 i <strong>Safari</strong>.<br>
+
+      2. Tryck på <strong>… längst ner till höger</strong>.
+      Om du istället ser Dela-ikonen kan du trycka direkt på den.<br>
+
+      3. Välj <strong>Dela</strong>.<br>
+
+      4. Scrolla ner och välj
+      <strong>Lägg till på hemskärmen</strong>.<br>
+
+      5. Tryck <strong>Lägg till</strong>.<br>
+
+      6. Öppna sedan
+      <strong>PROJECT 40 från appikonen</strong>.
     `;
 
-    button.classList.add("hidden");
+    button.classList.add(
+      "hidden"
+    );
 
     return;
   }
@@ -2339,15 +2751,19 @@ function renderInstallGate(){
 
     instructions.innerHTML = `
       <strong>ANDROID</strong><br><br>
+
       Installera PROJECT 40 som app.<br><br>
-      Om den gula knappen visas hÃ¤r:
-      tryck pÃ¥ den.<br><br>
-      Annars: Ã¶ppna sidan i
-      <strong>Chrome</strong> â†’
-      tryck <strong>â‹®</strong> â†’
-      vÃ¤lj <strong>Installera app</strong>
-      eller <strong>LÃ¤gg till pÃ¥ startskÃ¤rmen</strong>.<br><br>
-      Ã–ppna sedan PROJECT 40 frÃ¥n appikonen.
+
+      Om den gula installationsknappen visas:
+      tryck på den.<br><br>
+
+      Annars:
+      öppna sidan i <strong>Chrome</strong> →
+      tryck <strong>⋮</strong> →
+      välj <strong>Installera app</strong>
+      eller <strong>Lägg till på startskärmen</strong>.<br><br>
+
+      Öppna sedan PROJECT 40 från appikonen.
     `;
 
     button.classList.toggle(
@@ -2360,12 +2776,13 @@ function renderInstallGate(){
 
 
   instructions.innerHTML = `
-    Ã–ppna webblÃ¤sarens meny och vÃ¤lj
+    Öppna webbläsarens meny och välj
     <strong>Installera app</strong> eller
-    <strong>LÃ¤gg till pÃ¥ hemskÃ¤rmen</strong>.
+    <strong>Lägg till på hemskärmen</strong>.
     <br><br>
-    Ã–ppna sedan PROJECT 40 frÃ¥n appikonen.
+    Öppna sedan PROJECT 40 från appikonen.
   `;
+
 
   button.classList.toggle(
     "hidden",
@@ -2384,11 +2801,17 @@ async function installPwa(){
     return;
   }
 
+
   deferredInstallPrompt.prompt();
 
-  await deferredInstallPrompt.userChoice;
 
-  deferredInstallPrompt = null;
+  await deferredInstallPrompt
+    .userChoice;
+
+
+  deferredInstallPrompt =
+    null;
+
 
   renderInstallGate();
 
@@ -2418,7 +2841,7 @@ window.addEventListener(
       null;
 
     toast(
-      "PROJECT 40 installerad. Ã–ppna den frÃ¥n hemskÃ¤rmen."
+      "PROJECT 40 installerad. Öppna den från hemskärmen."
     );
 
   }
@@ -2434,13 +2857,14 @@ function safeRead(key){
   try{
 
     return JSON.parse(
-      localStorage.getItem(key)
+      localStorage.getItem(
+        key
+      )
     );
 
   }catch{
 
     return null;
-
   }
 
 }
@@ -2455,7 +2879,9 @@ function safeWrite(
 
     localStorage.setItem(
       key,
-      JSON.stringify(value)
+      JSON.stringify(
+        value
+      )
     );
 
   }catch(error){
@@ -2484,12 +2910,18 @@ function localDateKey(
   const m =
     String(
       date.getMonth()+1
-    ).padStart(2,"0");
+    ).padStart(
+      2,
+      "0"
+    );
 
   const d =
     String(
       date.getDate()
-    ).padStart(2,"0");
+    ).padStart(
+      2,
+      "0"
+    );
 
   return `${y}-${m}-${d}`;
 
@@ -2538,10 +2970,12 @@ function addDays(
 ){
 
   const copy =
-    new Date(date);
+    new Date(
+      date
+    );
 
   copy.setDate(
-    copy.getDate()+n
+    copy.getDate() + n
   );
 
   return copy;
@@ -2554,7 +2988,10 @@ function isWeekday(date){
   const d =
     date.getDay();
 
-  return d >= 1 && d <= 5;
+  return (
+    d >= 1 &&
+    d <= 5
+  );
 
 }
 
@@ -2580,7 +3017,9 @@ function formatSwedishDate(date){
 
 function profileCacheKey(){
 
-  if(!user) return null;
+  if(!user){
+    return null;
+  }
 
   return `p40_profile_${user.id}`;
 
@@ -2589,7 +3028,9 @@ function profileCacheKey(){
 
 function membershipCacheKey(){
 
-  if(!user) return null;
+  if(!user){
+    return null;
+  }
 
   return `p40_membership_${user.id}`;
 
@@ -2600,7 +3041,9 @@ function challengeCacheKey(
   challengeId
 ){
 
-  if(!challengeId) return null;
+  if(!challengeId){
+    return null;
+  }
 
   return `p40_challenge_${challengeId}`;
 
@@ -2609,7 +3052,9 @@ function challengeCacheKey(
 
 function groupCacheKey(){
 
-  if(!challenge) return null;
+  if(!challenge){
+    return null;
+  }
 
   return `p40_group_${challenge.id}`;
 
@@ -2618,7 +3063,9 @@ function groupCacheKey(){
 
 function recoveryCacheKey(){
 
-  if(!user) return null;
+  if(!user){
+    return null;
+  }
 
   return `p40_recovery_code_${user.id}`;
 
@@ -2641,6 +3088,25 @@ function progressCacheKey(
     challenge.id,
     user.id,
     localDateKey(date)
+  ].join("_");
+
+}
+
+
+function shoulderCacheKey(){
+
+  if(
+    !user ||
+    !challenge
+  ){
+    return null;
+  }
+
+  return [
+    "p40_shoulder",
+    challenge.id,
+    user.id,
+    localDateKey()
   ].join("_");
 
 }
@@ -2679,17 +3145,74 @@ function getRecoveryCode(){
     return null;
   }
 
-  return (
-    localStorage.getItem(key)
-    ||
-    null
+  return localStorage.getItem(
+    key
+  ) || null;
+
+}
+
+
+/* ========================================
+   SHOULDER LOCAL
+   ======================================== */
+
+function getShoulderState(){
+
+  const key =
+    shoulderCacheKey();
+
+  if(!key){
+
+    return {
+      enabled:false,
+      bmuWaived:false
+    };
+
+  }
+
+
+  const state =
+    safeRead(
+      key
+    );
+
+
+  return {
+    enabled:
+      !!state?.enabled,
+
+    bmuWaived:
+      !!state?.bmuWaived
+  };
+
+}
+
+
+function saveShoulderState(state){
+
+  const key =
+    shoulderCacheKey();
+
+  if(!key){
+    return;
+  }
+
+  safeWrite(
+    key,
+    {
+      enabled:
+        !!state.enabled,
+
+      bmuWaived:
+        !!state.bmuWaived
+    }
   );
 
 }
 
 
 /* ========================================
-   PROGRESS LOCAL
+   PROGRESS CACHE
    ======================================== */
 
 function buildProgressPayload(row){
@@ -2728,7 +3251,8 @@ function buildProgressPayload(row){
       row.bmu2_value || 0,
 
     updated_at:
-      new Date().toISOString()
+      new Date()
+        .toISOString()
 
   };
 
@@ -2750,11 +3274,14 @@ function saveLocalProgress(
     return;
   }
 
+
   safeWrite(
     key,
     {
       row:
-        buildProgressPayload(row),
+        buildProgressPayload(
+          row
+        ),
 
       dirty,
 
@@ -2771,13 +3298,17 @@ function loadLocalProgress(
 ){
 
   const key =
-    progressCacheKey(date);
+    progressCacheKey(
+      date
+    );
 
   if(!key){
     return null;
   }
 
-  return safeRead(key);
+  return safeRead(
+    key
+  );
 
 }
 
@@ -2797,34 +3328,44 @@ function setSaveStatus(mode){
     return;
   }
 
+
   el.className =
     "save-status " + mode;
 
+
   if(mode === "saving"){
+
     el.textContent =
-      "SPARARâ€¦";
+      "SPARAR…";
+
   }
 
-  if(mode === "saved"){
+  else if(mode === "saved"){
+
     el.textContent =
-      "SPARAT âœ“";
+      "SPARAT ✓";
+
   }
 
-  if(mode === "local"){
+  else if(mode === "local"){
+
     el.textContent =
-      "SPARAT PÃ… TELEFONEN â€¢ VÃ„NTAR PÃ… NÃ„T";
+      "SPARAT PÅ TELEFONEN • VÄNTAR PÅ NÄT";
+
   }
 
-  if(mode === "offline"){
+  else if(mode === "offline"){
+
     el.textContent =
-      "OFFLINE â€¢ DATA SPARAS PÃ… TELEFONEN";
+      "OFFLINE • DATA SPARAS PÅ TELEFONEN";
+
   }
 
 }
 
 
 /* ========================================
-   CHALLENGE DATES
+   CHALLENGE DAYS
    ======================================== */
 
 function challengeDates(){
@@ -2833,24 +3374,30 @@ function challengeDates(){
     return [];
   }
 
+
   let d =
     parseDate(
       challenge.start_date
     );
 
+
   const result = [];
+
 
   while(
     result.length < 40
   ){
 
-    if(isWeekday(d)){
+    if(
+      isWeekday(d)
+    ){
 
       result.push(
         new Date(d)
       );
 
     }
+
 
     d =
       addDays(
@@ -2860,6 +3407,7 @@ function challengeDates(){
 
   }
 
+
   return result;
 
 }
@@ -2868,10 +3416,14 @@ function challengeDates(){
 function challengeDayForDate(date){
 
   const key =
-    localDateKey(date);
+    localDateKey(
+      date
+    );
+
 
   const dates =
     challengeDates();
+
 
   const index =
     dates.findIndex(
@@ -2880,23 +3432,27 @@ function challengeDayForDate(date){
         === key
     );
 
+
   return (
     index === -1
       ? null
-      : index+1
+      : index + 1
   );
 
 }
 
 
 /* ========================================
-   TODAY'S PLAN
+   TRAINING PLAN
    ======================================== */
 
 function trainingPlanForDate(date){
 
   const dayNumber =
-    challengeDayForDate(date);
+    challengeDayForDate(
+      date
+    );
+
 
   if(
     !dayNumber ||
@@ -2906,35 +3462,43 @@ function trainingPlanForDate(date){
   }
 
 
-  /*
-    Framtida uppgifter visas aldrig
-    i anvÃ¤ndargrÃ¤nssnittet.
+  const weekday =
+    date.getDay();
 
-    Fredag ersÃ¤tter den vanliga
-    huvuduppgiften med burpees.
-  */
 
   let mainName;
 
 
-  if(date.getDay() === 5){
+  if(
+    weekday === 5
+  ){
 
     mainName =
       "BURPEES";
 
-  }else{
+  }
+
+  else if(
+    weekday === 1 ||
+    weekday === 3
+  ){
 
     mainName =
-      dayNumber % 2 === 1
-        ? "PUSH-UPS"
-        : "AIR SQUATS";
+      "SMALA PUSH-UPS";
+
+  }
+
+  else{
+
+    mainName =
+      "AIR SQUATS";
 
   }
 
 
   const bmu =
     BMU_PLAN[
-      date.getDay()
+      weekday
     ];
 
 
@@ -2953,6 +3517,90 @@ function trainingPlanForDate(date){
     bmu2:
       bmu[1]
 
+  };
+
+}
+
+
+function displayedMainTask(plan){
+
+  const shoulder =
+    getShoulderState();
+
+
+  if(
+    !shoulder.enabled
+  ){
+
+    if(
+      plan.main.name ===
+      "SMALA PUSH-UPS"
+    ){
+
+      return {
+        name:"SMALA PUSH-UPS",
+        note:
+          "Händer ungefär axelbrett eller något smalare • armbågar nära kroppen • kontrollerade reps • fokus triceps."
+      };
+
+    }
+
+
+    if(
+      plan.main.name ===
+      "BURPEES"
+    ){
+
+      return {
+        name:"BURPEES",
+        note:
+          "Kontrollerad rytm • inte for time • ingen onödig failure."
+      };
+
+    }
+
+
+    return {
+      name:"AIR SQUATS",
+      note:
+        "Kontrollerade reps • stabil fot • jobba genom ett smärtfritt rörelseomfång."
+    };
+
+  }
+
+
+  if(
+    plan.main.name ===
+    "SMALA PUSH-UPS"
+  ){
+
+    return {
+      name:"REVERSE LUNGES",
+      note:
+        "100 reps totalt • 50/ben. Om smala push-ups mot box eller vägg är helt smärtfria får du skala där först. Annars kör reverse lunges."
+    };
+
+  }
+
+
+  if(
+    plan.main.name ===
+    "BURPEES"
+  ){
+
+    return {
+      name:"STEP-UPS",
+      note:
+        "100 reps totalt • 50/ben. Om step-back burpee utan push-up och plankposition är helt smärtfri kan du skala där. Annars kör step-ups."
+    };
+
+  }
+
+
+  return {
+    name:"AIR SQUATS",
+    note:
+      "100 reps. Air squats är redan axelvänliga — håll armarna i den position som känns bäst."
   };
 
 }
@@ -2998,15 +3646,21 @@ function progressComplete(
     return false;
   }
 
+
   const plan =
-    trainingPlanForDate(date);
+    trainingPlanForDate(
+      date
+    );
+
 
   if(!plan){
     return false;
   }
 
+
   return (
-    row.main_reps >= 100
+    row.main_reps >=
+      plan.main.target
     &&
     row.plank_seconds >= 300
     &&
@@ -3026,6 +3680,7 @@ function progressPartial(row){
     return false;
   }
 
+
   return (
     row.main_reps > 0
     ||
@@ -3040,7 +3695,122 @@ function progressPartial(row){
 
 
 /* ========================================
-   ANONYMOUS AUTH HELPER
+   SHOULDER MODE
+   ======================================== */
+
+async function toggleShoulderMode(){
+
+  if(!todayProgress){
+    return;
+  }
+
+
+  if(
+    activePlank()
+  ){
+
+    await stopPlank();
+
+  }
+
+
+  const state =
+    getShoulderState();
+
+
+  if(
+    state.enabled &&
+    state.bmuWaived
+  ){
+
+    const ok =
+      confirm(
+`Du har redan markerat dagens teknikdel som axelanpassad.
+
+Om du går tillbaka till vanlig dag nollställs dagens BMU/teknikvärden så att de inte räknas som utförda.
+
+Fortsätta?`
+      );
+
+
+    if(!ok){
+      return;
+    }
+
+
+    todayProgress.bmu1_value =
+      0;
+
+    todayProgress.bmu2_value =
+      0;
+
+
+    saveShoulderState({
+      enabled:false,
+      bmuWaived:false
+    });
+
+
+    await saveToday();
+
+    return;
+  }
+
+
+  saveShoulderState({
+    enabled:
+      !state.enabled,
+
+    bmuWaived:false
+  });
+
+
+  renderDay();
+
+}
+
+
+async function completeShoulderTechnique(){
+
+  if(!todayProgress){
+    return;
+  }
+
+
+  const plan =
+    trainingPlanForDate(
+      todayDate()
+    );
+
+
+  if(!plan){
+    return;
+  }
+
+
+  todayProgress.bmu1_value =
+    plan.bmu1.target;
+
+  todayProgress.bmu2_value =
+    plan.bmu2.target;
+
+
+  saveShoulderState({
+    enabled:true,
+    bmuWaived:true
+  });
+
+
+  renderDay();
+
+
+  await saveToday();
+
+}
+
+
+/* ========================================
+   ANONYMOUS USER
    ======================================== */
 
 async function createAnonymousUser(name){
@@ -3053,18 +3823,20 @@ async function createAnonymousUser(name){
       .signInAnonymously({
         options:{
           data:{
-            display_name:
-              name
+            display_name:name
           }
         }
       });
+
 
   if(error){
     throw error;
   }
 
+
   user =
     data.user;
+
 
   const {
     error:
@@ -3073,13 +3845,13 @@ async function createAnonymousUser(name){
     await sb
       .from("profiles")
       .update({
-        display_name:
-          name
+        display_name:name
       })
       .eq(
         "id",
         user.id
       );
+
 
   if(profileError){
 
@@ -3089,33 +3861,40 @@ async function createAnonymousUser(name){
 
   }
 
+
   return user;
 
 }
 
 
 /* ========================================
-   JOIN AS NEW USER
+   JOIN NEW USER
    ======================================== */
 
 async function joinAsNewUser(){
 
-  if(!isStandalone()){
+  if(
+    !isStandalone()
+  ){
 
     showInstallGate();
 
     return;
   }
 
-  if(!navigator.onLine){
+
+  if(
+    !navigator.onLine
+  ){
 
     showLoginMessage(
-      "Du behÃ¶ver internet fÃ¶rsta gÃ¥ngen du gÃ¥r med.",
+      "Du behöver internet första gången du går med.",
       true
     );
 
     return;
   }
+
 
   const name =
     document
@@ -3124,6 +3903,7 @@ async function joinAsNewUser(){
       )
       .value
       .trim();
+
 
   const code =
     document
@@ -3134,38 +3914,46 @@ async function joinAsNewUser(){
       .trim()
       .toUpperCase();
 
+
   if(
     !name ||
     !code
   ){
 
     showLoginMessage(
-      "Fyll i bÃ¥de namn och join-kod.",
+      "Fyll i både namn och join-kod.",
       true
     );
 
     return;
   }
 
+
   const button =
     document.getElementById(
       "newJoinButton"
     );
 
+
   button.disabled =
     true;
 
+
   button.textContent =
-    "SKAPAR PROFILâ€¦";
+    "SKAPAR PROFIL…";
+
 
   authFlowBusy =
     true;
 
+
   try{
+
 
     await createAnonymousUser(
       name
     );
+
 
     const {
       error:
@@ -3179,17 +3967,22 @@ async function joinAsNewUser(){
         }
       );
 
+
     if(joinError){
       throw joinError;
     }
 
+
     const recoveryCode =
       await issueRecoveryCodeInternal();
+
 
     authFlowBusy =
       false;
 
+
     await boot();
+
 
     if(recoveryCode){
 
@@ -3201,17 +3994,23 @@ async function joinAsNewUser(){
     }else{
 
       toast(
-        "Du Ã¤r med. Skapa en Ã¥terstÃ¤llningskod under GRUPP â†’ Min profil."
+        "Du är med. Skapa en återställningskod under GRUPP → Min profil."
       );
 
     }
 
+
   }catch(error){
 
-    console.error(error);
+
+    console.error(
+      error
+    );
+
 
     const failedUid =
       user?.id;
+
 
     try{
 
@@ -3221,6 +4020,7 @@ async function joinAsNewUser(){
 
     }catch{}
 
+
     if(failedUid){
 
       clearLocalProject40DataForUser(
@@ -3229,18 +4029,23 @@ async function joinAsNewUser(){
 
     }
 
+
     user =
       null;
+
 
     authFlowBusy =
       false;
 
+
     showLogin();
+
 
     let text =
       error?.message
       ||
-      "NÃ¥got gick fel.";
+      "Något gick fel.";
+
 
     if(
       text
@@ -3253,22 +4058,27 @@ async function joinAsNewUser(){
     ){
 
       text =
-        "Join-koden Ã¤r fel. Kontrollera koden och fÃ¶rsÃ¶k igen.";
+        "Join-koden är fel. Kontrollera koden och försök igen.";
 
     }
+
 
     showLoginMessage(
       text,
       true
     );
 
+
   }finally{
+
 
     button.disabled =
       false;
 
+
     button.textContent =
-      "GÃ… MED I PROJECT 40";
+      "GÅ MED I PROJECT 40";
+
 
   }
 
@@ -3276,27 +4086,33 @@ async function joinAsNewUser(){
 
 
 /* ========================================
-   CREATE AS NEW USER
+   CREATE NEW USER / GROUP
    ======================================== */
 
 async function createAsNewUser(){
 
-  if(!isStandalone()){
+  if(
+    !isStandalone()
+  ){
 
     showInstallGate();
 
     return;
   }
 
-  if(!navigator.onLine){
+
+  if(
+    !navigator.onLine
+  ){
 
     showLoginMessage(
-      "Du behÃ¶ver internet fÃ¶rsta gÃ¥ngen du skapar en PROJECT 40.",
+      "Du behöver internet första gången du skapar en PROJECT 40.",
       true
     );
 
     return;
   }
+
 
   const ownerName =
     document
@@ -3305,6 +4121,7 @@ async function createAsNewUser(){
       )
       .value
       .trim();
+
 
   const challengeName =
     document
@@ -3316,12 +4133,14 @@ async function createAsNewUser(){
       ||
       "PROJECT 40";
 
+
   const startDate =
     document
       .getElementById(
         "newChallengeStart"
       )
       .value;
+
 
   if(!ownerName){
 
@@ -3333,38 +4152,47 @@ async function createAsNewUser(){
     return;
   }
 
+
   if(!startDate){
 
     showLoginMessage(
-      "VÃ¤lj ett startdatum.",
+      "Välj ett startdatum.",
       true
     );
 
     return;
   }
 
+
   const button =
     document.getElementById(
       "newCreateButton"
     );
 
+
   button.disabled =
     true;
 
+
   button.textContent =
-    "SKAPAR PROJECT 40â€¦";
+    "SKAPAR PROJECT 40…";
+
 
   authFlowBusy =
     true;
 
+
   let challengeCreated =
     false;
 
+
   try{
+
 
     await createAnonymousUser(
       ownerName
     );
+
 
     const {
       data:
@@ -3383,27 +4211,36 @@ async function createAsNewUser(){
         }
       );
 
+
     if(challengeError){
       throw challengeError;
     }
 
+
     challengeCreated =
       true;
+
 
     const recoveryCode =
       await issueRecoveryCodeInternal();
 
+
     authFlowBusy =
       false;
 
+
     await boot();
+
 
     const created =
       Array.isArray(
         challengeData
       )
-        ? challengeData[0]
-        : challengeData;
+        ?
+        challengeData[0]
+        :
+        challengeData;
+
 
     if(recoveryCode){
 
@@ -3412,13 +4249,8 @@ async function createAsNewUser(){
         false
       );
 
-    }else{
-
-      toast(
-        "Gruppen skapades. Skapa en Ã¥terstÃ¤llningskod under GRUPP â†’ Min profil."
-      );
-
     }
+
 
     if(
       created?.join_code
@@ -3428,7 +4260,7 @@ async function createAsNewUser(){
         ()=>{
 
           toast(
-            `ðŸ¦ Grupp skapad! Join-kod: ${created.join_code}`
+            `🦍 Grupp skapad! Join-kod: ${created.join_code}`
           );
 
         },
@@ -3437,28 +4269,40 @@ async function createAsNewUser(){
 
     }
 
+
   }catch(error){
 
-    console.error(error);
+
+    console.error(
+      error
+    );
+
 
     if(challengeCreated){
 
       authFlowBusy =
         false;
 
+
       try{
+
         await boot();
+
       }catch{}
 
+
       toast(
-        "Gruppen skapades men nÃ¥got gick fel efterÃ¥t. Skapa en Ã¥terstÃ¤llningskod under GRUPP â†’ Min profil."
+        "Gruppen skapades men något gick fel efteråt. Skapa en återställningskod under GRUPP → Min profil."
       );
+
 
       return;
     }
 
+
     const failedUid =
       user?.id;
+
 
     try{
 
@@ -3468,6 +4312,7 @@ async function createAsNewUser(){
 
     }catch{}
 
+
     if(failedUid){
 
       clearLocalProject40DataForUser(
@@ -3476,13 +4321,17 @@ async function createAsNewUser(){
 
     }
 
+
     user =
       null;
+
 
     authFlowBusy =
       false;
 
+
     showLogin();
+
 
     showLoginMessage(
       error?.message
@@ -3491,13 +4340,17 @@ async function createAsNewUser(){
       true
     );
 
+
   }finally{
+
 
     button.disabled =
       false;
 
+
     button.textContent =
       "SKAPA NY PROJECT 40";
+
 
   }
 
@@ -3505,27 +4358,33 @@ async function createAsNewUser(){
 
 
 /* ========================================
-   RECOVER PROFILE
+   RECOVER
    ======================================== */
 
 async function recoverProfile(){
 
-  if(!isStandalone()){
+  if(
+    !isStandalone()
+  ){
 
     showInstallGate();
 
     return;
   }
 
-  if(!navigator.onLine){
+
+  if(
+    !navigator.onLine
+  ){
 
     showLoginMessage(
-      "Du behÃ¶ver internet fÃ¶r att Ã¥terstÃ¤lla profilen.",
+      "Du behöver internet för att återställa profilen.",
       true
     );
 
     return;
   }
+
 
   const code =
     document
@@ -3536,31 +4395,38 @@ async function recoverProfile(){
       .trim()
       .toUpperCase();
 
+
   if(!code){
 
     showLoginMessage(
-      "Skriv in din Ã¥terstÃ¤llningskod.",
+      "Skriv in din återställningskod.",
       true
     );
 
     return;
   }
 
+
   const button =
     document.getElementById(
       "restoreButton"
     );
 
+
   button.disabled =
     true;
 
+
   button.textContent =
-    "Ã…TERSTÃ„LLERâ€¦";
+    "ÅTERSTÄLLER…";
+
 
   authFlowBusy =
     true;
 
+
   try{
+
 
     const {
       data,
@@ -3571,17 +4437,20 @@ async function recoverProfile(){
           options:{
             data:{
               display_name:
-                "Ã…terstÃ¤ller"
+                "Återställer"
             }
           }
         });
+
 
     if(error){
       throw error;
     }
 
+
     user =
       data.user;
+
 
     const {
       data:
@@ -3597,16 +4466,21 @@ async function recoverProfile(){
         }
       );
 
+
     if(recoveryError){
       throw recoveryError;
     }
+
 
     const result =
       Array.isArray(
         recoveryData
       )
-        ? recoveryData[0]
-        : recoveryData;
+        ?
+        recoveryData[0]
+        :
+        recoveryData;
+
 
     if(
       !result ||
@@ -3614,31 +4488,41 @@ async function recoverProfile(){
     ){
 
       throw new Error(
-        "Ã…terstÃ¤llningen gav inget svar."
+        "Återställningen gav inget svar."
       );
 
     }
+
 
     storeRecoveryCode(
       result.recovery_code
     );
 
+
     authFlowBusy =
       false;
 
+
     await boot();
+
 
     showRecoveryOverlay(
       result.recovery_code,
       true
     );
 
+
   }catch(error){
 
-    console.error(error);
+
+    console.error(
+      error
+    );
+
 
     const failedUid =
       user?.id;
+
 
     try{
 
@@ -3648,6 +4532,7 @@ async function recoverProfile(){
 
     }catch{}
 
+
     if(failedUid){
 
       clearLocalProject40DataForUser(
@@ -3656,18 +4541,23 @@ async function recoverProfile(){
 
     }
 
+
     user =
       null;
+
 
     authFlowBusy =
       false;
 
+
     showLogin();
+
 
     let text =
       error?.message
       ||
-      "Kunde inte Ã¥terstÃ¤lla profilen.";
+      "Kunde inte återställa profilen.";
+
 
     if(
       text.includes(
@@ -3676,9 +4566,10 @@ async function recoverProfile(){
     ){
 
       text =
-        "Ã…terstÃ¤llningskoden Ã¤r fel eller har redan ersatts av en ny kod.";
+        "Återställningskoden är fel eller har redan ersatts av en ny kod.";
 
     }
+
 
     if(
       text.includes(
@@ -3687,22 +4578,27 @@ async function recoverProfile(){
     ){
 
       text =
-        "Du anvÃ¤nder redan den hÃ¤r profilen.";
+        "Du använder redan den här profilen.";
 
     }
+
 
     showLoginMessage(
       text,
       true
     );
 
+
   }finally{
+
 
     button.disabled =
       false;
 
+
     button.textContent =
-      "Ã…TERSTÃ„LL MIN PROFIL";
+      "ÅTERSTÄLL MIN PROFIL";
+
 
   }
 
@@ -3723,8 +4619,10 @@ function showLoginMessage(
       "loginMessage"
     );
 
+
   el.textContent =
     text;
+
 
   el.classList.remove(
     "hidden",
@@ -3732,10 +4630,13 @@ function showLoginMessage(
     "error"
   );
 
+
   el.classList.add(
     error
-      ? "error"
-      : "ok"
+      ?
+      "error"
+      :
+      "ok"
   );
 
 }
@@ -3755,6 +4656,7 @@ async function issueRecoveryCodeInternal(){
       "issue_project40_recovery_code"
     );
 
+
   if(error){
 
     console.error(
@@ -3764,10 +4666,14 @@ async function issueRecoveryCodeInternal(){
     return null;
   }
 
+
   const code =
     typeof data === "string"
-      ? data
-      : null;
+      ?
+      data
+      :
+      null;
+
 
   if(code){
 
@@ -3777,35 +4683,41 @@ async function issueRecoveryCodeInternal(){
 
   }
 
+
   return code;
 
 }
 
 
 /* ========================================
-   CREATE NEW RECOVERY CODE
+   NEW RECOVERY CODE
    ======================================== */
 
 async function createNewRecoveryCode(){
 
-  if(!navigator.onLine){
+  if(
+    !navigator.onLine
+  ){
 
     toast(
-      "Internet krÃ¤vs fÃ¶r att skapa en ny Ã¥terstÃ¤llningskod."
+      "Internet krävs för att skapa en ny återställningskod."
     );
 
     return;
   }
 
+
   const old =
     getRecoveryCode();
+
 
   if(old){
 
     const ok =
       confirm(
-        "Skapa en NY Ã¥terstÃ¤llningskod?\n\nDin nuvarande kod slutar dÃ¥ att fungera."
+        "Skapa en NY återställningskod?\n\nDin nuvarande kod slutar då att fungera."
       );
+
 
     if(!ok){
       return;
@@ -3813,30 +4725,37 @@ async function createNewRecoveryCode(){
 
   }
 
+
   const button =
     document.getElementById(
       "newRecoveryButton"
     );
 
+
   button.disabled =
     true;
+
 
   const code =
     await issueRecoveryCodeInternal();
 
+
   button.disabled =
     false;
+
 
   if(!code){
 
     toast(
-      "Kunde inte skapa Ã¥terstÃ¤llningskod."
+      "Kunde inte skapa återställningskod."
     );
 
     return;
   }
 
+
   renderProfileRecovery();
+
 
   showRecoveryOverlay(
     code,
@@ -3858,6 +4777,7 @@ function showRecoveryOverlay(
   overlayRecoveryCode =
     code;
 
+
   document
     .getElementById(
       "welcomeRecoveryCode"
@@ -3865,21 +4785,27 @@ function showRecoveryOverlay(
     .textContent =
       code;
 
+
   document
     .getElementById(
       "recoveryOverlayTitle"
     )
     .textContent =
       recovered
-        ? "PROFIL Ã…TERSTÃ„LLD ðŸ¦"
-        : "DU Ã„R MED ðŸ¦";
+        ?
+        "PROFIL ÅTERSTÄLLD 🦍"
+        :
+        "DU ÄR MED 🦍";
+
 
   document
     .getElementById(
       "recoveryOverlay"
     )
     .classList
-    .remove("hidden");
+    .remove(
+      "hidden"
+    );
 
 }
 
@@ -3891,7 +4817,10 @@ function closeRecoveryOverlay(){
       "recoveryOverlay"
     )
     .classList
-    .add("hidden");
+    .add(
+      "hidden"
+    );
+
 
   overlayRecoveryCode =
     null;
@@ -3901,23 +4830,27 @@ function closeRecoveryOverlay(){
 
 async function copyWelcomeRecoveryCode(){
 
-  if(!overlayRecoveryCode){
+  if(
+    !overlayRecoveryCode
+  ){
     return;
   }
+
 
   await copyText(
     overlayRecoveryCode
   );
 
+
   toast(
-    "Ã…terstÃ¤llningskoden kopierad âœ“"
+    "Återställningskoden kopierad ✓"
   );
 
 }
 
 
 /* ========================================
-   PROFILE RECOVERY
+   PROFILE RECOVERY UI
    ======================================== */
 
 function renderProfileRecovery(){
@@ -3927,10 +4860,12 @@ function renderProfileRecovery(){
       "profileRecoveryCode"
     );
 
+
   const copyButton =
     document.getElementById(
       "copyRecoveryButton"
     );
+
 
   if(
     !el ||
@@ -3939,8 +4874,10 @@ function renderProfileRecovery(){
     return;
   }
 
+
   const code =
     getRecoveryCode();
+
 
   if(code){
 
@@ -3953,7 +4890,7 @@ function renderProfileRecovery(){
   }else{
 
     el.textContent =
-      "Ingen kod sparad pÃ¥ denna telefon";
+      "Ingen kod sparad på denna telefon";
 
     copyButton.disabled =
       true;
@@ -3968,21 +4905,24 @@ async function copyProfileRecoveryCode(){
   const code =
     getRecoveryCode();
 
+
   if(!code){
 
     toast(
-      "Skapa en Ã¥terstÃ¤llningskod fÃ¶rst."
+      "Skapa en återställningskod först."
     );
 
     return;
   }
 
+
   await copyText(
     code
   );
 
+
   toast(
-    "Ã…terstÃ¤llningskoden kopierad âœ“"
+    "Återställningskoden kopierad ✓"
   );
 
 }
@@ -3998,7 +4938,9 @@ async function copyText(text){
 
     await navigator
       .clipboard
-      .writeText(text);
+      .writeText(
+        text
+      );
 
   }catch{
 
@@ -4022,6 +4964,7 @@ async function signOut(){
     return;
   }
 
+
   if(
     membership &&
     !getRecoveryCode()
@@ -4035,44 +4978,59 @@ async function signOut(){
 
     }
 
+
     toast(
-      "Skapa och spara din Ã¥terstÃ¤llningskod innan du loggar ut."
+      "Skapa och spara din återställningskod innan du loggar ut."
     );
+
 
     return;
   }
 
+
   const cached =
     challenge
-      ? loadLocalProgress()
-      : null;
+      ?
+      loadLocalProgress()
+      :
+      null;
 
-  if(cached?.dirty){
 
-    if(!navigator.onLine){
+  if(
+    cached?.dirty
+  ){
+
+    if(
+      !navigator.onLine
+    ){
 
       alert(
-`Du har data som Ã¤nnu bara finns pÃ¥ telefonen.
+`Du har data som ännu bara finns på telefonen.
 
-SlÃ¥ pÃ¥ internet och lÃ¥t PROJECT 40 synka innan du loggar ut.`
+Slå på internet och låt PROJECT 40 synka innan du loggar ut.`
       );
 
       return;
     }
 
+
     await saveToday();
+
 
     const after =
       loadLocalProgress();
 
-    if(after?.dirty){
+
+    if(
+      after?.dirty
+    ){
 
       alert(
 `Datan kunde inte synkas till servern.
 
-Du Ã¤r INTE utloggad.
+Du är INTE utloggad.
 
-FÃ¶rsÃ¶k igen nÃ¤r SPARAT âœ“ visas.`
+Försök igen när SPARAT ✓ visas.`
       );
 
       return;
@@ -4080,64 +5038,67 @@ FÃ¶rsÃ¶k igen nÃ¤r SPARAT âœ“ visas.`
 
   }
 
+
   const code =
     getRecoveryCode();
+
 
   const firstText =
     membership
       ?
-`âš ï¸ VARNING
+`⚠️ VARNING
 
-Du Ã¤r pÃ¥ vÃ¤g att logga ut frÃ¥n PROJECT 40.
+Du är på väg att logga ut från PROJECT 40.
 
-NÃ¤r du loggar ut:
+När du loggar ut:
 
-â€¢ den lokala PROJECT 40-datan pÃ¥ den hÃ¤r enheten rensas
-â€¢ du fÃ¶rlorar den nuvarande inloggningen
-â€¢ du behÃ¶ver din personliga Ã¥terstÃ¤llningskod fÃ¶r att komma tillbaka till samma profil och historik
+• lokal PROJECT 40-data på den här enheten rensas
+• du förlorar den nuvarande inloggningen
+• du behöver din personliga återställningskod för att komma tillbaka
 
-Data som redan synkats finns kvar pÃ¥ servern.
+Data som redan synkats finns kvar på servern.
 
-DIN Ã…TERSTÃ„LLNINGSKOD:
+DIN ÅTERSTÄLLNINGSKOD:
 
 ${code}
 
-Kontrollera att du har sparat koden utanfÃ¶r appen.
+Kontrollera att du har sparat koden utanför appen.
 
-FortsÃ¤tta?`
+Fortsätta?`
       :
-`Logga ut frÃ¥n PROJECT 40?
+`Logga ut från PROJECT 40?
 
-Lokal PROJECT 40-data pÃ¥ den hÃ¤r enheten rensas.`;
+Lokal PROJECT 40-data på den här enheten rensas.`;
 
-  const first =
-    confirm(
+
+  if(
+    !confirm(
       firstText
-    );
-
-  if(!first){
+    )
+  ){
     return;
   }
 
-  const second =
-    confirm(
+
+  if(
+    !confirm(
 `SISTA VARNINGEN
 
-Ã„r du helt sÃ¤ker pÃ¥ att du vill logga ut?
-
-Den hÃ¤r inloggningen tas bort frÃ¥n telefonen och lokal PROJECT 40-data rensas.`
-    );
-
-  if(!second){
+Är du helt säker på att du vill logga ut?`
+    )
+  ){
     return;
   }
+
 
   stopRealtime();
 
   stopPlankInterval();
 
+
   const uid =
     user.id;
+
 
   const {
     error
@@ -4146,20 +5107,27 @@ Den hÃ¤r inloggningen tas bort frÃ¥n telefonen och lokal PROJECT 40-data ren
       scope:"local"
     });
 
+
   if(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     toast(
       "Kunde inte logga ut."
     );
 
+
     return;
   }
+
 
   clearLocalProject40DataForUser(
     uid
   );
+
 
   location.href =
     APP_URL;
@@ -4173,6 +5141,7 @@ function clearLocalProject40DataForUser(
 
   const keys = [];
 
+
   for(
     let i=0;
     i<localStorage.length;
@@ -4180,18 +5149,26 @@ function clearLocalProject40DataForUser(
   ){
 
     const key =
-      localStorage.key(i);
+      localStorage.key(
+        i
+      );
+
 
     if(
       key &&
-      key.startsWith("p40_")
+      key.startsWith(
+        "p40_"
+      )
     ){
 
-      keys.push(key);
+      keys.push(
+        key
+      );
 
     }
 
   }
+
 
   keys.forEach(
     key =>
@@ -4214,7 +5191,9 @@ async function boot(){
       session
     }
   } =
-    await sb.auth.getSession();
+    await sb.auth
+      .getSession();
+
 
   if(!session){
 
@@ -4230,15 +5209,19 @@ async function boot(){
     challenge =
       null;
 
+
     showLogin();
 
     return;
   }
 
+
   user =
     session.user;
 
+
   await loadProfile();
+
 
   if(!profile){
 
@@ -4248,6 +5231,7 @@ async function boot(){
 
     return;
   }
+
 
   await loadMembership();
 
@@ -4263,25 +5247,36 @@ async function loadProfile(){
   const key =
     profileCacheKey();
 
+
   const cached =
     key
-      ? safeRead(key)
-      : null;
+      ?
+      safeRead(
+        key
+      )
+      :
+      null;
 
-  if(navigator.onLine){
+
+  if(
+    navigator.onLine
+  ){
 
     const {
       data,
       error
     } =
       await sb
-        .from("profiles")
+        .from(
+          "profiles"
+        )
         .select("*")
         .eq(
           "id",
           user.id
         )
         .maybeSingle();
+
 
     if(
       !error &&
@@ -4290,6 +5285,7 @@ async function loadProfile(){
 
       profile =
         data;
+
 
       if(key){
 
@@ -4300,16 +5296,21 @@ async function loadProfile(){
 
       }
 
+
       return;
     }
 
+
     if(error){
 
-      console.error(error);
+      console.error(
+        error
+      );
 
     }
 
   }
+
 
   if(cached){
 
@@ -4330,15 +5331,24 @@ async function loadMembership(){
   const key =
     membershipCacheKey();
 
+
   const cached =
     key
-      ? safeRead(key)
-      : null;
+      ?
+      safeRead(
+        key
+      )
+      :
+      null;
+
 
   let remote =
     null;
 
-  if(navigator.onLine){
+
+  if(
+    navigator.onLine
+  ){
 
     const {
       data,
@@ -4358,15 +5368,18 @@ async function loadMembership(){
         .order(
           "joined_at",
           {
-            ascending:true
+            ascending:false
           }
         )
         .limit(1)
         .maybeSingle();
 
+
     if(error){
 
-      console.error(error);
+      console.error(
+        error
+      );
 
     }else{
 
@@ -4377,8 +5390,12 @@ async function loadMembership(){
 
   }
 
+
   membership =
-    remote || cached;
+    remote
+    ||
+    cached;
+
 
   if(
     remote &&
@@ -4392,12 +5409,14 @@ async function loadMembership(){
 
   }
 
+
   if(!membership){
 
     showChallengeChooser();
 
     return;
   }
+
 
   await loadChallenge();
 
@@ -4412,12 +5431,16 @@ function showChallengeChooser(){
 
   hideMainViews();
 
+
   document
     .getElementById(
       "challengeView"
     )
     .classList
-    .remove("hidden");
+    .remove(
+      "hidden"
+    );
+
 
   document
     .getElementById(
@@ -4427,6 +5450,7 @@ function showChallengeChooser(){
       profile?.display_name
       ||
       "PROJECT 40";
+
 
   document
     .getElementById(
@@ -4444,14 +5468,17 @@ function showChallengeChooser(){
 
 async function createChallenge(){
 
-  if(!navigator.onLine){
+  if(
+    !navigator.onLine
+  ){
 
     toast(
-      "Du behÃ¶ver internet fÃ¶r att skapa en challenge."
+      "Du behöver internet för att skapa en challenge."
     );
 
     return;
   }
+
 
   const name =
     document
@@ -4463,6 +5490,7 @@ async function createChallenge(){
       ||
       "PROJECT 40";
 
+
   const start =
     document
       .getElementById(
@@ -4470,14 +5498,16 @@ async function createChallenge(){
       )
       .value;
 
+
   if(!start){
 
     toast(
-      "VÃ¤lj ett startdatum."
+      "Välj ett startdatum."
     );
 
     return;
   }
+
 
   const {
     data,
@@ -4486,14 +5516,20 @@ async function createChallenge(){
     await sb.rpc(
       "create_project40_challenge",
       {
-        p_name:name,
-        p_start_date:start
+        p_name:
+          name,
+
+        p_start_date:
+          start
       }
     );
 
+
   if(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
 
     toast(
       error.message
@@ -4502,8 +5538,10 @@ async function createChallenge(){
     return;
   }
 
+
   const membershipKey =
     membershipCacheKey();
+
 
   if(membershipKey){
 
@@ -4513,12 +5551,17 @@ async function createChallenge(){
 
   }
 
+
   await loadMembership();
 
-  if(!getRecoveryCode()){
+
+  if(
+    !getRecoveryCode()
+  ){
 
     const recovery =
       await issueRecoveryCodeInternal();
+
 
     if(recovery){
 
@@ -4531,13 +5574,19 @@ async function createChallenge(){
 
   }
 
+
   const created =
-    Array.isArray(data)
-      ? data[0]
-      : data;
+    Array.isArray(
+      data
+    )
+      ?
+      data[0]
+      :
+      data;
+
 
   toast(
-    `ðŸ¦ Challenge skapad! Kod: ${created?.join_code || ""}`
+    `🦍 Challenge skapad! Kod: ${created?.join_code || ""}`
   );
 
 }
@@ -4549,14 +5598,17 @@ async function createChallenge(){
 
 async function joinChallenge(){
 
-  if(!navigator.onLine){
+  if(
+    !navigator.onLine
+  ){
 
     toast(
-      "Du behÃ¶ver internet fÃ¶r att gÃ¥ med."
+      "Du behöver internet för att gå med."
     );
 
     return;
   }
+
 
   const code =
     document
@@ -4567,6 +5619,7 @@ async function joinChallenge(){
       .trim()
       .toUpperCase();
 
+
   if(!code){
 
     toast(
@@ -4575,6 +5628,7 @@ async function joinChallenge(){
 
     return;
   }
+
 
   const {
     error
@@ -4587,9 +5641,13 @@ async function joinChallenge(){
       }
     );
 
+
   if(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
+
 
     toast(
       error.message
@@ -4601,11 +5659,14 @@ async function joinChallenge(){
           error.message
     );
 
+
     return;
   }
 
+
   const membershipKey =
     membershipCacheKey();
+
 
   if(membershipKey){
 
@@ -4615,12 +5676,17 @@ async function joinChallenge(){
 
   }
 
+
   await loadMembership();
 
-  if(!getRecoveryCode()){
+
+  if(
+    !getRecoveryCode()
+  ){
 
     const recovery =
       await issueRecoveryCodeInternal();
+
 
     if(recovery){
 
@@ -4633,8 +5699,9 @@ async function joinChallenge(){
 
   }
 
+
   toast(
-    "ðŸ¦ Du Ã¤r med!"
+    "🦍 Du är med!"
   );
 
 }
@@ -4651,22 +5718,33 @@ async function loadChallenge(){
       membership.challenge_id
     );
 
+
   const cached =
     key
-      ? safeRead(key)
-      : null;
+      ?
+      safeRead(
+        key
+      )
+      :
+      null;
+
 
   let remote =
     null;
 
-  if(navigator.onLine){
+
+  if(
+    navigator.onLine
+  ){
 
     const {
       data,
       error
     } =
       await sb
-        .from("challenges")
+        .from(
+          "challenges"
+        )
         .select("*")
         .eq(
           "id",
@@ -4674,9 +5752,12 @@ async function loadChallenge(){
         )
         .single();
 
+
     if(error){
 
-      console.error(error);
+      console.error(
+        error
+      );
 
     }else{
 
@@ -4687,8 +5768,12 @@ async function loadChallenge(){
 
   }
 
+
   challenge =
-    remote || cached;
+    remote
+    ||
+    cached;
+
 
   if(!challenge){
 
@@ -4698,6 +5783,7 @@ async function loadChallenge(){
 
     return;
   }
+
 
   if(
     remote &&
@@ -4711,21 +5797,27 @@ async function loadChallenge(){
 
   }
 
+
   hideMainViews();
+
 
   document
     .getElementById(
       "appView"
     )
     .classList
-    .remove("hidden");
+    .remove(
+      "hidden"
+    );
+
 
   document
     .getElementById(
       "appSubline"
     )
     .textContent =
-      `${profile.display_name} â€¢ ${challenge.name}`;
+      `${profile.display_name} • ${challenge.name}`;
+
 
   document
     .getElementById(
@@ -4734,9 +5826,13 @@ async function loadChallenge(){
     .textContent =
       challenge.join_code;
 
+
   await refreshAll();
 
-  if(navigator.onLine){
+
+  if(
+    navigator.onLine
+  ){
 
     startRealtime();
 
@@ -4746,7 +5842,7 @@ async function loadChallenge(){
 
 
 /* ========================================
-   REFRESH ALL
+   REFRESH
    ======================================== */
 
 async function refreshAll(){
@@ -4756,30 +5852,41 @@ async function refreshAll(){
     loadGroupData()
   ]);
 
+
   mergeTodayIntoAllProgress();
+
 
   const cached =
     loadLocalProgress();
 
-  if(cached?.dirty){
+
+  if(
+    cached?.dirty
+  ){
 
     setSaveStatus(
       navigator.onLine
-        ? "saving"
-        : "local"
+        ?
+        "saving"
+        :
+        "local"
     );
 
   }else{
 
     setSaveStatus(
       navigator.onLine
-        ? "saved"
-        : "offline"
+        ?
+        "saved"
+        :
+        "offline"
     );
 
   }
 
+
   renderEverything();
+
 
   if(
     cached?.dirty &&
@@ -4794,7 +5901,7 @@ async function refreshAll(){
 
 
 /* ========================================
-   TODAY
+   LOAD TODAY
    ======================================== */
 
 async function loadTodayProgress(){
@@ -4802,8 +5909,12 @@ async function loadTodayProgress(){
   const t =
     todayDate();
 
+
   const day =
-    challengeDayForDate(t);
+    challengeDayForDate(
+      t
+    );
+
 
   if(!day){
 
@@ -4813,10 +5924,13 @@ async function loadTodayProgress(){
     return;
   }
 
+
   if(
     parseDate(
       membership.joined_at
-    ) > t
+    )
+    >
+    t
   ){
 
     todayProgress =
@@ -4825,13 +5939,20 @@ async function loadTodayProgress(){
     return;
   }
 
+
   const cached =
-    loadLocalProgress(t);
+    loadLocalProgress(
+      t
+    );
+
 
   let remote =
     null;
 
-  if(navigator.onLine){
+
+  if(
+    navigator.onLine
+  ){
 
     const {
       data,
@@ -4856,9 +5977,12 @@ async function loadTodayProgress(){
         )
         .maybeSingle();
 
+
     if(error){
 
-      console.error(error);
+      console.error(
+        error
+      );
 
     }else{
 
@@ -4868,6 +5992,7 @@ async function loadTodayProgress(){
     }
 
   }
+
 
   if(
     cached?.dirty &&
@@ -4884,6 +6009,7 @@ async function loadTodayProgress(){
     todayProgress =
       remote;
 
+
     saveLocalProgress(
       remote,
       false
@@ -4891,7 +6017,9 @@ async function loadTodayProgress(){
 
   }
 
-  else if(cached?.row){
+  else if(
+    cached?.row
+  ){
 
     todayProgress =
       cached.row;
@@ -4901,7 +6029,9 @@ async function loadTodayProgress(){
   else{
 
     todayProgress =
-      emptyProgress(t);
+      emptyProgress(
+        t
+      );
 
   }
 
@@ -4917,15 +6047,18 @@ function saveGroupCache(){
   const key =
     groupCacheKey();
 
+
   if(!key){
     return;
   }
+
 
   safeWrite(
     key,
     {
       members,
       allProgress,
+
       savedAt:
         Date.now()
     }
@@ -4939,22 +6072,34 @@ function loadCachedGroup(){
   const key =
     groupCacheKey();
 
+
   if(!key){
     return false;
   }
 
+
   const cached =
-    safeRead(key);
+    safeRead(
+      key
+    );
+
 
   if(!cached){
     return false;
   }
 
+
   members =
-    cached.members || [];
+    cached.members
+    ||
+    [];
+
 
   allProgress =
-    cached.allProgress || [];
+    cached.allProgress
+    ||
+    [];
+
 
   return true;
 
@@ -4967,12 +6112,15 @@ function loadCachedGroup(){
 
 async function loadGroupData(){
 
-  if(!navigator.onLine){
+  if(
+    !navigator.onLine
+  ){
 
     loadCachedGroup();
 
     return;
   }
+
 
   const memberResult =
     await sb
@@ -4987,7 +6135,10 @@ async function loadGroupData(){
         challenge.id
       );
 
-  if(memberResult.error){
+
+  if(
+    memberResult.error
+  ){
 
     console.error(
       memberResult.error
@@ -4998,19 +6149,29 @@ async function loadGroupData(){
     return;
   }
 
+
   members =
-    memberResult.data || [];
+    memberResult.data
+    ||
+    [];
+
 
   const ids =
     members.map(
-      m => m.user_id
+      m =>
+        m.user_id
     );
 
-  if(ids.length){
+
+  if(
+    ids.length
+  ){
 
     const profileResult =
       await sb
-        .from("profiles")
+        .from(
+          "profiles"
+        )
         .select(
           "id,display_name"
         )
@@ -5018,6 +6179,7 @@ async function loadGroupData(){
           "id",
           ids
         );
+
 
     if(
       !profileResult.error
@@ -5027,15 +6189,18 @@ async function loadGroupData(){
         Object.fromEntries(
           (
             profileResult.data
-            || []
+            ||
+            []
           )
           .map(
-            p => [
-              p.id,
-              p
-            ]
+            p =>
+              [
+                p.id,
+                p
+              ]
           )
         );
+
 
       members =
         members.map(
@@ -5059,6 +6224,7 @@ async function loadGroupData(){
 
   }
 
+
   const progressResult =
     await sb
       .from(
@@ -5070,7 +6236,10 @@ async function loadGroupData(){
         challenge.id
       );
 
-  if(progressResult.error){
+
+  if(
+    progressResult.error
+  ){
 
     console.error(
       progressResult.error
@@ -5081,8 +6250,12 @@ async function loadGroupData(){
     return;
   }
 
+
   allProgress =
-    progressResult.data || [];
+    progressResult.data
+    ||
+    [];
+
 
   saveGroupCache();
 
@@ -5095,23 +6268,32 @@ async function loadGroupData(){
 
 function mergeTodayIntoAllProgress(){
 
-  if(!todayProgress){
+  if(
+    !todayProgress
+  ){
     return;
   }
 
+
   const index =
-    allProgress.findIndex(
-      p =>
-        p.user_id ===
-          user.id
-        &&
-        p.workout_date ===
-          todayProgress.workout_date
-    );
+    allProgress
+      .findIndex(
+        p =>
+          p.user_id ===
+            user.id
+          &&
+          p.workout_date ===
+            todayProgress.workout_date
+      );
 
-  if(index >= 0){
 
-    allProgress[index] =
+  if(
+    index >= 0
+  ){
+
+    allProgress[
+      index
+    ] =
       todayProgress;
 
   }else{
@@ -5121,6 +6303,7 @@ function mergeTodayIntoAllProgress(){
     );
 
   }
+
 
   saveGroupCache();
 
@@ -5133,18 +6316,25 @@ function mergeTodayIntoAllProgress(){
 
 async function saveToday(){
 
-  if(!todayProgress){
+  if(
+    !todayProgress
+  ){
     return;
   }
+
 
   saveLocalProgress(
     todayProgress,
     true
   );
 
+
   mergeTodayIntoAllProgress();
 
-  if(!navigator.onLine){
+
+  if(
+    !navigator.onLine
+  ){
 
     setSaveStatus(
       "local"
@@ -5153,7 +6343,10 @@ async function saveToday(){
     return;
   }
 
-  if(saveInFlight){
+
+  if(
+    saveInFlight
+  ){
 
     savePending =
       true;
@@ -5165,24 +6358,31 @@ async function saveToday(){
     return;
   }
 
+
   saveInFlight =
     true;
+
 
   setSaveStatus(
     "saving"
   );
 
+
   try{
+
 
     do{
 
+
       savePending =
         false;
+
 
       const payload =
         buildProgressPayload(
           todayProgress
         );
+
 
       const {
         data,
@@ -5202,46 +6402,63 @@ async function saveToday(){
           .select()
           .single();
 
+
       if(error){
 
-        console.error(error);
+        console.error(
+          error
+        );
+
 
         saveLocalProgress(
           todayProgress,
           true
         );
 
+
         setSaveStatus(
           "local"
         );
 
+
         toast(
-          "Sparat pÃ¥ telefonen â€“ synkar senare."
+          "Sparat på telefonen – synkar senare."
         );
+
 
         return;
       }
 
-      if(data?.id){
+
+      if(
+        data?.id
+      ){
 
         todayProgress.id =
           data.id;
 
       }
 
-      if(data?.updated_at){
+
+      if(
+        data?.updated_at
+      ){
 
         todayProgress.updated_at =
           data.updated_at;
 
       }
 
-      if(!savePending){
+
+      if(
+        !savePending
+      ){
 
         saveLocalProgress(
           todayProgress,
           false
         );
+
 
         setSaveStatus(
           "saved"
@@ -5249,19 +6466,26 @@ async function saveToday(){
 
       }
 
+
     }while(
-      savePending &&
+      savePending
+      &&
       navigator.onLine
     );
 
+
   }finally{
+
 
     saveInFlight =
       false;
 
+
   }
 
+
   mergeTodayIntoAllProgress();
+
 
   renderEverything();
 
@@ -5274,9 +6498,12 @@ async function saveToday(){
 
 async function addMain(amount){
 
-  if(!todayProgress){
+  if(
+    !todayProgress
+  ){
     return;
   }
+
 
   if(
     todayProgress.main_reps >= 100
@@ -5284,14 +6511,18 @@ async function addMain(amount){
     return;
   }
 
+
   todayProgress.main_reps =
     Math.min(
       100,
-      todayProgress.main_reps +
-        amount
+      todayProgress.main_reps
+      +
+      amount
     );
 
+
   renderDay();
+
 
   await saveToday();
 
@@ -5307,40 +6538,67 @@ async function addBmu(
   amount
 ){
 
-  if(!todayProgress){
+  if(
+    !todayProgress
+  ){
     return;
   }
+
+
+  if(
+    getShoulderState()
+      .enabled
+  ){
+    return;
+  }
+
 
   const plan =
     trainingPlanForDate(
       todayDate()
     );
 
+
   const task =
     index === 1
-      ? plan.bmu1
-      : plan.bmu2;
+      ?
+      plan.bmu1
+      :
+      plan.bmu2;
+
 
   const key =
     index === 1
-      ? "bmu1_value"
-      : "bmu2_value";
+      ?
+      "bmu1_value"
+      :
+      "bmu2_value";
+
 
   if(
-    todayProgress[key]
-      >= task.target
+    todayProgress[
+      key
+    ]
+    >=
+    task.target
   ){
     return;
   }
 
-  todayProgress[key] =
+
+  todayProgress[
+    key
+  ] =
     Math.min(
       task.target,
-      todayProgress[key] +
-        amount
+      todayProgress[key]
+      +
+      amount
     );
 
+
   renderDay();
+
 
   await saveToday();
 
@@ -5348,7 +6606,7 @@ async function addBmu(
 
 
 /* ========================================
-   PLANK
+   PLANK TIMER
    ======================================== */
 
 function plankStorageKey(){
@@ -5356,6 +6614,7 @@ function plankStorageKey(){
   if(!user){
     return null;
   }
+
 
   return [
     "p40_plank",
@@ -5371,33 +6630,43 @@ function activePlank(){
   const key =
     plankStorageKey();
 
+
   if(!key){
     return null;
   }
 
-  return safeRead(key);
+
+  return safeRead(
+    key
+  );
 
 }
 
 
 function displayedPlankSeconds(){
 
-  if(!todayProgress){
+  if(
+    !todayProgress
+  ){
     return 0;
   }
 
+
   const active =
     activePlank();
+
 
   if(!active){
 
     return (
       todayProgress
         .plank_seconds
-      || 0
+      ||
+      0
     );
 
   }
+
 
   const elapsed =
     Math.floor(
@@ -5406,18 +6675,20 @@ function displayedPlankSeconds(){
         -
         active.startedAt
       )
-      / 1000
+      /
+      1000
     );
+
 
   return Math.min(
     300,
-
-    todayProgress.plank_seconds
-      +
-      Math.max(
-        0,
-        elapsed
-      )
+    todayProgress
+      .plank_seconds
+    +
+    Math.max(
+      0,
+      elapsed
+    )
   );
 
 }
@@ -5425,7 +6696,9 @@ function displayedPlankSeconds(){
 
 function togglePlank(){
 
-  if(activePlank()){
+  if(
+    activePlank()
+  ){
 
     stopPlank();
 
@@ -5440,16 +6713,22 @@ function togglePlank(){
 
 function startPlank(){
 
-  if(!todayProgress){
-    return;
-  }
-
   if(
-    todayProgress
-      .plank_seconds >= 300
+    !todayProgress
   ){
     return;
   }
+
+
+  if(
+    todayProgress
+      .plank_seconds
+    >=
+    300
+  ){
+    return;
+  }
+
 
   safeWrite(
     plankStorageKey(),
@@ -5459,7 +6738,9 @@ function startPlank(){
     }
   );
 
+
   startPlankInterval();
+
 
   renderPlank();
 
@@ -5470,22 +6751,29 @@ async function stopPlank(
   auto = false
 ){
 
-  if(plankStopping){
+  if(
+    plankStopping
+  ){
     return;
   }
+
 
   const active =
     activePlank();
 
+
   if(
-    !active ||
+    !active
+    ||
     !todayProgress
   ){
     return;
   }
 
+
   plankStopping =
     true;
+
 
   let elapsed =
     Math.floor(
@@ -5494,8 +6782,10 @@ async function stopPlank(
         -
         active.startedAt
       )
-      / 1000
+      /
+      1000
     );
+
 
   elapsed =
     Math.max(
@@ -5503,13 +6793,16 @@ async function stopPlank(
       elapsed
     );
 
+
   const remaining =
     Math.max(
       0,
-      300 -
+      300
+      -
       todayProgress
         .plank_seconds
     );
+
 
   const added =
     Math.min(
@@ -5517,11 +6810,16 @@ async function stopPlank(
       remaining
     );
 
-  if(added > 0){
+
+  if(
+    added > 0
+  ){
 
     todayProgress
       .plank_seconds
-      += added;
+      +=
+      added;
+
 
     if(
       !Array.isArray(
@@ -5536,6 +6834,7 @@ async function stopPlank(
 
     }
 
+
     todayProgress
       .plank_sets
       .push(
@@ -5544,18 +6843,25 @@ async function stopPlank(
 
   }
 
+
   localStorage.removeItem(
     plankStorageKey()
   );
 
+
   stopPlankInterval();
 
+
   await saveToday();
+
 
   plankStopping =
     false;
 
-  if(!auto){
+
+  if(
+    !auto
+  ){
 
     renderPlank();
 
@@ -5567,11 +6873,13 @@ async function stopPlank(
 async function undoPlank(){
 
   if(
-    !todayProgress ||
+    !todayProgress
+    ||
     activePlank()
   ){
     return;
   }
+
 
   const sets =
     Array.isArray(
@@ -5586,16 +6894,22 @@ async function undoPlank(){
       :
       [];
 
-  if(!sets.length){
+
+  if(
+    !sets.length
+  ){
     return;
   }
+
 
   const last =
     sets.pop();
 
+
   todayProgress
     .plank_sets =
       sets;
+
 
   todayProgress
     .plank_seconds =
@@ -5607,6 +6921,7 @@ async function undoPlank(){
         last
       );
 
+
   await saveToday();
 
 }
@@ -5616,15 +6931,19 @@ function startPlankInterval(){
 
   stopPlankInterval();
 
+
   plankInterval =
     setInterval(
       async ()=>{
 
+
         renderPlank();
+
 
         if(
           displayedPlankSeconds()
-            >= 300
+          >=
+          300
           &&
           activePlank()
         ){
@@ -5635,6 +6954,7 @@ function startPlankInterval(){
 
         }
 
+
       },
       250
     );
@@ -5644,11 +6964,14 @@ function startPlankInterval(){
 
 function stopPlankInterval(){
 
-  if(plankInterval){
+  if(
+    plankInterval
+  ){
 
     clearInterval(
       plankInterval
     );
+
 
     plankInterval =
       null;
@@ -5664,29 +6987,37 @@ function stopPlankInterval(){
 
 async function resetToday(){
 
-  if(!todayProgress){
+  if(
+    !todayProgress
+  ){
     return;
   }
 
-  if(!navigator.onLine){
+
+  if(
+    !navigator.onLine
+  ){
 
     toast(
-      "Ã…terstÃ¤ll krÃ¤ver internet."
+      "Återställ kräver internet."
     );
 
     return;
   }
+
 
   const ok =
     confirm(
-`Ã…terstÃ¤lla ALLT fÃ¶r idag?
+`Återställa ALLT för idag?
 
-Detta tar bort reps, planktid och dagens teknikdata.`
+Detta tar bort reps, tid och teknikdata.`
     );
+
 
   if(!ok){
     return;
   }
+
 
   const {
     error
@@ -5709,19 +7040,24 @@ Detta tar bort reps, planktid och dagens teknikdata.`
         localDateKey()
       );
 
+
   if(error){
 
-    console.error(error);
+    console.error(
+      error
+    );
 
     toast(
-      "Kunde inte Ã¥terstÃ¤lla."
+      "Kunde inte återställa."
     );
 
     return;
   }
 
+
   const plankKey =
     plankStorageKey();
+
 
   if(plankKey){
 
@@ -5731,8 +7067,10 @@ Detta tar bort reps, planktid och dagens teknikdata.`
 
   }
 
+
   const progressKey =
     progressCacheKey();
+
 
   if(progressKey){
 
@@ -5742,7 +7080,21 @@ Detta tar bort reps, planktid och dagens teknikdata.`
 
   }
 
+
+  const shoulder =
+    getShoulderState();
+
+
+  saveShoulderState({
+    enabled:
+      shoulder.enabled,
+
+    bmuWaived:false
+  });
+
+
   stopPlankInterval();
+
 
   allProgress =
     allProgress.filter(
@@ -5756,41 +7108,51 @@ Detta tar bort reps, planktid och dagens teknikdata.`
         )
     );
 
+
   todayProgress =
     emptyProgress(
       todayDate()
     );
+
 
   saveLocalProgress(
     todayProgress,
     false
   );
 
+
   saveGroupCache();
+
 
   setSaveStatus(
     "saved"
   );
 
+
   renderEverything();
 
+
   toast(
-    "Dagen Ã¤r Ã¥terstÃ¤lld."
+    "Dagen är återställd."
   );
 
 }
 
 
 /* ========================================
-   RENDER
+   RENDER ALL
    ======================================== */
 
 function renderEverything(){
 
   renderHeader();
+
   renderDay();
+
   renderGroup();
+
   renderHistory();
+
   renderProfileRecovery();
 
 }
@@ -5805,19 +7167,25 @@ function renderHeader(){
   const t =
     todayDate();
 
+
   const day =
-    challengeDayForDate(t);
+    challengeDayForDate(
+      t
+    );
+
 
   const eligible =
     eligibleDaysForMember(
       membership.joined_at
     );
 
+
   const completed =
     completedDaysForMember(
       user.id,
       membership.joined_at
     );
+
 
   document
     .getElementById(
@@ -5826,16 +7194,20 @@ function renderHeader(){
     .innerHTML =
       `${completed}/${eligible}<br>KLARA`;
 
+
   const pct =
     eligible
       ?
       Math.round(
-        completed /
-        eligible *
+        completed
+        /
+        eligible
+        *
         100
       )
       :
       0;
+
 
   document
     .getElementById(
@@ -5844,6 +7216,18 @@ function renderHeader(){
     .style
     .width =
       `${pct}%`;
+
+
+  document
+    .getElementById(
+      "dateTitle"
+    )
+    .textContent =
+      formatSwedishDate(
+        t
+      )
+      .toUpperCase();
+
 
   if(day){
 
@@ -5854,59 +7238,50 @@ function renderHeader(){
       .textContent =
         `DAG ${day}`;
 
-    document
-      .getElementById(
-        "dateTitle"
-      )
-      .textContent =
-        formatSwedishDate(t)
-          .toUpperCase();
+    return;
+  }
 
-  }else{
 
-    const dates =
-      challengeDates();
+  const dates =
+    challengeDates();
 
-    if(t < dates[0]){
 
-      document
-        .getElementById(
-          "dayTitle"
-        )
-        .textContent =
-          "SNART DAGS";
-
-    }
-
-    else if(t > dates[39]){
-
-      document
-        .getElementById(
-          "dayTitle"
-        )
-        .textContent =
-          "40/40";
-
-    }
-
-    else{
-
-      document
-        .getElementById(
-          "dayTitle"
-        )
-        .textContent =
-          "VILODAG";
-
-    }
+  if(
+    t <
+    dates[0]
+  ){
 
     document
       .getElementById(
-        "dateTitle"
+        "dayTitle"
       )
       .textContent =
-        formatSwedishDate(t)
-          .toUpperCase();
+        "SNART DAGS";
+
+  }
+
+  else if(
+    t >
+    dates[39]
+  ){
+
+    document
+      .getElementById(
+        "dayTitle"
+      )
+      .textContent =
+        "40/40";
+
+  }
+
+  else{
+
+    document
+      .getElementById(
+        "dayTitle"
+      )
+      .textContent =
+        "VILODAG";
 
   }
 
@@ -5914,7 +7289,7 @@ function renderHeader(){
 
 
 /* ========================================
-   DAY
+   DAY RENDER
    ======================================== */
 
 function renderDay(){
@@ -5922,68 +7297,237 @@ function renderDay(){
   const t =
     todayDate();
 
+
   const plan =
-    trainingPlanForDate(t);
+    trainingPlanForDate(
+      t
+    );
+
 
   const rest =
     document.getElementById(
       "restCard"
     );
 
+
   const taskArea =
     document.getElementById(
       "taskArea"
     );
 
+
+  const dates =
+    challengeDates();
+
+
   if(
-    !plan ||
+    !plan
+    ||
     parseDate(
       membership.joined_at
-    ) > t
+    )
+    >
+    t
   ){
 
     rest.classList
-      .remove("hidden");
+      .remove(
+        "hidden"
+      );
+
 
     taskArea.classList
-      .add("hidden");
+      .add(
+        "hidden"
+      );
+
 
     document
       .getElementById(
         "completeBanner"
       )
       .classList
-      .remove("show");
+      .remove(
+        "show"
+      );
+
+
+    if(
+      t <
+      dates[0]
+    ){
+
+      document
+        .getElementById(
+          "restEmoji"
+        )
+        .textContent =
+          "⏳";
+
+
+      document
+        .getElementById(
+          "restTitle"
+        )
+        .textContent =
+          "STARTAR SNART";
+
+
+      document
+        .getElementById(
+          "restText"
+        )
+        .innerHTML =
+          `Första uppgiften låses upp <strong>${formatSwedishDate(dates[0])}</strong>.<br><br>Inga spoilers. 😈`;
+
+    }
+
+    else if(
+      t >
+      dates[39]
+    ){
+
+      document
+        .getElementById(
+          "restEmoji"
+        )
+        .textContent =
+          "🏆";
+
+
+      document
+        .getElementById(
+          "restTitle"
+        )
+        .textContent =
+          "PROJECT 40 KLAR";
+
+
+      document
+        .getElementById(
+          "restText"
+        )
+        .textContent =
+          "40 vardagar genomförda. Snyggt jobbat.";
+
+    }
+
+    else{
+
+      document
+        .getElementById(
+          "restEmoji"
+        )
+        .textContent =
+          "🛋️";
+
+
+      document
+        .getElementById(
+          "restTitle"
+        )
+        .textContent =
+          "VILA";
+
+
+      document
+        .getElementById(
+          "restText"
+        )
+        .innerHTML =
+          "Ingen PROJECT 40-volym idag.<br>Inga reps tas igen.<br>Vanlig träning körs som vanligt.";
+
+    }
+
 
     return;
   }
 
+
   rest.classList
-    .add("hidden");
+    .add(
+      "hidden"
+    );
+
 
   taskArea.classList
-    .remove("hidden");
+    .remove(
+      "hidden"
+    );
 
-  if(!todayProgress){
+
+  if(
+    !todayProgress
+  ){
 
     todayProgress =
-      emptyProgress(t);
+      emptyProgress(
+        t
+      );
 
   }
+
+
+  const shoulder =
+    getShoulderState();
+
+
+  const displayed =
+    displayedMainTask(
+      plan
+    );
+
+
+  document
+    .getElementById(
+      "shoulderToggleCard"
+    )
+    .classList
+    .toggle(
+      "active",
+      shoulder.enabled
+    );
+
+
+  document
+    .getElementById(
+      "shoulderActiveLabel"
+    )
+    .classList
+    .toggle(
+      "hidden",
+      !shoulder.enabled
+    );
+
+
+  document
+    .getElementById(
+      "shoulderToggleButton"
+    )
+    .textContent =
+      shoulder.enabled
+        ?
+        "ANVÄND VANLIG DAG"
+        :
+        "VISA AXELALTERNATIV";
+
 
   document
     .getElementById(
       "mainName"
     )
     .textContent =
-      `100 ${plan.main.name}`;
+      `100 ${displayed.name}`;
+
 
   document
     .getElementById(
       "mainNumber"
     )
     .textContent =
-      todayProgress.main_reps;
+      todayProgress
+        .main_reps;
+
 
   document
     .getElementById(
@@ -5992,14 +7536,36 @@ function renderDay(){
     .textContent =
       `${todayProgress.main_reps} / 100`;
 
+
+  document
+    .getElementById(
+      "mainTarget"
+    )
+    .textContent =
+      "av 100";
+
+
+  document
+    .getElementById(
+      "mainExerciseNote"
+    )
+    .textContent =
+      displayed.note;
+
+
   const mainDone =
-    todayProgress.main_reps >= 100;
+    todayProgress
+      .main_reps
+    >=
+    100;
+
 
   toggleDone(
     "mainCard",
     "mainBadge",
     mainDone
   );
+
 
   document
     .querySelectorAll(
@@ -6014,6 +7580,7 @@ function renderDay(){
       }
     );
 
+
   document
     .getElementById(
       "mainLockedNote"
@@ -6024,19 +7591,106 @@ function renderDay(){
       !mainDone
     );
 
+
   renderPlank();
 
-  renderBmu(
-    1,
-    plan.bmu1,
-    todayProgress.bmu1_value
-  );
 
-  renderBmu(
-    2,
-    plan.bmu2,
-    todayProgress.bmu2_value
-  );
+  document
+    .getElementById(
+      "bmu1Card"
+    )
+    .classList
+    .toggle(
+      "hidden",
+      shoulder.enabled
+    );
+
+
+  document
+    .getElementById(
+      "bmu2Card"
+    )
+    .classList
+    .toggle(
+      "hidden",
+      shoulder.enabled
+    );
+
+
+  document
+    .getElementById(
+      "shoulderTechniqueCard"
+    )
+    .classList
+    .toggle(
+      "hidden",
+      !shoulder.enabled
+    );
+
+
+  if(
+    shoulder.enabled
+  ){
+
+    const button =
+      document.getElementById(
+        "shoulderTechniqueButton"
+      );
+
+
+    const badge =
+      document.getElementById(
+        "shoulderTechniqueBadge"
+      );
+
+
+    button.disabled =
+      shoulder.bmuWaived;
+
+
+    button.textContent =
+      shoulder.bmuWaived
+        ?
+        "✓ AXELANPASSAD TEKNIKDEL KLAR"
+        :
+        "MARKERA AXELANPASSAD TEKNIKDEL KLAR";
+
+
+    badge.textContent =
+      shoulder.bmuWaived
+        ?
+        "KLAR ✓"
+        :
+        "ANPASSAD";
+
+
+    badge.classList
+      .toggle(
+        "done",
+        shoulder.bmuWaived
+      );
+
+  }
+
+  else{
+
+    renderBmu(
+      1,
+      plan.bmu1,
+      todayProgress
+        .bmu1_value
+    );
+
+
+    renderBmu(
+      2,
+      plan.bmu2,
+      todayProgress
+        .bmu2_value
+    );
+
+  }
+
 
   document
     .getElementById(
@@ -6060,19 +7714,54 @@ function renderDay(){
 
 function renderPlank(){
 
-  if(!todayProgress){
+  if(
+    !todayProgress
+  ){
     return;
   }
 
+
+  const shoulder =
+    getShoulderState();
+
+
   const total =
     displayedPlankSeconds();
+
+
+  document
+    .getElementById(
+      "plankName"
+    )
+    .textContent =
+      shoulder.enabled
+        ?
+        "GLUTE BRIDGE HOLD"
+        :
+        "PLANKA";
+
+
+  document
+    .getElementById(
+      "timerSub"
+    )
+    .textContent =
+      shoulder.enabled
+        ?
+        "5:00 totalt • dela upp i set • ingen axelbelastning"
+        :
+        "5:00 totalt • dela upp i set om du vill";
+
 
   document
     .getElementById(
       "timerDisplay"
     )
     .textContent =
-      formatSeconds(total);
+      formatSeconds(
+        total
+      );
+
 
   document
     .getElementById(
@@ -6081,24 +7770,30 @@ function renderPlank(){
     .textContent =
       `${formatSeconds(total)} / 5:00`;
 
+
   toggleDone(
     "plankCard",
     "plankBadge",
     total >= 300
   );
 
+
   const active =
     activePlank();
+
 
   const button =
     document.getElementById(
       "timerButton"
     );
 
-  if(total >= 300){
+
+  if(
+    total >= 300
+  ){
 
     button.textContent =
-      "âœ“ KLAR";
+      "✓ KLAR";
 
     button.disabled =
       true;
@@ -6111,7 +7806,7 @@ function renderPlank(){
   else if(active){
 
     button.textContent =
-      "â–  STOPPA";
+      "■ STOPPA";
 
     button.disabled =
       false;
@@ -6124,7 +7819,7 @@ function renderPlank(){
   else{
 
     button.textContent =
-      "â–¶ STARTA";
+      "▶ STARTA";
 
     button.disabled =
       false;
@@ -6133,6 +7828,7 @@ function renderPlank(){
       "btn primary";
 
   }
+
 
   const sets =
     Array.isArray(
@@ -6145,13 +7841,16 @@ function renderPlank(){
       :
       [];
 
+
   document
     .getElementById(
       "undoButton"
     )
     .disabled =
-      !!active ||
+      !!active
+      ||
       sets.length === 0;
+
 
   document
     .getElementById(
@@ -6166,9 +7865,11 @@ function renderPlank(){
           .map(
             formatSeconds
           )
-          .join(" + ")
+          .join(
+            " + "
+          )
         :
-        "Inga plank-set registrerade Ã¤nnu.";
+        "Inga set registrerade ännu.";
 
 }
 
@@ -6186,6 +7887,7 @@ function renderBmu(
   const prefix =
     `bmu${index}`;
 
+
   document
     .getElementById(
       `${prefix}Name`
@@ -6193,101 +7895,130 @@ function renderBmu(
     .textContent =
       task.name;
 
+
   document
     .getElementById(
       `${prefix}Number`
     )
     .textContent =
-      task.unit === "sec"
+      task.unit ===
+        "sec"
         ?
-        formatSeconds(value)
+        formatSeconds(
+          value
+        )
         :
         value;
+
 
   document
     .getElementById(
       `${prefix}Target`
     )
     .textContent =
-      task.unit === "sec"
+      task.unit ===
+        "sec"
         ?
         `av ${formatSeconds(task.target)} totalt`
         :
         `av ${task.target} reps totalt`;
+
 
   document
     .getElementById(
       `${prefix}Badge`
     )
     .textContent =
-      task.unit === "sec"
+      task.unit ===
+        "sec"
         ?
         `${formatSeconds(value)} / ${formatSeconds(task.target)}`
         :
         `${value} / ${task.target}`;
 
+
   toggleDone(
     `${prefix}Card`,
     `${prefix}Badge`,
-    value >= task.target
+    value >=
+      task.target
   );
+
 
   const holder =
     document.getElementById(
       `${prefix}Buttons`
     );
 
+
   holder.innerHTML =
     "";
 
-  task.buttons.forEach(
-    (amount,i)=>{
 
-      const button =
-        document.createElement(
-          "button"
-        );
+  task.buttons
+    .forEach(
+      (amount,index)=>{
 
-      button.className =
-        "btn"
-        +
-        (
-          i ===
-          task.buttons.length-1
+
+        const button =
+          document.createElement(
+            "button"
+          );
+
+
+        button.className =
+          "btn"
+          +
+          (
+            index ===
+              task.buttons.length-1
+              ?
+              " primary"
+              :
+              ""
+          );
+
+
+        button.textContent =
+          task.unit ===
+            "sec"
             ?
-            " primary"
+            `+${amount}s`
             :
-            ""
+            `+${amount}`;
+
+
+        button.disabled =
+          value >=
+            task.target;
+
+
+        button.onclick =
+          ()=>
+            addBmu(
+              Number(
+                prefix.replace(
+                  "bmu",
+                  ""
+                )
+              ),
+              amount
+            );
+
+
+        holder.appendChild(
+          button
         );
 
-      button.textContent =
-        task.unit === "sec"
-          ?
-          `+${amount}s`
-          :
-          `+${amount}`;
 
-      button.disabled =
-        value >= task.target;
-
-      button.onclick =
-        ()=>addBmu(
-          index,
-          amount
-        );
-
-      holder.appendChild(
-        button
-      );
-
-    }
-  );
+      }
+    );
 
 }
 
 
 /* ========================================
-   GROUP RENDER
+   GROUP
    ======================================== */
 
 function renderGroup(){
@@ -6299,25 +8030,44 @@ function renderGroup(){
     .textContent =
       `${members.length} PERSONER`;
 
+
   const holder =
     document.getElementById(
       "memberList"
     );
 
+
   holder.innerHTML =
     "";
+
 
   const t =
     todayDate();
 
+
   const plan =
-    trainingPlanForDate(t);
+    trainingPlanForDate(
+      t
+    );
+
+
+  const dates =
+    challengeDates();
+
+
+  const preStart =
+    dates.length
+    &&
+    t < dates[0];
+
 
   let doneToday =
     0;
 
+
   members.forEach(
     member=>{
+
 
       const row =
         allProgress.find(
@@ -6329,8 +8079,10 @@ function renderGroup(){
               localDateKey(t)
         );
 
+
       if(
-        plan &&
+        plan
+        &&
         progressComplete(
           row,
           t
@@ -6341,8 +8093,10 @@ function renderGroup(){
 
       }
 
+
     }
   );
+
 
   const avg =
     members.length
@@ -6350,8 +8104,11 @@ function renderGroup(){
       Math.round(
         members.reduce(
           (sum,m)=>
-            sum +
-            memberCompletionPercent(m),
+            sum
+            +
+            memberCompletionPercent(
+              m
+            ),
           0
         )
         /
@@ -6359,6 +8116,35 @@ function renderGroup(){
       )
       :
       0;
+
+
+  let middleValue =
+    "–";
+
+
+  let middleLabel =
+    "VILODAG";
+
+
+  if(
+    preStart
+  ){
+
+    middleLabel =
+      "STARTAR SNART";
+
+  }
+
+  else if(plan){
+
+    middleValue =
+      doneToday;
+
+    middleLabel =
+      "KLARA IDAG";
+
+  }
+
 
   document
     .getElementById(
@@ -6372,33 +8158,40 @@ function renderGroup(){
       </div>
 
       <div class="statbox">
-        <strong>${plan ? doneToday : "â€“"}</strong>
-        <span>${plan ? "KLARA IDAG" : "VILODAG"}</span>
+        <strong>${middleValue}</strong>
+        <span>${middleLabel}</span>
       </div>
 
       <div class="statbox">
         <strong>${avg}%</strong>
-        <span>GENOMFÃ–RT</span>
+        <span>GENOMFÖRT</span>
       </div>
 
     `;
+
 
   members
     .slice()
     .sort(
       (a,b)=>
-        memberCompletionPercent(b)
+        memberCompletionPercent(
+          b
+        )
         -
-        memberCompletionPercent(a)
+        memberCompletionPercent(
+          a
+        )
     )
     .forEach(
       member=>{
+
 
         const name =
           member.profile
             ?.display_name
           ||
           "Medlem";
+
 
         const todayRow =
           allProgress.find(
@@ -6410,20 +8203,23 @@ function renderGroup(){
                 localDateKey(t)
           );
 
+
         const completeToday =
           plan
-            ?
-            progressComplete(
-              todayRow,
-              t
-            )
-            :
-            false;
+          ?
+          progressComplete(
+            todayRow,
+            t
+          )
+          :
+          false;
+
 
         const eligible =
           eligibleDaysForMember(
             member.joined_at
           );
+
 
         const completed =
           completedDaysForMember(
@@ -6431,19 +8227,59 @@ function renderGroup(){
             member.joined_at
           );
 
+
         const streak =
           currentStreakForMember(
             member.user_id,
             member.joined_at
           );
 
+
+        let statusText;
+
+
+        if(preStart){
+
+          statusText =
+            "Redo för start 🦍";
+
+        }
+
+        else if(!plan){
+
+          statusText =
+            "Vilodag 🛋️";
+
+        }
+
+        else if(
+          completeToday
+        ){
+
+          statusText =
+            "Dagen klar 🦍";
+
+        }
+
+        else{
+
+          statusText =
+            todayStatusText(
+              todayRow
+            );
+
+        }
+
+
         const row =
           document.createElement(
             "div"
           );
 
+
         row.className =
           "member";
+
 
         row.innerHTML = `
 
@@ -6465,7 +8301,7 @@ function renderGroup(){
                 member.user_id ===
                   user.id
                   ?
-                  " â€¢ DU"
+                  " • DU"
                   :
                   ""
               }
@@ -6473,29 +8309,17 @@ function renderGroup(){
             </div>
 
             <div class="member-status">
-
-              ${
-                !plan
-                  ?
-                  "Vilodag ðŸ›‹ï¸"
-                  :
-                  completeToday
-                    ?
-                    "Dagen klar ðŸ¦"
-                    :
-                    todayStatusText(
-                      todayRow
-                    )
-              }
-
+              ${statusText}
             </div>
 
             <div class="member-streak">
-              ðŸ”¥ ${streak}
+              🔥 ${streak}
               ${
                 streak === 1
-                  ? "dag"
-                  : "dagar"
+                  ?
+                  "dag"
+                  :
+                  "dagar"
               }
               i rad
             </div>
@@ -6524,9 +8348,11 @@ function renderGroup(){
 
         `;
 
+
         holder.appendChild(
           row
         );
+
 
       }
     );
@@ -6545,62 +8371,84 @@ function renderHistory(){
       "history"
     );
 
+
   holder.innerHTML =
     "";
 
+
   const dates =
     challengeDates();
+
 
   const join =
     parseDate(
       membership.joined_at
     );
 
+
   const t =
     todayDate();
 
+
   dates.forEach(
-    (date,index)=>{
+    (
+      date,
+      index
+    )=>{
+
 
       const row =
         allProgress.find(
           p =>
-            p.user_id === user.id
+            p.user_id ===
+              user.id
             &&
             p.workout_date ===
               localDateKey(date)
         );
+
 
       const box =
         document.createElement(
           "div"
         );
 
+
       box.className =
         "daybox";
 
+
       let symbol =
-        "â—‹";
+        "○";
 
-      if(date < join){
 
-        box.classList.add(
-          "prejoin"
-        );
+      if(
+        date < join
+      ){
+
+        box.classList
+          .add(
+            "prejoin"
+          );
+
 
         symbol =
-          "âž–";
+          "➖";
 
       }
 
-      else if(date > t){
+      else if(
+        date > t
+      ){
 
-        box.classList.add(
-          "future"
-        );
+        box.classList
+          .add(
+            "future"
+          );
+
 
         symbol =
-          "Â·";
+          "·";
 
       }
 
@@ -6611,27 +8459,34 @@ function renderHistory(){
         )
       ){
 
-        box.classList.add(
-          "complete"
-        );
+        box.classList
+          .add(
+            "complete"
+          );
+
 
         symbol =
-          "âœ…";
+          "✅";
 
       }
 
       else if(
-        progressPartial(row)
+        progressPartial(
+          row
+        )
       ){
 
-        box.classList.add(
-          "partial"
-        );
+        box.classList
+          .add(
+            "partial"
+          );
+
 
         symbol =
-          "â—";
+          "◐";
 
       }
+
 
       if(
         localDateKey(date)
@@ -6639,23 +8494,28 @@ function renderHistory(){
         localDateKey(t)
       ){
 
-        box.classList.add(
-          "today"
-        );
+        box.classList
+          .add(
+            "today"
+          );
 
       }
+
 
       box.innerHTML = `
         <strong>${index+1}</strong>
         <span>${symbol}</span>
       `;
 
+
       holder.appendChild(
         box
       );
 
+
     }
   );
+
 
   const completed =
     completedDaysForMember(
@@ -6663,10 +8523,12 @@ function renderHistory(){
       membership.joined_at
     );
 
+
   const eligible =
     eligibleDaysForMember(
       membership.joined_at
     );
+
 
   document
     .getElementById(
@@ -6679,7 +8541,7 @@ function renderHistory(){
 
 
 /* ========================================
-   SCORE HELPERS
+   SCORES
    ======================================== */
 
 function eligibleDaysForMember(
@@ -6687,10 +8549,14 @@ function eligibleDaysForMember(
 ){
 
   const join =
-    parseDate(joinedAt);
+    parseDate(
+      joinedAt
+    );
+
 
   const t =
     todayDate();
+
 
   return challengeDates()
     .filter(
@@ -6710,10 +8576,14 @@ function completedDaysForMember(
 ){
 
   const join =
-    parseDate(joinedAt);
+    parseDate(
+      joinedAt
+    );
+
 
   const t =
     todayDate();
+
 
   return challengeDates()
 
@@ -6727,19 +8597,23 @@ function completedDaysForMember(
     .filter(
       date=>{
 
+
         const row =
           allProgress.find(
             p =>
-              p.user_id === userId
+              p.user_id ===
+                userId
               &&
               p.workout_date ===
                 localDateKey(date)
           );
 
+
         return progressComplete(
           row,
           date
         );
+
 
       }
     )
@@ -6758,9 +8632,13 @@ function memberCompletionPercent(
       member.joined_at
     );
 
-  if(!eligible){
+
+  if(
+    !eligible
+  ){
     return 0;
   }
+
 
   const complete =
     completedDaysForMember(
@@ -6768,9 +8646,12 @@ function memberCompletionPercent(
       member.joined_at
     );
 
+
   return Math.round(
-    complete /
-    eligible *
+    complete
+    /
+    eligible
+    *
     100
   );
 
@@ -6783,10 +8664,14 @@ function currentStreakForMember(
 ){
 
   const join =
-    parseDate(joinedAt);
+    parseDate(
+      joinedAt
+    );
+
 
   const t =
     todayDate();
+
 
   let dates =
     challengeDates()
@@ -6797,29 +8682,40 @@ function currentStreakForMember(
           date <= t
       );
 
-  if(!dates.length){
+
+  if(
+    !dates.length
+  ){
     return 0;
   }
+
 
   const last =
     dates[
       dates.length-1
     ];
 
+
   if(
-    localDateKey(last)
+    localDateKey(
+      last
+    )
     ===
-    localDateKey(t)
+    localDateKey(
+      t
+    )
   ){
 
     const row =
       allProgress.find(
         p =>
-          p.user_id === userId
+          p.user_id ===
+            userId
           &&
           p.workout_date ===
             localDateKey(t)
       );
+
 
     if(
       !progressComplete(
@@ -6834,8 +8730,10 @@ function currentStreakForMember(
 
   }
 
+
   let streak =
     0;
+
 
   for(
     let i =
@@ -6845,16 +8743,21 @@ function currentStreakForMember(
   ){
 
     const date =
-      dates[i];
+      dates[
+        i
+      ];
+
 
     const row =
       allProgress.find(
         p =>
-          p.user_id === userId
+          p.user_id ===
+            userId
           &&
           p.workout_date ===
             localDateKey(date)
       );
+
 
     if(
       progressComplete(
@@ -6873,6 +8776,7 @@ function currentStreakForMember(
 
   }
 
+
   return streak;
 
 }
@@ -6882,14 +8786,16 @@ function todayStatusText(row){
 
   if(!row){
 
-    return "Inte pÃ¥bÃ¶rjad";
+    return "Inte påbörjad";
 
   }
+
 
   const plan =
     trainingPlanForDate(
       todayDate()
     );
+
 
   if(!plan){
 
@@ -6897,29 +8803,37 @@ function todayStatusText(row){
 
   }
 
+
   const techniqueDone =
     (
-      row.bmu1_value >=
-        plan.bmu1.target
-        ? 1
-        : 0
+      row.bmu1_value
+      >=
+      plan.bmu1.target
+        ?
+        1
+        :
+        0
     )
     +
     (
-      row.bmu2_value >=
-        plan.bmu2.target
-        ? 1
-        : 0
+      row.bmu2_value
+      >=
+      plan.bmu2.target
+        ?
+        1
+        :
+        0
     );
+
 
   return (
     `${row.main_reps}/100`
     +
-    " â€¢ "
+    " • "
     +
     `${formatSeconds(row.plank_seconds)}/5:00`
     +
-    " â€¢ "
+    " • "
     +
     `TEKNIK ${techniqueDone}/2`
   );
@@ -6934,6 +8848,7 @@ function todayStatusText(row){
 function startRealtime(){
 
   stopRealtime();
+
 
   realtimeChannel =
     sb
@@ -6950,7 +8865,8 @@ function startRealtime(){
           filter:
             `challenge_id=eq.${challenge.id}`
         },
-        ()=>scheduleRealtimeRefresh()
+        ()=>
+          scheduleRealtimeRefresh()
       )
 
       .on(
@@ -6962,7 +8878,8 @@ function startRealtime(){
           filter:
             `challenge_id=eq.${challenge.id}`
         },
-        ()=>scheduleRealtimeRefresh()
+        ()=>
+          scheduleRealtimeRefresh()
       )
 
       .subscribe();
@@ -6976,17 +8893,22 @@ function scheduleRealtimeRefresh(){
     realtimeRefreshTimer
   );
 
+
   realtimeRefreshTimer =
     setTimeout(
       async ()=>{
 
+
         await loadGroupData();
+
 
         const cached =
           loadLocalProgress();
 
+
         if(
-          cached?.dirty &&
+          cached?.dirty
+          &&
           cached?.row
         ){
 
@@ -6995,12 +8917,18 @@ function scheduleRealtimeRefresh(){
 
         }
 
+
         mergeTodayIntoAllProgress();
 
+
         renderGroup();
+
         renderHistory();
+
         renderHeader();
+
         renderDay();
+
 
       },
       350
@@ -7011,11 +8939,14 @@ function scheduleRealtimeRefresh(){
 
 function stopRealtime(){
 
-  if(realtimeChannel){
+  if(
+    realtimeChannel
+  ){
 
     sb.removeChannel(
       realtimeChannel
     );
+
 
     realtimeChannel =
       null;
@@ -7026,23 +8957,28 @@ function stopRealtime(){
 
 
 /* ========================================
-   SHARE
+   SHARE STATUS
    ======================================== */
 
 async function shareStatus(){
 
-  if(!todayProgress){
+  if(
+    !todayProgress
+  ){
     return;
   }
+
 
   const plan =
     trainingPlanForDate(
       todayDate()
     );
 
+
   if(!plan){
     return;
   }
+
 
   const complete =
     progressComplete(
@@ -7050,17 +8986,55 @@ async function shareStatus(){
       todayDate()
     );
 
+
+  const shoulder =
+    getShoulderState();
+
+
+  const main =
+    displayedMainTask(
+      plan
+    );
+
+
+  let techniqueText;
+
+
+  if(
+    shoulder.enabled
+  ){
+
+    techniqueText =
+      `AXELANPASSAD TEKNIK: ${shoulder.bmuWaived ? "KLAR ✅" : "PÅGÅR"}`;
+
+  }else{
+
+    techniqueText =
+`${plan.bmu1.name}: ${formatTask(todayProgress.bmu1_value,plan.bmu1)} ${todayProgress.bmu1_value>=plan.bmu1.target ? "✅" : ""}
+${plan.bmu2.name}: ${formatTask(todayProgress.bmu2_value,plan.bmu2)} ${todayProgress.bmu2_value>=plan.bmu2.target ? "✅" : ""}`;
+
+  }
+
+
+  const coreName =
+    shoulder.enabled
+      ?
+      "GLUTE BRIDGE HOLD"
+      :
+      "PLANKA";
+
+
   const text =
 
-`ðŸ¦ PROJECT 40 â€” DAG ${plan.dayNumber}
+`🦍 PROJECT 40 — DAG ${plan.dayNumber}
 ${profile.display_name}
 
-${plan.main.name}: ${todayProgress.main_reps}/100 ${todayProgress.main_reps>=100 ? "âœ…" : ""}
-PLANKA: ${formatSeconds(todayProgress.plank_seconds)}/5:00 ${todayProgress.plank_seconds>=300 ? "âœ…" : ""}
-${plan.bmu1.name}: ${formatTask(todayProgress.bmu1_value,plan.bmu1)} ${todayProgress.bmu1_value>=plan.bmu1.target ? "âœ…" : ""}
-${plan.bmu2.name}: ${formatTask(todayProgress.bmu2_value,plan.bmu2)} ${todayProgress.bmu2_value>=plan.bmu2.target ? "âœ…" : ""}
+${main.name}: ${todayProgress.main_reps}/100 ${todayProgress.main_reps>=100 ? "✅" : ""}
+${coreName}: ${formatSeconds(todayProgress.plank_seconds)}/5:00 ${todayProgress.plank_seconds>=300 ? "✅" : ""}
+${techniqueText}
 
-${complete ? "ðŸ¦ DAGEN KLAR!" : "â³ PÃ…GÃ…R"}`;
+${shoulder.enabled ? "🩹 AXELANPASSAD DAG\n" : ""}${complete ? "🦍 DAGEN KLAR!" : "⏳ PÅGÅR"}`;
+
 
   await shareText(
     "PROJECT 40",
@@ -7074,7 +9048,7 @@ async function shareJoinCode(){
 
   const text =
 
-`ðŸ¦ PROJECT 40
+`🦍 PROJECT 40
 
 INSTALLERA APPEN:
 ${APP_URL}
@@ -7082,9 +9056,10 @@ ${APP_URL}
 JOIN-KOD:
 ${challenge.join_code}
 
-Ã–ppna lÃ¤nken â†’ installera PROJECT 40 â†’ Ã¶ppna appen frÃ¥n hemskÃ¤rmen â†’ skriv ditt namn + join-koden.
+Öppna länken → installera PROJECT 40 → öppna appen från hemskärmen → skriv ditt namn + join-koden.
 
-Varje vardag fÃ¥r du se dagens uppgift fÃ¶rst nÃ¤r dagen Ã¤r hÃ¤r. ðŸ˜ˆ`;
+Varje vardag får du dagens uppgift när dagen är här. Inga spoilers. 😈`;
+
 
   await shareText(
     "PROJECT 40",
@@ -7101,7 +9076,10 @@ async function shareText(
 
   try{
 
-    if(navigator.share){
+
+    if(
+      navigator.share
+    ){
 
       await navigator.share({
         title,
@@ -7114,11 +9092,13 @@ async function shareText(
         text
       );
 
+
       toast(
         "Kopierat!"
       );
 
     }
+
 
   }catch{}
 
@@ -7139,6 +9119,7 @@ function showTab(tab){
   .forEach(
     name=>{
 
+
       document
         .getElementById(
           `tab${capitalize(name)}`
@@ -7148,6 +9129,7 @@ function showTab(tab){
           "hidden",
           name !== tab
         );
+
 
       document
         .getElementById(
@@ -7159,6 +9141,7 @@ function showTab(tab){
           name === tab
         );
 
+
     }
   );
 
@@ -7168,7 +9151,9 @@ function showTab(tab){
 function capitalize(s){
 
   return (
-    s.charAt(0).toUpperCase()
+    s
+      .charAt(0)
+      .toUpperCase()
     +
     s.slice(1)
   );
@@ -7196,6 +9181,7 @@ function toggleDone(
       done
     );
 
+
   document
     .getElementById(
       badgeId
@@ -7219,22 +9205,27 @@ function formatSeconds(sec){
       )
     );
 
+
   const min =
     Math.floor(
       sec / 60
     );
 
+
   const seconds =
     sec % 60;
+
 
   return (
     `${min}:`
     +
-    String(seconds)
-      .padStart(
-        2,
-        "0"
-      )
+    String(
+      seconds
+    )
+    .padStart(
+      2,
+      "0"
+    )
   );
 
 }
@@ -7246,7 +9237,8 @@ function formatTask(
 ){
 
   if(
-    task.unit === "sec"
+    task.unit ===
+    "sec"
   ){
 
     return (
@@ -7254,6 +9246,7 @@ function formatTask(
     );
 
   }
+
 
   return (
     `${value}/${task.target}`
@@ -7269,8 +9262,12 @@ function escapeHtml(text){
       "div"
     );
 
+
   div.textContent =
-    text || "";
+    text
+    ||
+    "";
+
 
   return div.innerHTML;
 
@@ -7284,19 +9281,26 @@ function toast(text){
       "toast"
     );
 
+
   el.textContent =
     text;
 
-  el.classList.add(
-    "show"
-  );
+
+  el.classList
+    .add(
+      "show"
+    );
+
 
   setTimeout(
     ()=>{
 
-      el.classList.remove(
-        "show"
-      );
+
+      el.classList
+        .remove(
+          "show"
+        );
+
 
     },
     2800
@@ -7311,33 +9315,26 @@ function toast(text){
 
 function hideMainViews(){
 
-  document
-    .getElementById(
-      "installGate"
-    )
-    .classList
-    .add("hidden");
+  [
+    "installGate",
+    "loginView",
+    "challengeView",
+    "appView"
+  ]
+  .forEach(
+    id=>{
 
-  document
-    .getElementById(
-      "loginView"
-    )
-    .classList
-    .add("hidden");
+      document
+        .getElementById(
+          id
+        )
+        .classList
+        .add(
+          "hidden"
+        );
 
-  document
-    .getElementById(
-      "challengeView"
-    )
-    .classList
-    .add("hidden");
-
-  document
-    .getElementById(
-      "appView"
-    )
-    .classList
-    .add("hidden");
+    }
+  );
 
 }
 
@@ -7346,12 +9343,16 @@ function showInstallGate(){
 
   hideMainViews();
 
+
   document
     .getElementById(
       "installGate"
     )
     .classList
-    .remove("hidden");
+    .remove(
+      "hidden"
+    );
+
 
   renderInstallGate();
 
@@ -7362,27 +9363,36 @@ function showLogin(){
 
   hideMainViews();
 
-  if(!isStandalone()){
+
+  if(
+    !isStandalone()
+  ){
 
     showInstallGate();
 
     return;
   }
 
+
   document
     .getElementById(
       "loginView"
     )
     .classList
-    .remove("hidden");
+    .remove(
+      "hidden"
+    );
+
 
   const createStart =
     document.getElementById(
       "newChallengeStart"
     );
 
+
   if(
-    createStart &&
+    createStart
+    &&
     !createStart.value
   ){
 
@@ -7402,21 +9412,27 @@ window.addEventListener(
   "offline",
   ()=>{
 
+
     if(
-      user &&
+      user
+      &&
       challenge
     ){
 
       const cached =
         loadLocalProgress();
 
+
       setSaveStatus(
         cached?.dirty
-          ? "local"
-          : "offline"
+          ?
+          "local"
+          :
+          "offline"
       );
 
     }
+
 
   }
 );
@@ -7426,28 +9442,38 @@ window.addEventListener(
   "online",
   async ()=>{
 
+
     if(
-      !user ||
+      !user
+      ||
       !challenge
     ){
       return;
     }
 
+
     const cached =
       loadLocalProgress();
 
-    if(cached?.dirty){
 
-      if(cached.row){
+    if(
+      cached?.dirty
+    ){
+
+      if(
+        cached.row
+      ){
 
         todayProgress =
           cached.row;
 
       }
 
+
       setSaveStatus(
         "saving"
       );
+
 
       await saveToday();
 
@@ -7459,13 +9485,18 @@ window.addEventListener(
 
     }
 
+
     await loadGroupData();
+
 
     mergeTodayIntoAllProgress();
 
+
     renderEverything();
 
+
     startRealtime();
+
 
   }
 );
@@ -7481,12 +9512,17 @@ sb.auth.onAuthStateChange(
     session
   )=>{
 
-    if(authFlowBusy){
+
+    if(
+      authFlowBusy
+    ){
       return;
     }
 
+
     if(
-      event === "SIGNED_IN"
+      event ===
+        "SIGNED_IN"
       &&
       session?.user
     ){
@@ -7494,17 +9530,22 @@ sb.auth.onAuthStateChange(
       user =
         session.user;
 
+
       setTimeout(
         ()=>{
+
           boot();
+
         },
         0
       );
 
     }
 
+
     if(
-      event === "SIGNED_OUT"
+      event ===
+      "SIGNED_OUT"
     ){
 
       user =
@@ -7528,9 +9569,11 @@ sb.auth.onAuthStateChange(
       allProgress =
         [];
 
+
       showLogin();
 
     }
+
 
   }
 );
@@ -7542,8 +9585,13 @@ sb.auth.onAuthStateChange(
 
 boot();
 
+
 </script>
 
+
+<!-- =====================================
+     SERVICE WORKER
+     ===================================== -->
 
 <script>
 
@@ -7555,6 +9603,7 @@ if(
   window.addEventListener(
     "load",
     ()=>{
+
 
       navigator
         .serviceWorker
@@ -7572,6 +9621,7 @@ if(
           }
         );
 
+
     }
   );
 
@@ -7581,4 +9631,5 @@ if(
 
 
 </body>
+
 </html>
