@@ -9578,7 +9578,2340 @@ sb.auth.onAuthStateChange(
   }
 );
 
+/* ========================================
+   PROJECT 40 — DAGSLÄGEN v1
+   NORMAL / AXEL / KONTOR / SKADAD-SLITEN
 
+   Ingen SQL-ändring.
+   Wall sit sparas lokalt under pågående dag.
+   När 2:00 är klar markeras teknikdelen klar.
+   15K-läget markeras först när användaren
+   bekräftar att 15 000 steg är uppnådda.
+   ======================================== */
+
+
+/* ========================================
+   SAVE ORIGINAL FUNCTIONS
+   ======================================== */
+
+const p40OriginalRenderDay =
+  renderDay;
+
+const p40OriginalShareStatus =
+  shareStatus;
+
+const p40OriginalResetToday =
+  resetToday;
+
+
+/* ========================================
+   MODE STORAGE
+   ======================================== */
+
+function p40DayModeKey(){
+
+  if(
+    !user ||
+    !challenge
+  ){
+    return null;
+  }
+
+
+  return [
+    "p40_day_mode",
+    challenge.id,
+    user.id,
+    localDateKey()
+  ].join("_");
+
+}
+
+
+function p40GetDayMode(){
+
+  const key =
+    p40DayModeKey();
+
+
+  if(key){
+
+    const stored =
+      localStorage.getItem(
+        key
+      );
+
+
+    if(
+      [
+        "normal",
+        "shoulder",
+        "office",
+        "recovery"
+      ].includes(
+        stored
+      )
+    ){
+
+      return stored;
+
+    }
+
+  }
+
+
+  /*
+    Kompatibilitet med nuvarande
+    axelläget.
+  */
+
+  if(
+    typeof getShoulderState ===
+      "function"
+    &&
+    getShoulderState()
+      ?.enabled
+  ){
+
+    return "shoulder";
+
+  }
+
+
+  return "normal";
+
+}
+
+
+function p40StoreDayMode(mode){
+
+  const key =
+    p40DayModeKey();
+
+
+  if(!key){
+    return;
+  }
+
+
+  localStorage.setItem(
+    key,
+    mode
+  );
+
+}
+
+
+/* ========================================
+   WALL SIT STORAGE
+   ======================================== */
+
+function p40WallSitKey(){
+
+  if(
+    !user ||
+    !challenge
+  ){
+    return null;
+  }
+
+
+  return [
+    "p40_wall_sit",
+    challenge.id,
+    user.id,
+    localDateKey()
+  ].join("_");
+
+}
+
+
+function p40GetWallSitState(){
+
+  const key =
+    p40WallSitKey();
+
+
+  if(!key){
+
+    return {
+      seconds:0,
+      startedAt:null
+    };
+
+  }
+
+
+  const state =
+    safeRead(
+      key
+    )
+    || {};
+
+
+  return {
+
+    seconds:
+      Math.max(
+        0,
+        Math.min(
+          120,
+          Number(
+            state.seconds || 0
+          )
+        )
+      ),
+
+    startedAt:
+      state.startedAt
+        ?
+        Number(
+          state.startedAt
+        )
+        :
+        null
+
+  };
+
+}
+
+
+function p40SaveWallSitState(state){
+
+  const key =
+    p40WallSitKey();
+
+
+  if(!key){
+    return;
+  }
+
+
+  safeWrite(
+    key,
+    {
+      seconds:
+        Math.max(
+          0,
+          Math.min(
+            120,
+            Number(
+              state.seconds || 0
+            )
+          )
+        ),
+
+      startedAt:
+        state.startedAt
+        || null
+    }
+  );
+
+}
+
+
+function p40ClearWallSit(){
+
+  const key =
+    p40WallSitKey();
+
+
+  if(key){
+
+    localStorage.removeItem(
+      key
+    );
+
+  }
+
+
+  p40StopWallSitInterval();
+
+}
+
+
+/* ========================================
+   WALL SIT TIMER
+   ======================================== */
+
+let p40WallSitInterval =
+  null;
+
+let p40WallSitStopping =
+  false;
+
+
+function p40WallSitActive(){
+
+  const state =
+    p40GetWallSitState();
+
+
+  return !!state.startedAt;
+
+}
+
+
+function p40DisplayedWallSitSeconds(){
+
+  const state =
+    p40GetWallSitState();
+
+
+  if(
+    !state.startedAt
+  ){
+
+    return state.seconds;
+
+  }
+
+
+  const elapsed =
+    Math.max(
+      0,
+      Math.floor(
+        (
+          Date.now()
+          -
+          state.startedAt
+        )
+        /
+        1000
+      )
+    );
+
+
+  return Math.min(
+    120,
+    state.seconds
+    +
+    elapsed
+  );
+
+}
+
+
+function p40ToggleWallSit(){
+
+  if(
+    p40WallSitActive()
+  ){
+
+    p40StopWallSit();
+
+  }else{
+
+    p40StartWallSit();
+
+  }
+
+}
+
+
+function p40StartWallSit(){
+
+  if(
+    !todayProgress ||
+    p40GetDayMode() !==
+      "office"
+  ){
+    return;
+  }
+
+
+  const current =
+    p40DisplayedWallSitSeconds();
+
+
+  if(
+    current >= 120
+  ){
+    return;
+  }
+
+
+  const state =
+    p40GetWallSitState();
+
+
+  p40SaveWallSitState({
+    seconds:
+      state.seconds,
+
+    startedAt:
+      Date.now()
+  });
+
+
+  p40StartWallSitInterval();
+
+
+  p40RenderWallSit();
+
+}
+
+
+async function p40StopWallSit(
+  auto = false
+){
+
+  if(
+    p40WallSitStopping
+  ){
+    return;
+  }
+
+
+  const state =
+    p40GetWallSitState();
+
+
+  if(
+    !state.startedAt
+  ){
+    return;
+  }
+
+
+  p40WallSitStopping =
+    true;
+
+
+  const total =
+    p40DisplayedWallSitSeconds();
+
+
+  p40SaveWallSitState({
+    seconds:
+      total,
+
+    startedAt:
+      null
+  });
+
+
+  p40StopWallSitInterval();
+
+
+  /*
+    När exakt 2:00 är nått
+    räknas teknikdelen som klar.
+  */
+
+  if(
+    total >= 120
+  ){
+
+    await p40CompleteOfficeTechnique();
+
+  }else{
+
+    p40RenderWallSit();
+
+  }
+
+
+  p40WallSitStopping =
+    false;
+
+
+  if(
+    !auto
+  ){
+
+    renderDay();
+
+  }
+
+}
+
+
+function p40StartWallSitInterval(){
+
+  p40StopWallSitInterval();
+
+
+  p40WallSitInterval =
+    setInterval(
+      async ()=>{
+
+
+        p40RenderWallSit();
+
+
+        if(
+          p40DisplayedWallSitSeconds()
+          >= 120
+          &&
+          p40WallSitActive()
+        ){
+
+          await p40StopWallSit(
+            true
+          );
+
+        }
+
+
+      },
+      250
+    );
+
+}
+
+
+function p40StopWallSitInterval(){
+
+  if(
+    p40WallSitInterval
+  ){
+
+    clearInterval(
+      p40WallSitInterval
+    );
+
+
+    p40WallSitInterval =
+      null;
+
+  }
+
+}
+
+
+async function p40CompleteOfficeTechnique(){
+
+  if(
+    !todayProgress
+  ){
+    return;
+  }
+
+
+  const plan =
+    trainingPlanForDate(
+      todayDate()
+    );
+
+
+  if(!plan){
+    return;
+  }
+
+
+  /*
+    Wall sit ersätter dagens
+    båda teknikuppgifter.
+
+    Vi använder de befintliga
+    BMU-fälten för KLAR-status.
+  */
+
+  todayProgress.bmu1_value =
+    plan.bmu1.target;
+
+  todayProgress.bmu2_value =
+    plan.bmu2.target;
+
+
+  await saveToday();
+
+
+  toast(
+    "🏢 2:00 wall sit klar ✓"
+  );
+
+}
+
+
+async function p40ResetWallSit(){
+
+  if(
+    p40GetDayMode() !==
+    "office"
+  ){
+    return;
+  }
+
+
+  const ok =
+    confirm(
+`Återställa wall sit?
+
+Wall sit-tiden och dagens markerade teknikdel nollställs.`
+    );
+
+
+  if(!ok){
+    return;
+  }
+
+
+  p40ClearWallSit();
+
+
+  if(
+    todayProgress
+  ){
+
+    todayProgress.bmu1_value =
+      0;
+
+    todayProgress.bmu2_value =
+      0;
+
+
+    await saveToday();
+
+  }
+
+
+  renderDay();
+
+}
+
+
+/* ========================================
+   CHANGE DAY MODE
+   ======================================== */
+
+async function p40SetDayMode(mode){
+
+  if(
+    !todayProgress
+  ){
+    return;
+  }
+
+
+  if(
+    ![
+      "normal",
+      "shoulder",
+      "office",
+      "recovery"
+    ].includes(
+      mode
+    )
+  ){
+    return;
+  }
+
+
+  const currentMode =
+    p40GetDayMode();
+
+
+  if(
+    currentMode ===
+    mode
+  ){
+    return;
+  }
+
+
+  /*
+    En redan färdig dag ska inte
+    kunna byta läge av misstag.
+  */
+
+  if(
+    progressComplete(
+      todayProgress,
+      todayDate()
+    )
+  ){
+
+    alert(
+`Dagen är redan markerad som klar.
+
+Om du verkligen vill byta upplägg behöver du först använda ÅTERSTÄLL DAGEN.`
+    );
+
+    return;
+  }
+
+
+  /*
+    Stoppa aktiva timers innan byte.
+  */
+
+  if(
+    activePlank()
+  ){
+
+    await stopPlank();
+
+  }
+
+
+  if(
+    p40WallSitActive()
+  ){
+
+    await p40StopWallSit();
+
+  }
+
+
+  const shoulderState =
+    getShoulderState();
+
+
+  /*
+    Om axelläget tidigare har
+    "waivat" BMU-delen får de
+    värdena inte följa med till
+    normalt läge.
+  */
+
+  if(
+    currentMode ===
+      "shoulder"
+    &&
+    shoulderState
+      .bmuWaived
+    &&
+    mode !==
+      "shoulder"
+  ){
+
+    todayProgress.bmu1_value =
+      0;
+
+    todayProgress.bmu2_value =
+      0;
+
+  }
+
+
+  /*
+    Om man lämnar kontorsläget
+    återställs wall sit och
+    teknikmarkeringen.
+  */
+
+  if(
+    currentMode ===
+      "office"
+    &&
+    mode !==
+      "office"
+  ){
+
+    p40ClearWallSit();
+
+
+    todayProgress.bmu1_value =
+      0;
+
+    todayProgress.bmu2_value =
+      0;
+
+  }
+
+
+  /*
+    OFFICE:
+    BMU/teknik ersätts helt
+    av wall sit.
+
+    Om teknik redan påbörjats
+    behöver användaren godkänna
+    att den nollställs.
+  */
+
+  if(
+    mode ===
+      "office"
+  ){
+
+    if(
+      todayProgress.bmu1_value > 0
+      ||
+      todayProgress.bmu2_value > 0
+    ){
+
+      const ok =
+        confirm(
+`Du har redan registrerat en del av dagens teknikarbete.
+
+Om du väljer KONTOR ersätts teknikdelen av 2:00 wall sit och den registrerade teknikprogressen nollställs.
+
+Fortsätta?`
+        );
+
+
+      if(!ok){
+        return;
+      }
+
+    }
+
+
+    todayProgress.bmu1_value =
+      0;
+
+    todayProgress.bmu2_value =
+      0;
+
+
+    p40ClearWallSit();
+
+  }
+
+
+  /*
+    RECOVERY:
+    bara ett val tills användaren
+    faktiskt markerar 15K klart.
+  */
+
+  if(
+    mode ===
+      "recovery"
+  ){
+
+    const ok =
+      confirm(
+`❤️‍🩹 SKADAD / SLITEN
+
+15 000 steg ersätter HELA dagens PROJECT 40.
+
+Ingen huvuduppgift, planka eller teknikdel behövs.
+
+Detta är ett substitut när du faktiskt behöver det — inte en genväg.
+
+Gången ska vara smärtfri.
+
+Aktivera 15K-läget?`
+      );
+
+
+    if(!ok){
+      return;
+    }
+
+  }
+
+
+  /*
+    Synka befintligt axelläge.
+  */
+
+  saveShoulderState({
+
+    enabled:
+      mode ===
+      "shoulder",
+
+    bmuWaived:false
+
+  });
+
+
+  p40StoreDayMode(
+    mode
+  );
+
+
+  /*
+    Sparar eventuella ändringar
+    i BMU-värden.
+  */
+
+  saveLocalProgress(
+    todayProgress,
+    true
+  );
+
+
+  renderDay();
+
+
+  await saveToday();
+
+}
+
+
+/* ========================================
+   15 000 STEG
+   ======================================== */
+
+async function p40CompleteRecoveryDay(){
+
+  if(
+    !todayProgress ||
+    p40GetDayMode() !==
+      "recovery"
+  ){
+    return;
+  }
+
+
+  const plan =
+    trainingPlanForDate(
+      todayDate()
+    );
+
+
+  if(!plan){
+    return;
+  }
+
+
+  const ok =
+    confirm(
+`Har du nått minst 15 000 steg idag?
+
+Detta markerar HELA dagens PROJECT 40 som genomförd.`
+    );
+
+
+  if(!ok){
+    return;
+  }
+
+
+  if(
+    activePlank()
+  ){
+
+    await stopPlank();
+
+  }
+
+
+  if(
+    p40WallSitActive()
+  ){
+
+    await p40StopWallSit();
+
+  }
+
+
+  /*
+    Använder befintliga progressfält
+    så historik, streak och gruppstatus
+    fortsätter fungera utan ny SQL.
+  */
+
+  todayProgress.main_reps =
+    100;
+
+  todayProgress.plank_seconds =
+    300;
+
+  todayProgress.bmu1_value =
+    plan.bmu1.target;
+
+  todayProgress.bmu2_value =
+    plan.bmu2.target;
+
+
+  await saveToday();
+
+
+  toast(
+    "❤️‍🩹 15 000 steg — dagen klar ✓"
+  );
+
+}
+
+
+/* ========================================
+   MODE UI CSS
+   ======================================== */
+
+function p40InjectModeStyles(){
+
+  if(
+    document.getElementById(
+      "p40ModeStyles"
+    )
+  ){
+    return;
+  }
+
+
+  const style =
+    document.createElement(
+      "style"
+    );
+
+
+  style.id =
+    "p40ModeStyles";
+
+
+  style.textContent = `
+
+    .p40-mode-card{
+      border-color:
+        rgba(245,197,24,.28);
+    }
+
+    .p40-mode-grid{
+      display:grid;
+      grid-template-columns:
+        repeat(2,1fr);
+      gap:8px;
+      margin-top:14px;
+    }
+
+    .p40-mode-button{
+      min-height:66px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius:14px;
+
+      background:#101012;
+      color:var(--muted);
+
+      padding:9px 5px;
+
+      font-size:11px;
+      font-weight:950;
+      line-height:1.3;
+    }
+
+    .p40-mode-button.active{
+      border-color:
+        var(--yellow);
+
+      background:
+        rgba(245,197,24,.1);
+
+      color:
+        var(--yellow);
+    }
+
+    .p40-mode-info{
+      margin-top:12px;
+
+      padding:11px;
+
+      border-radius:12px;
+
+      background:#101012;
+
+      color:#cfcfd3;
+
+      font-size:12px;
+      line-height:1.5;
+    }
+
+    .p40-wall-card{
+      border-color:
+        rgba(121,184,255,.4);
+
+      background:
+        rgba(121,184,255,.05);
+    }
+
+    .p40-recovery-card{
+      border-color:
+        rgba(57,217,138,.42);
+
+      background:
+        rgba(57,217,138,.05);
+    }
+
+    .p40-alt-icon{
+      font-size:38px;
+
+      margin-bottom:10px;
+    }
+
+    .p40-wall-buttons{
+      display:grid;
+
+      grid-template-columns:
+        2fr 1fr;
+
+      gap:9px;
+
+      margin-top:17px;
+    }
+
+    .p40-wall-buttons button{
+      padding:16px 8px;
+    }
+
+    .p40-warning{
+      margin-top:14px;
+
+      padding:12px;
+
+      border-radius:13px;
+
+      background:
+        rgba(255,191,105,.08);
+
+      border:
+        1px solid
+        rgba(255,191,105,.25);
+
+      color:#ffd19b;
+
+      font-size:12px;
+      line-height:1.5;
+    }
+
+  `;
+
+
+  document.head
+    .appendChild(
+      style
+    );
+
+}
+
+
+/* ========================================
+   CREATE MODE UI
+   ======================================== */
+
+function p40EnsureModeUI(){
+
+  p40InjectModeStyles();
+
+
+  const taskArea =
+    document.getElementById(
+      "taskArea"
+    );
+
+
+  if(!taskArea){
+    return;
+  }
+
+
+  /*
+    MODE SELECTOR
+  */
+
+  if(
+    !document.getElementById(
+      "p40ModeCard"
+    )
+  ){
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+
+    card.id =
+      "p40ModeCard";
+
+
+    card.className =
+      "card p40-mode-card";
+
+
+    card.innerHTML = `
+
+      <div class="card-title">
+
+        <h2>
+          DAGENS LÄGE
+        </h2>
+
+        <span
+          id="p40ModeBadge"
+          class="badge"
+        >
+          NORMAL
+        </span>
+
+      </div>
+
+
+      <div class="p40-mode-grid">
+
+        <button
+          class="p40-mode-button"
+          data-p40-mode="normal"
+          onclick="p40SetDayMode('normal')"
+        >
+          🦍<br>
+          NORMAL
+        </button>
+
+        <button
+          class="p40-mode-button"
+          data-p40-mode="shoulder"
+          onclick="p40SetDayMode('shoulder')"
+        >
+          🩹<br>
+          AXEL
+        </button>
+
+        <button
+          class="p40-mode-button"
+          data-p40-mode="office"
+          onclick="p40SetDayMode('office')"
+        >
+          🏢<br>
+          INGEN STÅNG / RINGAR
+        </button>
+
+        <button
+          class="p40-mode-button"
+          data-p40-mode="recovery"
+          onclick="p40SetDayMode('recovery')"
+        >
+          ❤️‍🩹<br>
+          SKADAD / SLITEN
+        </button>
+
+      </div>
+
+
+      <div
+        id="p40ModeInfo"
+        class="p40-mode-info"
+      ></div>
+
+    `;
+
+
+    const oldShoulderCard =
+      document.getElementById(
+        "shoulderToggleCard"
+      );
+
+
+    if(oldShoulderCard){
+
+      taskArea.insertBefore(
+        card,
+        oldShoulderCard
+      );
+
+    }else{
+
+      taskArea.prepend(
+        card
+      );
+
+    }
+
+  }
+
+
+  /*
+    WALL SIT CARD
+  */
+
+  if(
+    !document.getElementById(
+      "p40WallSitCard"
+    )
+  ){
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+
+    card.id =
+      "p40WallSitCard";
+
+
+    card.className =
+      "card p40-wall-card hidden";
+
+
+    card.innerHTML = `
+
+      <div class="p40-alt-icon">
+        🏢
+      </div>
+
+
+      <div class="card-title">
+
+        <h2>
+          WALL SIT
+        </h2>
+
+        <span
+          id="p40WallSitBadge"
+          class="badge"
+        >
+          0:00 / 2:00
+        </span>
+
+      </div>
+
+
+      <div
+        id="p40WallSitNumber"
+        class="timer"
+      >
+        0:00
+      </div>
+
+
+      <div class="timer-sub">
+        2:00 totalt • dela upp i set om du vill
+      </div>
+
+
+      <div class="exercise-note">
+        Ingen stång eller ringar?
+        Gör dagens huvuduppgift och
+        5:00 planka som vanligt.
+        Teknikdelen ersätts av exakt
+        2:00 wall sit totalt.
+      </div>
+
+
+      <div class="p40-wall-buttons">
+
+        <button
+          id="p40WallSitButton"
+          class="btn primary"
+          onclick="p40ToggleWallSit()"
+        >
+          ▶ STARTA
+        </button>
+
+        <button
+          id="p40WallSitReset"
+          class="btn"
+          onclick="p40ResetWallSit()"
+        >
+          ÅTERSTÄLL
+        </button>
+
+      </div>
+
+    `;
+
+
+    const rulebox =
+      taskArea.querySelector(
+        ".rulebox"
+      );
+
+
+    if(rulebox){
+
+      taskArea.insertBefore(
+        card,
+        rulebox
+      );
+
+    }else{
+
+      taskArea.appendChild(
+        card
+      );
+
+    }
+
+  }
+
+
+  /*
+    RECOVERY CARD
+  */
+
+  if(
+    !document.getElementById(
+      "p40RecoveryCard"
+    )
+  ){
+
+    const card =
+      document.createElement(
+        "div"
+      );
+
+
+    card.id =
+      "p40RecoveryCard";
+
+
+    card.className =
+      "card p40-recovery-card hidden";
+
+
+    card.innerHTML = `
+
+      <div class="p40-alt-icon">
+        ❤️‍🩹
+      </div>
+
+
+      <div class="card-title">
+
+        <h2>
+          15 000 STEG
+        </h2>
+
+        <span
+          id="p40RecoveryBadge"
+          class="badge"
+        >
+          SUBSTITUT
+        </span>
+
+      </div>
+
+
+      <div
+        class="big-number"
+        style="font-size:39px"
+      >
+        15 000
+      </div>
+
+
+      <div class="target">
+        steg under dagen
+      </div>
+
+
+      <div class="exercise-note">
+        15 000 steg ersätter HELA dagens
+        PROJECT 40.
+        Ingen huvuduppgift, planka eller
+        teknikdel behövs.
+        Gå lugnt och gärna utspritt
+        över dagen.
+      </div>
+
+
+      <div class="p40-warning">
+        Använd detta när du faktiskt är
+        skadad eller rejält sliten —
+        inte som en enklare genväg.
+        Gången ska vara smärtfri.
+      </div>
+
+
+      <button
+        id="p40RecoveryButton"
+        class="btn green full"
+        onclick="p40CompleteRecoveryDay()"
+      >
+        ✓ JAG HAR NÅTT 15 000 STEG
+      </button>
+
+    `;
+
+
+    const rulebox =
+      taskArea.querySelector(
+        ".rulebox"
+      );
+
+
+    if(rulebox){
+
+      taskArea.insertBefore(
+        card,
+        rulebox
+      );
+
+    }else{
+
+      taskArea.appendChild(
+        card
+      );
+
+    }
+
+  }
+
+}
+
+
+/* ========================================
+   WALL SIT RENDER
+   ======================================== */
+
+function p40RenderWallSit(){
+
+  const card =
+    document.getElementById(
+      "p40WallSitCard"
+    );
+
+
+  if(!card){
+    return;
+  }
+
+
+  const total =
+    p40DisplayedWallSitSeconds();
+
+
+  const done =
+    total >= 120;
+
+
+  document
+    .getElementById(
+      "p40WallSitNumber"
+    )
+    .textContent =
+      formatSeconds(
+        total
+      );
+
+
+  document
+    .getElementById(
+      "p40WallSitBadge"
+    )
+    .textContent =
+      `${formatSeconds(total)} / 2:00`;
+
+
+  card.classList.toggle(
+    "done",
+    done
+  );
+
+
+  document
+    .getElementById(
+      "p40WallSitBadge"
+    )
+    .classList
+    .toggle(
+      "done",
+      done
+    );
+
+
+  const button =
+    document.getElementById(
+      "p40WallSitButton"
+    );
+
+
+  if(done){
+
+    button.textContent =
+      "✓ KLAR";
+
+    button.disabled =
+      true;
+
+    button.className =
+      "btn green";
+
+  }
+
+  else if(
+    p40WallSitActive()
+  ){
+
+    button.textContent =
+      "■ STOPPA";
+
+    button.disabled =
+      false;
+
+    button.className =
+      "btn red";
+
+  }
+
+  else{
+
+    button.textContent =
+      "▶ STARTA";
+
+    button.disabled =
+      false;
+
+    button.className =
+      "btn primary";
+
+  }
+
+
+  document
+    .getElementById(
+      "p40WallSitReset"
+    )
+    .disabled =
+      total === 0
+      &&
+      !p40WallSitActive();
+
+}
+
+
+/* ========================================
+   EXTRA DAY RENDER
+   ======================================== */
+
+function p40RenderModeUI(){
+
+  p40EnsureModeUI();
+
+
+  const taskArea =
+    document.getElementById(
+      "taskArea"
+    );
+
+
+  if(
+    !taskArea ||
+    taskArea.classList.contains(
+      "hidden"
+    )
+  ){
+    return;
+  }
+
+
+  if(
+    !todayProgress
+  ){
+    return;
+  }
+
+
+  const mode =
+    p40GetDayMode();
+
+
+  const labels = {
+
+    normal:
+      "NORMAL",
+
+    shoulder:
+      "AXEL",
+
+    office:
+      "KONTOR",
+
+    recovery:
+      "15K STEG"
+
+  };
+
+
+  const descriptions = {
+
+    normal:
+      "Dagens vanliga PROJECT 40-dos.",
+
+    shoulder:
+      "Axelvänligt läge. Huvuduppgiften skalas vid behov, plankan blir glute bridge hold och provocerande axelarbete hoppas över.",
+
+    office:
+      "Ingen stång eller ringar. Huvuduppgift + 5:00 planka som vanligt. Teknikdelen ersätts av 2:00 wall sit med timer.",
+
+    recovery:
+      "Skadad eller rejält sliten. Hela dagens PROJECT 40 ersätts av 15 000 smärtfria steg."
+
+  };
+
+
+  document
+    .getElementById(
+      "p40ModeBadge"
+    )
+    .textContent =
+      labels[
+        mode
+      ];
+
+
+  document
+    .getElementById(
+      "p40ModeInfo"
+    )
+    .textContent =
+      descriptions[
+        mode
+      ];
+
+
+  document
+    .querySelectorAll(
+      ".p40-mode-button"
+    )
+    .forEach(
+      button=>{
+
+
+        button.classList.toggle(
+          "active",
+          button.dataset.p40Mode
+          ===
+          mode
+        );
+
+
+      }
+    );
+
+
+  /*
+    Dölj gamla separata
+    axelväljaren.
+
+    Axelvalet finns nu i
+    DAGENS LÄGE.
+  */
+
+  const oldShoulder =
+    document.getElementById(
+      "shoulderToggleCard"
+    );
+
+
+  if(oldShoulder){
+
+    oldShoulder.classList.add(
+      "hidden"
+    );
+
+  }
+
+
+  const mainCard =
+    document.getElementById(
+      "mainCard"
+    );
+
+  const plankCard =
+    document.getElementById(
+      "plankCard"
+    );
+
+  const bmu1 =
+    document.getElementById(
+      "bmu1Card"
+    );
+
+  const bmu2 =
+    document.getElementById(
+      "bmu2Card"
+    );
+
+  const shoulderTechnique =
+    document.getElementById(
+      "shoulderTechniqueCard"
+    );
+
+  const wallSit =
+    document.getElementById(
+      "p40WallSitCard"
+    );
+
+  const recovery =
+    document.getElementById(
+      "p40RecoveryCard"
+    );
+
+
+  /*
+    NORMAL
+  */
+
+  if(
+    mode ===
+    "normal"
+  ){
+
+    mainCard?.classList.remove(
+      "hidden"
+    );
+
+    plankCard?.classList.remove(
+      "hidden"
+    );
+
+    bmu1?.classList.remove(
+      "hidden"
+    );
+
+    bmu2?.classList.remove(
+      "hidden"
+    );
+
+    shoulderTechnique
+      ?.classList
+      .add(
+        "hidden"
+      );
+
+    wallSit?.classList.add(
+      "hidden"
+    );
+
+    recovery?.classList.add(
+      "hidden"
+    );
+
+
+    return;
+
+  }
+
+
+  /*
+    AXEL
+  */
+
+  if(
+    mode ===
+    "shoulder"
+  ){
+
+    mainCard?.classList.remove(
+      "hidden"
+    );
+
+    plankCard?.classList.remove(
+      "hidden"
+    );
+
+    bmu1?.classList.add(
+      "hidden"
+    );
+
+    bmu2?.classList.add(
+      "hidden"
+    );
+
+    wallSit?.classList.add(
+      "hidden"
+    );
+
+    recovery?.classList.add(
+      "hidden"
+    );
+
+
+    return;
+
+  }
+
+
+  /*
+    OFFICE
+  */
+
+  if(
+    mode ===
+    "office"
+  ){
+
+    mainCard?.classList.remove(
+      "hidden"
+    );
+
+    plankCard?.classList.remove(
+      "hidden"
+    );
+
+    bmu1?.classList.add(
+      "hidden"
+    );
+
+    bmu2?.classList.add(
+      "hidden"
+    );
+
+    shoulderTechnique
+      ?.classList
+      .add(
+        "hidden"
+      );
+
+    wallSit?.classList.remove(
+      "hidden"
+    );
+
+    recovery?.classList.add(
+      "hidden"
+    );
+
+
+    p40RenderWallSit();
+
+
+    if(
+      p40WallSitActive()
+      &&
+      !p40WallSitInterval
+    ){
+
+      p40StartWallSitInterval();
+
+    }
+
+
+    return;
+
+  }
+
+
+  /*
+    RECOVERY / 15K
+  */
+
+  if(
+    mode ===
+    "recovery"
+  ){
+
+    mainCard?.classList.add(
+      "hidden"
+    );
+
+    plankCard?.classList.add(
+      "hidden"
+    );
+
+    bmu1?.classList.add(
+      "hidden"
+    );
+
+    bmu2?.classList.add(
+      "hidden"
+    );
+
+    shoulderTechnique
+      ?.classList
+      .add(
+        "hidden"
+      );
+
+    wallSit?.classList.add(
+      "hidden"
+    );
+
+    recovery?.classList.remove(
+      "hidden"
+    );
+
+
+    const done =
+      progressComplete(
+        todayProgress,
+        todayDate()
+      );
+
+
+    const badge =
+      document.getElementById(
+        "p40RecoveryBadge"
+      );
+
+
+    const button =
+      document.getElementById(
+        "p40RecoveryButton"
+      );
+
+
+    if(done){
+
+      badge.textContent =
+        "KLAR ✓";
+
+      badge.classList.add(
+        "done"
+      );
+
+      button.textContent =
+        "✓ 15 000 STEG KLARA";
+
+      button.disabled =
+        true;
+
+    }else{
+
+      badge.textContent =
+        "SUBSTITUT";
+
+      badge.classList.remove(
+        "done"
+      );
+
+      button.textContent =
+        "✓ JAG HAR NÅTT 15 000 STEG";
+
+      button.disabled =
+        false;
+
+    }
+
+  }
+
+}
+
+
+/* ========================================
+   OVERRIDE RENDER DAY
+   ======================================== */
+
+renderDay =
+  function(){
+
+
+    /*
+      Synka gamla axelläget med
+      nya dagsläget innan bas-UI
+      renderas.
+    */
+
+    if(
+      todayProgress
+    ){
+
+      const mode =
+        p40GetDayMode();
+
+
+      const shoulder =
+        getShoulderState();
+
+
+      if(
+        mode ===
+          "shoulder"
+        &&
+        !shoulder.enabled
+      ){
+
+        saveShoulderState({
+          enabled:true,
+          bmuWaived:
+            shoulder.bmuWaived
+        });
+
+      }
+
+
+      if(
+        mode !==
+          "shoulder"
+        &&
+        shoulder.enabled
+      ){
+
+        saveShoulderState({
+          enabled:false,
+          bmuWaived:false
+        });
+
+      }
+
+    }
+
+
+    p40OriginalRenderDay();
+
+
+    p40RenderModeUI();
+
+  };
+
+
+/* ========================================
+   SHARE STATUS OVERRIDE
+   ======================================== */
+
+shareStatus =
+  async function(){
+
+
+    if(
+      !todayProgress
+    ){
+      return;
+    }
+
+
+    const plan =
+      trainingPlanForDate(
+        todayDate()
+      );
+
+
+    if(!plan){
+      return;
+    }
+
+
+    const mode =
+      p40GetDayMode();
+
+
+    const complete =
+      progressComplete(
+        todayProgress,
+        todayDate()
+      );
+
+
+    /*
+      OFFICE
+    */
+
+    if(
+      mode ===
+      "office"
+    ){
+
+      const main =
+        displayedMainTask(
+          plan
+        );
+
+
+      const wall =
+        p40DisplayedWallSitSeconds();
+
+
+      const text =
+
+`🦍 PROJECT 40 — DAG ${plan.dayNumber}
+${profile.display_name}
+
+🏢 KONTORSLÄGE
+
+${main.name}: ${todayProgress.main_reps}/100 ${todayProgress.main_reps>=100 ? "✅" : ""}
+PLANKA: ${formatSeconds(todayProgress.plank_seconds)}/5:00 ${todayProgress.plank_seconds>=300 ? "✅" : ""}
+WALL SIT: ${formatSeconds(wall)}/2:00 ${wall>=120 ? "✅" : ""}
+
+${complete ? "🦍 DAGEN KLAR!" : "⏳ PÅGÅR"}`;
+
+
+      await shareText(
+        "PROJECT 40",
+        text
+      );
+
+
+      return;
+
+    }
+
+
+    /*
+      RECOVERY
+    */
+
+    if(
+      mode ===
+      "recovery"
+    ){
+
+      const text =
+
+`🦍 PROJECT 40 — DAG ${plan.dayNumber}
+${profile.display_name}
+
+❤️‍🩹 SKADAD / SLITEN
+15 000 STEG ${complete ? "✅" : "⏳"}
+
+${complete ? "🦍 DAGEN KLAR!" : "PÅGÅR"}`;
+
+
+      await shareText(
+        "PROJECT 40",
+        text
+      );
+
+
+      return;
+
+    }
+
+
+    /*
+      NORMAL + AXEL använder
+      nuvarande fungerande share.
+    */
+
+    await p40OriginalShareStatus();
+
+  };
+
+
+/* ========================================
+   BETTER SHARE FALLBACK
+   ======================================== */
+
+shareText =
+  async function(
+    title,
+    text
+  ){
+
+
+    if(
+      navigator.share
+    ){
+
+      try{
+
+
+        await navigator.share({
+          title,
+          text
+        });
+
+
+        return;
+
+
+      }catch(error){
+
+
+        if(
+          error?.name ===
+          "AbortError"
+        ){
+
+          return;
+
+        }
+
+
+        console.error(
+          "Share error:",
+          error
+        );
+
+      }
+
+    }
+
+
+    await copyText(
+      text
+    );
+
+
+    toast(
+      "Texten kopierad ✓"
+    );
+
+  };
+
+
+/* ========================================
+   RESET OVERRIDE
+   ======================================== */
+
+resetToday =
+  async function(){
+
+
+    const oldProgress =
+      todayProgress;
+
+
+    await p40OriginalResetToday();
+
+
+    /*
+      Original reset skapar ett
+      nytt progress-objekt när
+      återställningen lyckats.
+
+      Om användaren avbröt händer
+      ingenting här.
+    */
+
+    if(
+      todayProgress
+      &&
+      todayProgress !==
+        oldProgress
+    ){
+
+      const modeKey =
+        p40DayModeKey();
+
+
+      if(modeKey){
+
+        localStorage.removeItem(
+          modeKey
+        );
+
+      }
+
+
+      p40ClearWallSit();
+
+
+      saveShoulderState({
+        enabled:false,
+        bmuWaived:false
+      });
+
+
+      renderDay();
+
+    }
+
+  };
+
+
+/* ========================================
+   RESUME WALL SIT AFTER APP BACKGROUND
+   ======================================== */
+
+document.addEventListener(
+  "visibilitychange",
+  ()=>{
+
+
+    if(
+      document.hidden
+    ){
+      return;
+    }
+
+
+    if(
+      p40GetDayMode()
+      ===
+      "office"
+      &&
+      p40WallSitActive()
+    ){
+
+      p40StartWallSitInterval();
+
+      p40RenderWallSit();
+
+    }
+
+
+  }
+);
+  
 /* ========================================
    START
    ======================================== */
