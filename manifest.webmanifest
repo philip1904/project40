@@ -1,0 +1,12 @@
+{
+  "name": "PROJECT 40",
+  "short_name": "PROJECT 40",
+  "description": "40 vardagar. Exakt dos. Vägen mot första BMU:n.",
+  "start_url": "/project40/",
+  "scope": "/project40/",
+  "display": "standalone",
+  "background_color": "#0b0b0c",
+  "theme_color": "#0b0b0c",
+  "orientation": "portrait",
+  "lang": "sv-SE"
+}
