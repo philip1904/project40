@@ -1581,14 +1581,24 @@ async function loadGroupData(){
 async function saveToday(){
   if(!todayProgress) return;
 
-  todayProgress.updated_at =
-    new Date().toISOString();
+  const payload = {
+    challenge_id: todayProgress.challenge_id,
+    user_id: todayProgress.user_id,
+    workout_date: todayProgress.workout_date,
+    day_number: todayProgress.day_number,
+    main_reps: todayProgress.main_reps,
+    plank_seconds: todayProgress.plank_seconds,
+    plank_sets: todayProgress.plank_sets,
+    bmu1_value: todayProgress.bmu1_value,
+    bmu2_value: todayProgress.bmu2_value,
+    updated_at: new Date().toISOString()
+  };
 
   const {data,error} =
     await sb
       .from("daily_progress")
       .upsert(
-        todayProgress,
+        payload,
         {
           onConflict:
             "challenge_id,user_id,workout_date"
