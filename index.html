@@ -531,6 +531,20 @@ input{
   
 <script>
 const STORAGE_KEY = "project40_v1";
+  const SUPABASE_URL = "https://ewvljphdblgfgbtoieyj.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_TXjgBvoHFSVmwhED6xeaNg_83ytcRQ7";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY,
+  {
+    auth: {
+      persistSession: true,
+      autoRefreshToken: true,
+      detectSessionInUrl: true
+    }
+  }
+);
 
 const BMU_PLAN = {
   1: [
