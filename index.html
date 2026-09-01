@@ -1421,7 +1421,6 @@ input:focus{
 
 <!-- =====================================
      AUTH USER WITHOUT CHALLENGE
-     FALLBACK
      ===================================== -->
 
 <div
@@ -1693,7 +1692,7 @@ input:focus{
         <div class="card-title">
 
           <h2 id="mainName">
-            100 PUSH-UPS
+            DAGENS UPPGIFT
           </h2>
 
           <span
@@ -1919,7 +1918,7 @@ input:focus{
           </li>
 
           <li>
-            BMU-reps görs aldrig till failure.
+            Teknikreps görs aldrig till failure.
           </li>
 
           <li>
@@ -2123,11 +2122,10 @@ input:focus{
 </div>
 
 
-<!-- =====================================
-     SUPABASE
-     ===================================== -->
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 
@@ -2892,7 +2890,7 @@ function challengeDayForDate(date){
 
 
 /* ========================================
-   TRAINING PLAN
+   TODAY'S PLAN
    ======================================== */
 
 function trainingPlanForDate(date){
@@ -2907,15 +2905,38 @@ function trainingPlanForDate(date){
     return null;
   }
 
-  const mainName =
-    dayNumber % 2 === 1
-      ? "PUSH-UPS"
-      : "AIR SQUATS";
+
+  /*
+    Framtida uppgifter visas aldrig
+    i användargränssnittet.
+
+    Fredag ersätter den vanliga
+    huvuduppgiften med burpees.
+  */
+
+  let mainName;
+
+
+  if(date.getDay() === 5){
+
+    mainName =
+      "BURPEES";
+
+  }else{
+
+    mainName =
+      dayNumber % 2 === 1
+        ? "PUSH-UPS"
+        : "AIR SQUATS";
+
+  }
+
 
   const bmu =
     BMU_PLAN[
       date.getDay()
     ];
+
 
   return {
 
@@ -3420,13 +3441,6 @@ async function createAsNewUser(){
 
     console.error(error);
 
-    /*
-      Om själva gruppen redan hann skapas
-      loggar vi INTE ut automatiskt.
-      Då skyddar vi användaren från att
-      tappa åtkomsten.
-    */
-
     if(challengeCreated){
 
       authFlowBusy =
@@ -3903,7 +3917,7 @@ async function copyWelcomeRecoveryCode(){
 
 
 /* ========================================
-   PROFILE RECOVERY UI
+   PROFILE RECOVERY
    ======================================== */
 
 function renderProfileRecovery(){
@@ -4391,7 +4405,7 @@ async function loadMembership(){
 
 
 /* ========================================
-   FALLBACK CHALLENGE CHOOSER
+   CHALLENGE CHOOSER
    ======================================== */
 
 function showChallengeChooser(){
@@ -4426,7 +4440,6 @@ function showChallengeChooser(){
 
 /* ========================================
    CREATE CHALLENGE
-   EXISTING AUTH USER
    ======================================== */
 
 async function createChallenge(){
@@ -4531,7 +4544,7 @@ async function createChallenge(){
 
 
 /* ========================================
-   JOIN EXISTING AUTH USER
+   JOIN EXISTING SESSION
    ======================================== */
 
 async function joinChallenge(){
@@ -5668,7 +5681,7 @@ async function resetToday(){
     confirm(
 `Återställa ALLT för idag?
 
-Detta tar bort reps, planktid och BMU-data.`
+Detta tar bort reps, planktid och dagens teknikdata.`
     );
 
   if(!ok){
@@ -5901,7 +5914,7 @@ function renderHeader(){
 
 
 /* ========================================
-   DAY RENDER
+   DAY
    ======================================== */
 
 function renderDay(){
@@ -5957,7 +5970,6 @@ function renderDay(){
       emptyProgress(t);
 
   }
-
 
   document
     .getElementById(
@@ -6523,7 +6535,7 @@ function renderGroup(){
 
 
 /* ========================================
-   HISTORY RENDER
+   HISTORY
    ======================================== */
 
 function renderHistory(){
@@ -6885,7 +6897,7 @@ function todayStatusText(row){
 
   }
 
-  const bmuDone =
+  const techniqueDone =
     (
       row.bmu1_value >=
         plan.bmu1.target
@@ -6909,7 +6921,7 @@ function todayStatusText(row){
     +
     " • "
     +
-    `BMU ${bmuDone}/2`
+    `TEKNIK ${techniqueDone}/2`
   );
 
 }
@@ -7070,7 +7082,9 @@ ${APP_URL}
 JOIN-KOD:
 ${challenge.join_code}
 
-Öppna länken → installera PROJECT 40 → öppna appen från hemskärmen → skriv ditt namn + join-koden.`;
+Öppna länken → installera PROJECT 40 → öppna appen från hemskärmen → skriv ditt namn + join-koden.
+
+Varje vardag får du se dagens uppgift först när dagen är här. 😈`;
 
   await shareText(
     "PROJECT 40",
@@ -7163,7 +7177,7 @@ function capitalize(s){
 
 
 /* ========================================
-   GENERAL HELPERS
+   HELPERS
    ======================================== */
 
 function toggleDone(
@@ -7362,12 +7376,6 @@ function showLogin(){
     .classList
     .remove("hidden");
 
-
-  /*
-    Automatiskt dagens datum
-    när någon vill skapa en ny grupp.
-  */
-
   const createStart =
     document.getElementById(
       "newChallengeStart"
@@ -7464,7 +7472,7 @@ window.addEventListener(
 
 
 /* ========================================
-   AUTH LISTENER
+   AUTH
    ======================================== */
 
 sb.auth.onAuthStateChange(
@@ -7472,12 +7480,6 @@ sb.auth.onAuthStateChange(
     event,
     session
   )=>{
-
-    /*
-      Under våra manuella
-      skapa/join/restore-flöden
-      sköter funktionerna boot själva.
-    */
 
     if(authFlowBusy){
       return;
@@ -7542,10 +7544,6 @@ boot();
 
 </script>
 
-
-<!-- =====================================
-     SERVICE WORKER
-     ===================================== -->
 
 <script>
 
