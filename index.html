@@ -2,17 +2,44 @@
 <html lang="sv">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
+
 <meta name="theme-color" content="#0b0b0c">
-  <link rel="manifest" href="/project40/manifest.webmanifest">
-<link rel="apple-touch-icon" href="/project40/icon-180.png">
-  
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="PROJECT 40">
+
+<link
+  rel="manifest"
+  href="/project40/manifest.webmanifest"
+>
+
+<link
+  rel="apple-touch-icon"
+  href="/project40/icon-180.png"
+>
+
+<meta
+  name="apple-mobile-web-app-capable"
+  content="yes"
+>
+
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="black"
+>
+
+<meta
+  name="apple-mobile-web-app-title"
+  content="PROJECT 40"
+>
+
 <title>PROJECT 40 🦍</title>
 
+
 <style>
+
 :root{
   --bg:#0b0b0c;
   --panel:#171719;
@@ -25,649 +52,1135 @@
   --line:#2c2c30;
 }
 
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
+
 
 body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+
   -webkit-font-smoothing:antialiased;
 }
 
-button,input{
+
+button,
+input{
   font:inherit;
 }
+
 
 button{
   cursor:pointer;
   touch-action:manipulation;
 }
 
+
 .hidden{
   display:none!important;
 }
 
+
 .screen{
   width:min(100%,600px);
   min-height:100vh;
+
   margin:0 auto;
-  padding:20px 16px 110px;
+
+  padding:
+    20px
+    16px
+    calc(110px + env(safe-area-inset-bottom));
 }
+
 
 .center-screen{
   display:flex;
+
   min-height:100vh;
+
   align-items:center;
   justify-content:center;
+
   padding:20px;
 }
+
 
 .logo{
   font-size:38px;
   font-weight:950;
+
   line-height:.95;
+
   letter-spacing:-1.8px;
 }
+
 
 .logo span{
   color:var(--yellow);
 }
 
+
 .subtitle{
   color:var(--muted);
+
   margin-top:9px;
+
   font-size:14px;
   line-height:1.45;
 }
 
+
 .card{
   background:var(--panel);
+
   border:1px solid var(--line);
+
   border-radius:20px;
+
   padding:17px;
+
   margin-bottom:12px;
 }
+
 
 .auth-card{
   width:min(100%,460px);
 }
 
+
 .auth-card .logo{
   margin-bottom:24px;
 }
 
+
 label{
   display:block;
+
   color:#d4d4d7;
+
   font-size:13px;
   font-weight:850;
+
   margin:14px 0 7px;
 }
 
+
 input{
   display:block;
+
   width:100%;
+
   border:1px solid var(--line);
+
   background:#101012;
   color:white;
+
   padding:15px;
+
   border-radius:14px;
+
   outline:none;
 }
+
 
 input:focus{
   border-color:var(--yellow);
 }
 
+
 .btn{
   border:0;
+
   border-radius:14px;
+
   padding:14px 12px;
+
   background:var(--panel2);
   color:var(--text);
+
   font-weight:900;
 }
+
 
 .btn:active{
   transform:scale(.98);
 }
+
 
 .btn.primary{
   background:var(--yellow);
   color:#111;
 }
 
+
 .btn.green{
   background:var(--green);
   color:#071911;
 }
+
 
 .btn.red{
   background:rgba(255,100,100,.14);
   color:#ff8585;
 }
 
+
 .btn.full{
   width:100%;
+
   margin-top:18px;
+
   padding:16px;
 }
 
+
 .btn:disabled{
   opacity:.35;
+
   transform:none;
+
   cursor:default;
 }
 
+
 .message{
   margin-top:14px;
+
   padding:12px;
+
   border-radius:12px;
+
   font-size:13px;
   line-height:1.45;
+
   background:var(--panel2);
+
   color:var(--muted);
 }
+
 
 .message.ok{
   color:var(--green);
 }
 
+
 .message.error{
   color:#ff8d8d;
 }
 
+
 .topbar{
   display:flex;
+
   align-items:center;
   justify-content:space-between;
+
   gap:12px;
+
   margin-bottom:16px;
 }
+
 
 .topbar .logo{
   font-size:27px;
 }
 
+
 .userpill{
   border:1px solid var(--line);
+
   border-radius:999px;
+
   padding:8px 10px;
+
   background:var(--panel);
+
   color:var(--muted);
+
   font-size:12px;
   font-weight:850;
 }
 
+
 .hero{
-  background:linear-gradient(135deg,#f5c518,#dca900);
+  background:
+    linear-gradient(
+      135deg,
+      #f5c518,
+      #dca900
+    );
+
   color:#111;
+
   border-radius:22px;
+
   padding:19px;
+
   margin-bottom:14px;
 }
 
+
 .hero-row{
   display:flex;
+
   justify-content:space-between;
+
   gap:12px;
 }
+
 
 .hero-day{
   font-size:35px;
   font-weight:950;
+
   letter-spacing:-1.5px;
 }
 
+
 .hero-date{
   margin-top:4px;
+
   font-size:12px;
   font-weight:850;
+
   opacity:.7;
 }
 
+
 .hero-right{
   text-align:right;
+
   font-size:12px;
   font-weight:950;
 }
 
+
 .progressbar{
   margin-top:16px;
+
   height:9px;
+
   border-radius:99px;
+
   background:rgba(0,0,0,.16);
+
   overflow:hidden;
 }
 
+
 .progressbar div{
   height:100%;
+
   width:0%;
+
   border-radius:99px;
+
   background:#111;
+
   transition:.25s;
 }
 
+
 .complete-banner{
   display:none;
+
   margin-bottom:12px;
+
   background:var(--green);
+
   color:#071911;
+
   border-radius:18px;
+
   text-align:center;
+
   padding:17px;
+
   font-weight:950;
   font-size:19px;
 }
+
 
 .complete-banner.show{
   display:block;
 }
 
+
 .nav{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap:7px;
-  margin-bottom:14px;
+
+  margin-bottom:8px;
 }
+
 
 .nav button{
   border:1px solid var(--line);
+
   border-radius:13px;
+
   background:var(--panel);
   color:var(--muted);
+
   padding:11px 4px;
+
   font-weight:900;
   font-size:12px;
 }
+
 
 .nav button.active{
   background:var(--yellow);
+
   color:#111;
+
   border-color:var(--yellow);
 }
 
-.card-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-}
 
-.card-title h2{
-  margin:0;
-  font-size:18px;
-  letter-spacing:-.3px;
-}
+/* ========================================
+   SAVE STATUS
+   ======================================== */
 
-.badge{
-  border-radius:999px;
-  background:var(--panel2);
-  color:var(--muted);
-  padding:6px 9px;
-  font-size:12px;
+.save-status{
+  min-height:18px;
+
+  margin:0 0 10px;
+
+  text-align:center;
+
+  font-size:11px;
   font-weight:900;
+
+  color:var(--muted);
 }
 
-.card.done{
-  border-color:rgba(57,217,138,.48);
+
+.save-status.saving{
+  color:var(--yellow);
 }
 
-.badge.done{
-  background:rgba(57,217,138,.14);
+
+.save-status.saved{
   color:var(--green);
 }
 
+
+.save-status.local{
+  color:#ffbf69;
+}
+
+
+.save-status.offline{
+  color:#ffbf69;
+}
+
+
+/* ========================================
+   TASK CARDS
+   ======================================== */
+
+.card-title{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  gap:10px;
+}
+
+
+.card-title h2{
+  margin:0;
+
+  font-size:18px;
+
+  letter-spacing:-.3px;
+}
+
+
+.badge{
+  border-radius:999px;
+
+  background:var(--panel2);
+
+  color:var(--muted);
+
+  padding:6px 9px;
+
+  font-size:12px;
+  font-weight:900;
+
+  white-space:nowrap;
+}
+
+
+.card.done{
+  border-color:
+    rgba(57,217,138,.48);
+}
+
+
+.badge.done{
+  background:
+    rgba(57,217,138,.14);
+
+  color:var(--green);
+}
+
+
 .big-number{
   margin:17px 0 5px;
+
   font-size:44px;
+
   line-height:1;
+
   font-weight:950;
+
   letter-spacing:-2px;
 }
 
+
 .target{
   color:var(--muted);
+
   font-size:13px;
 }
 
+
 .btnrow{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+    repeat(4,1fr);
+
   gap:8px;
+
   margin-top:16px;
 }
 
+
 .btnrow.three{
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
 }
+
+
+/* ========================================
+   PLANK
+   ======================================== */
 
 .timer{
   text-align:center;
+
   font-size:68px;
+
   line-height:1;
+
   font-weight:950;
+
   letter-spacing:-3px;
-  font-variant-numeric:tabular-nums;
+
+  font-variant-numeric:
+    tabular-nums;
+
   margin:22px 0 6px;
 }
 
+
 .timer-sub{
   text-align:center;
+
   color:var(--muted);
+
   font-size:12px;
 }
 
+
 .timer-buttons{
   display:grid;
-  grid-template-columns:2fr 1fr;
+
+  grid-template-columns:
+    2fr 1fr;
+
   gap:9px;
+
   margin-top:17px;
 }
+
 
 .timer-buttons button{
   padding:16px;
 }
 
+
 .sets{
   color:var(--muted);
+
   font-size:12px;
+
   line-height:1.5;
+
   margin-top:13px;
 }
 
+
+/* ========================================
+   RULES
+   ======================================== */
+
 .rulebox{
-  border-color:rgba(245,197,24,.4);
-  background:rgba(245,197,24,.06);
+  border-color:
+    rgba(245,197,24,.4);
+
+  background:
+    rgba(245,197,24,.06);
 }
+
 
 .rulebox strong{
   color:var(--yellow);
 }
 
+
 .rules{
   margin:9px 0 0 19px;
+
   padding:0;
+
   color:#d4d4d7;
+
   font-size:13px;
+
   line-height:1.6;
 }
 
+
 .actionrow{
   display:grid;
-  grid-template-columns:1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
+
   gap:9px;
 }
 
+
+/* ========================================
+   HISTORY
+   ======================================== */
+
 .section-title{
   margin:23px 2px 10px;
+
   font-size:12px;
+
   color:var(--muted);
+
   font-weight:950;
+
   letter-spacing:1.2px;
 }
 
+
 .history{
   display:grid;
-  grid-template-columns:repeat(5,1fr);
+
+  grid-template-columns:
+    repeat(5,1fr);
+
   gap:7px;
 }
 
+
 .daybox{
   min-height:58px;
+
   border:1px solid var(--line);
+
   border-radius:13px;
+
   background:var(--panel);
+
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
   justify-content:center;
+
   gap:2px;
 }
+
 
 .daybox strong{
   font-size:15px;
 }
 
+
 .daybox span{
   font-size:11px;
+
   color:var(--muted);
 }
 
+
 .daybox.complete{
-  border-color:rgba(57,217,138,.5);
-  background:rgba(57,217,138,.13);
+  border-color:
+    rgba(57,217,138,.5);
+
+  background:
+    rgba(57,217,138,.13);
 }
 
+
 .daybox.partial{
-  border-color:rgba(245,197,24,.4);
-  background:rgba(245,197,24,.08);
+  border-color:
+    rgba(245,197,24,.4);
+
+  background:
+    rgba(245,197,24,.08);
 }
+
 
 .daybox.prejoin{
   opacity:.35;
 }
 
+
 .daybox.future{
   opacity:.22;
 }
 
+
 .daybox.today{
-  outline:2px solid var(--yellow);
+  outline:
+    2px solid var(--yellow);
 }
+
+
+/* ========================================
+   GROUP
+   ======================================== */
 
 .member{
   display:flex;
+
   align-items:center;
+
   gap:11px;
+
   padding:13px 0;
-  border-bottom:1px solid var(--line);
+
+  border-bottom:
+    1px solid var(--line);
 }
+
 
 .member:last-child{
   border-bottom:0;
 }
 
+
 .avatar{
   width:40px;
   height:40px;
+
+  flex:0 0 40px;
+
   border-radius:50%;
+
   background:var(--yellow);
+
   color:#111;
+
   display:flex;
+
   align-items:center;
   justify-content:center;
+
   font-size:18px;
   font-weight:950;
 }
 
+
 .member-main{
   flex:1;
+
   min-width:0;
 }
+
 
 .member-name{
   font-weight:900;
 }
 
+
 .member-status{
   color:var(--muted);
+
   font-size:12px;
+
   margin-top:3px;
 }
 
+
 .member-score{
   text-align:right;
+
   font-size:12px;
   font-weight:900;
 }
+
 
 .member-score .green{
   color:var(--green);
 }
 
+
 .joincode{
   font-size:27px;
+
   font-weight:950;
+
   letter-spacing:3px;
+
   color:var(--yellow);
+
   margin-top:8px;
 }
 
+
 .rest{
   text-align:center;
+
   padding:38px 20px;
 }
+
 
 .rest .emoji{
   font-size:60px;
 }
 
+
 .rest h2{
   margin:10px 0 5px;
+
   font-size:29px;
 }
 
+
 .rest p{
   color:var(--muted);
+
   line-height:1.55;
 }
 
+
 .choice-grid{
   display:grid;
+
   grid-template-columns:1fr;
+
   gap:12px;
 }
+
 
 .choice-card h2{
   margin:0 0 7px;
 }
 
+
 .choice-card p{
   color:var(--muted);
+
   margin:0;
+
   line-height:1.45;
+
   font-size:13px;
 }
+
 
 .small{
   color:var(--muted);
+
   font-size:12px;
+
   line-height:1.5;
 }
 
-.loader{
-  text-align:center;
-  color:var(--muted);
-  padding:50px 20px;
-}
+
+/* ========================================
+   TOAST
+   ======================================== */
 
 .toast{
   position:fixed;
+
   left:50%;
-  bottom:20px;
+  bottom:
+    calc(
+      20px +
+      env(safe-area-inset-bottom)
+    );
+
   z-index:999;
-  transform:translateX(-50%);
-  width:min(calc(100% - 32px),500px);
+
+  transform:
+    translateX(-50%);
+
+  width:
+    min(
+      calc(100% - 32px),
+      500px
+    );
+
   background:#27272b;
-  border:1px solid #3b3b40;
+
+  border:
+    1px solid #3b3b40;
+
   color:white;
+
   padding:13px 15px;
+
   border-radius:14px;
+
   font-size:13px;
+
   opacity:0;
+
   pointer-events:none;
+
   transition:.2s;
 }
+
 
 .toast.show{
   opacity:1;
 }
 
+
 @media(min-width:700px){
+
   body{
     padding-top:15px;
   }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<div id="toast" class="toast"></div>
 
-<!-- LOGIN -->
-<div id="loginView" class="center-screen">
+<div
+  id="toast"
+  class="toast"
+></div>
+
+
+<!-- =====================================
+     LOGIN
+     ===================================== -->
+
+<div
+  id="loginView"
+  class="center-screen"
+>
+
   <div class="card auth-card">
 
-    <div class="logo">PROJECT <span>40</span> 🦍</div>
+    <div class="logo">
+      PROJECT <span>40</span> 🦍
+    </div>
+
     <div class="subtitle">
-      40 vardagar. Exakt dos. Ingen ikappträning.
+      40 vardagar.
+      Exakt dos.
+      Ingen ikappträning.
       Vägen mot första BMU:n.
     </div>
 
-    <label>Ditt namn</label>
-    <input id="loginName" placeholder="Philip">
 
-    <label>E-post</label>
-    <input id="loginEmail" type="email" placeholder="namn@epost.se">
+    <label>
+      Ditt namn
+    </label>
 
-    <button id="magicButton" class="btn primary full" onclick="sendMagicLink()">
+    <input
+      id="loginName"
+      placeholder="Philip"
+      autocomplete="name"
+    >
+
+
+    <label>
+      E-post
+    </label>
+
+    <input
+      id="loginEmail"
+      type="email"
+      placeholder="namn@epost.se"
+      autocomplete="email"
+    >
+
+
+    <button
+      id="magicButton"
+      class="btn primary full"
+      onclick="sendMagicLink()"
+    >
       SKICKA MAGIC LINK
     </button>
 
-    <div id="loginMessage" class="message hidden"></div>
+
+    <div
+      id="loginMessage"
+      class="message hidden"
+    ></div>
 
   </div>
+
 </div>
 
 
-<!-- NO CHALLENGE -->
-<div id="challengeView" class="screen hidden">
+<!-- =====================================
+     CREATE / JOIN CHALLENGE
+     ===================================== -->
+
+<div
+  id="challengeView"
+  class="screen hidden"
+>
 
   <div class="topbar">
+
     <div>
-      <div class="logo">PROJECT <span>40</span> 🦍</div>
-      <div class="subtitle" id="challengeUserLine"></div>
+
+      <div class="logo">
+        PROJECT <span>40</span> 🦍
+      </div>
+
+      <div
+        class="subtitle"
+        id="challengeUserLine"
+      ></div>
+
     </div>
-    <button class="userpill" onclick="signOut()">LOGGA UT</button>
+
+
+    <button
+      class="userpill"
+      onclick="signOut()"
+    >
+      LOGGA UT
+    </button>
+
   </div>
 
-  <div class="section-title">STARTA ELLER GÅ MED</div>
+
+  <div class="section-title">
+    STARTA ELLER GÅ MED
+  </div>
+
 
   <div class="choice-grid">
 
+
     <div class="card choice-card">
-      <h2>🦍 Skapa PROJECT 40</h2>
+
+      <h2>
+        🦍 Skapa PROJECT 40
+      </h2>
+
       <p>
-        Du skapar gruppen och får en kod som du skickar till Kennet.
+        Skapa gruppen och få en kod
+        som du skickar till de andra.
       </p>
 
-      <label>Challenge-namn</label>
-      <input id="createName" value="PROJECT 40">
 
-      <label>Startdatum</label>
-      <input id="createStart" type="date">
+      <label>
+        Challenge-namn
+      </label>
 
-      <button class="btn primary full" onclick="createChallenge()">
+      <input
+        id="createName"
+        value="PROJECT 40"
+      >
+
+
+      <label>
+        Startdatum
+      </label>
+
+      <input
+        id="createStart"
+        type="date"
+      >
+
+
+      <button
+        class="btn primary full"
+        onclick="createChallenge()"
+      >
         SKAPA CHALLENGE
       </button>
+
     </div>
 
+
     <div class="card choice-card">
-      <h2>🤝 Gå med</h2>
+
+      <h2>
+        🤝 Gå med
+      </h2>
+
       <p>
-        Har någon redan skapat gruppen? Skriv in join-koden.
+        Har gruppen redan startat?
+        Skriv in join-koden.
       </p>
 
-      <label>Join-kod</label>
-      <input id="joinCode" placeholder="ABCDEFGH"
-             autocapitalize="characters">
 
-      <button class="btn full" onclick="joinChallenge()">
+      <label>
+        Join-kod
+      </label>
+
+      <input
+        id="joinCode"
+        placeholder="ABCDEFGH"
+        autocapitalize="characters"
+        maxlength="8"
+      >
+
+
+      <button
+        class="btn full"
+        onclick="joinChallenge()"
+      >
         GÅ MED
       </button>
+
     </div>
 
   </div>
@@ -675,208 +1188,554 @@ input:focus{
 </div>
 
 
-<!-- APP -->
-<div id="appView" class="screen hidden">
+<!-- =====================================
+     MAIN APP
+     ===================================== -->
+
+<div
+  id="appView"
+  class="screen hidden"
+>
+
 
   <div class="topbar">
+
     <div>
-      <div class="logo">PROJECT <span>40</span> 🦍</div>
-      <div class="subtitle" id="appSubline"></div>
+
+      <div class="logo">
+        PROJECT <span>40</span> 🦍
+      </div>
+
+      <div
+        class="subtitle"
+        id="appSubline"
+      ></div>
+
     </div>
 
-    <button class="userpill" onclick="signOut()">LOGGA UT</button>
+
+    <button
+      class="userpill"
+      onclick="signOut()"
+    >
+      LOGGA UT
+    </button>
+
   </div>
 
-  <div id="completeBanner" class="complete-banner">
+
+  <div
+    id="completeBanner"
+    class="complete-banner"
+  >
     🦍 DAGEN KLAR!
   </div>
 
+
   <div class="hero">
+
     <div class="hero-row">
+
       <div>
-        <div class="hero-day" id="dayTitle">DAG 1</div>
-        <div class="hero-date" id="dateTitle"></div>
+
+        <div
+          class="hero-day"
+          id="dayTitle"
+        >
+          DAG 1
+        </div>
+
+        <div
+          class="hero-date"
+          id="dateTitle"
+        ></div>
+
       </div>
 
-      <div class="hero-right" id="heroProgress"></div>
+
+      <div
+        class="hero-right"
+        id="heroProgress"
+      ></div>
+
     </div>
+
 
     <div class="progressbar">
-      <div id="progressFill"></div>
+
+      <div
+        id="progressFill"
+      ></div>
+
     </div>
+
   </div>
+
+
+  <!-- NAV -->
 
   <div class="nav">
-    <button id="navDay" class="active" onclick="showTab('day')">
+
+    <button
+      id="navDay"
+      class="active"
+      onclick="showTab('day')"
+    >
       MIN DAG
     </button>
-    <button id="navGroup" onclick="showTab('group')">
+
+
+    <button
+      id="navGroup"
+      onclick="showTab('group')"
+    >
       GRUPP
     </button>
-    <button id="navHistory" onclick="showTab('history')">
+
+
+    <button
+      id="navHistory"
+      onclick="showTab('history')"
+    >
       HISTORIK
     </button>
+
   </div>
 
 
-  <!-- DAY -->
+  <div
+    id="saveStatus"
+    class="save-status saved"
+  >
+    SPARAT ✓
+  </div>
+
+
+  <!-- ===================================
+       MIN DAG
+       =================================== -->
+
   <div id="tabDay">
 
-    <div id="restCard" class="card rest hidden">
-      <div class="emoji">🛋️</div>
-      <h2>VILA</h2>
+
+    <div
+      id="restCard"
+      class="card rest hidden"
+    >
+
+      <div class="emoji">
+        🛋️
+      </div>
+
+      <h2>
+        VILA
+      </h2>
+
       <p>
-        Ingen challenge-volym idag.<br>
-        Inga reps tas igen.<br>
+        Ingen challenge-volym idag.
+        <br>
+        Inga reps tas igen.
+        <br>
         CrossFit körs som vanligt.
       </p>
+
     </div>
 
 
     <div id="taskArea">
 
-      <div id="mainCard" class="card">
+
+      <!-- MAIN 100 -->
+
+      <div
+        id="mainCard"
+        class="card"
+      >
+
         <div class="card-title">
-          <h2 id="mainName">100 PUSH-UPS</h2>
-          <span id="mainBadge" class="badge">0 / 100</span>
+
+          <h2 id="mainName">
+            100 PUSH-UPS
+          </h2>
+
+          <span
+            id="mainBadge"
+            class="badge"
+          >
+            0 / 100
+          </span>
+
         </div>
 
-        <div id="mainNumber" class="big-number">0</div>
-        <div class="target">av 100</div>
+
+        <div
+          id="mainNumber"
+          class="big-number"
+        >
+          0
+        </div>
+
+
+        <div class="target">
+          av 100
+        </div>
+
 
         <div class="btnrow">
-          <button class="btn" onclick="addMain(5)">+5</button>
-          <button class="btn" onclick="addMain(10)">+10</button>
-          <button class="btn" onclick="addMain(20)">+20</button>
-          <button class="btn primary" onclick="addMain(25)">+25</button>
+
+          <button
+            class="btn"
+            onclick="addMain(5)"
+          >
+            +5
+          </button>
+
+          <button
+            class="btn"
+            onclick="addMain(10)"
+          >
+            +10
+          </button>
+
+          <button
+            class="btn"
+            onclick="addMain(20)"
+          >
+            +20
+          </button>
+
+          <button
+            class="btn primary"
+            onclick="addMain(25)"
+          >
+            +25
+          </button>
+
         </div>
+
       </div>
 
 
-      <div id="plankCard" class="card">
+      <!-- PLANK -->
+
+      <div
+        id="plankCard"
+        class="card"
+      >
+
         <div class="card-title">
-          <h2>PLANKA</h2>
-          <span id="plankBadge" class="badge">0:00 / 5:00</span>
+
+          <h2>
+            PLANKA
+          </h2>
+
+          <span
+            id="plankBadge"
+            class="badge"
+          >
+            0:00 / 5:00
+          </span>
+
         </div>
 
-        <div id="timerDisplay" class="timer">0:00</div>
-        <div class="timer-sub">Dagens sammanlagda tid</div>
+
+        <div
+          id="timerDisplay"
+          class="timer"
+        >
+          0:00
+        </div>
+
+
+        <div class="timer-sub">
+          Dagens sammanlagda tid
+        </div>
+
 
         <div class="timer-buttons">
-          <button id="timerButton" class="btn primary"
-                  onclick="togglePlank()">
+
+          <button
+            id="timerButton"
+            class="btn primary"
+            onclick="togglePlank()"
+          >
             ▶ STARTA
           </button>
 
-          <button id="undoButton" class="btn"
-                  onclick="undoPlank()">
+
+          <button
+            id="undoButton"
+            class="btn"
+            onclick="undoPlank()"
+          >
             ÅNGRA
           </button>
+
         </div>
 
-        <div id="plankSets" class="sets">
+
+        <div
+          id="plankSets"
+          class="sets"
+        >
           Inga plank-set registrerade ännu.
         </div>
+
       </div>
 
 
-      <div id="bmu1Card" class="card">
+      <!-- BMU 1 -->
+
+      <div
+        id="bmu1Card"
+        class="card"
+      >
+
         <div class="card-title">
+
           <h2 id="bmu1Name"></h2>
-          <span id="bmu1Badge" class="badge"></span>
+
+          <span
+            id="bmu1Badge"
+            class="badge"
+          ></span>
+
         </div>
 
-        <div id="bmu1Number" class="big-number">0</div>
-        <div id="bmu1Target" class="target"></div>
 
-        <div id="bmu1Buttons" class="btnrow three"></div>
+        <div
+          id="bmu1Number"
+          class="big-number"
+        >
+          0
+        </div>
+
+
+        <div
+          id="bmu1Target"
+          class="target"
+        ></div>
+
+
+        <div
+          id="bmu1Buttons"
+          class="btnrow three"
+        ></div>
+
       </div>
 
 
-      <div id="bmu2Card" class="card">
+      <!-- BMU 2 -->
+
+      <div
+        id="bmu2Card"
+        class="card"
+      >
+
         <div class="card-title">
+
           <h2 id="bmu2Name"></h2>
-          <span id="bmu2Badge" class="badge"></span>
+
+          <span
+            id="bmu2Badge"
+            class="badge"
+          ></span>
+
         </div>
 
-        <div id="bmu2Number" class="big-number">0</div>
-        <div id="bmu2Target" class="target"></div>
 
-        <div id="bmu2Buttons" class="btnrow three"></div>
+        <div
+          id="bmu2Number"
+          class="big-number"
+        >
+          0
+        </div>
+
+
+        <div
+          id="bmu2Target"
+          class="target"
+        ></div>
+
+
+        <div
+          id="bmu2Buttons"
+          class="btnrow three"
+        ></div>
+
       </div>
 
+
+      <!-- RULES -->
 
       <div class="card rulebox">
-        <strong>DEN HELIGA REGELN</strong>
+
+        <strong>
+          DEN HELIGA REGELN
+        </strong>
+
 
         <ul class="rules">
-          <li>Gör exakt dagens dos — inte mer.</li>
-          <li>Missad dag tas aldrig igen.</li>
-          <li>BMU-reps görs aldrig till failure.</li>
-          <li>Kvalitet slår ego.</li>
+
+          <li>
+            Gör exakt dagens dos —
+            inte mer.
+          </li>
+
+          <li>
+            Missad dag tas aldrig igen.
+          </li>
+
+          <li>
+            BMU-reps görs aldrig
+            till failure.
+          </li>
+
+          <li>
+            Kvalitet slår ego.
+          </li>
+
         </ul>
+
       </div>
 
 
       <div class="actionrow">
-        <button class="btn green" onclick="shareStatus()">
+
+        <button
+          class="btn green"
+          onclick="shareStatus()"
+        >
           DELA STATUS
         </button>
 
-        <button class="btn red" onclick="resetToday()">
+
+        <button
+          class="btn red"
+          onclick="resetToday()"
+        >
           ÅTERSTÄLL IDAG
         </button>
+
       </div>
 
     </div>
+
   </div>
 
 
-  <!-- GROUP -->
-  <div id="tabGroup" class="hidden">
+  <!-- ===================================
+       GROUP
+       =================================== -->
+
+  <div
+    id="tabGroup"
+    class="hidden"
+  >
 
     <div class="card">
+
       <div class="card-title">
-        <h2>🦍 Gruppen</h2>
-        <span class="badge" id="memberCount"></span>
+
+        <h2>
+          🦍 Gruppen
+        </h2>
+
+        <span
+          class="badge"
+          id="memberCount"
+        ></span>
+
       </div>
+
 
       <div id="memberList"></div>
+
     </div>
 
-    <div class="card">
-      <div class="small">BJUD IN EN KOMPIS</div>
-      <div id="displayJoinCode" class="joincode"></div>
 
-      <div class="small" style="margin-top:8px">
-        Den som går med börjar på gruppens aktuella dag.
-        Tidigare dagar räknas inte som missade.
+    <div class="card">
+
+      <div class="small">
+        BJUD IN EN KOMPIS
       </div>
 
-      <button class="btn primary full" onclick="shareJoinCode()">
+
+      <div
+        id="displayJoinCode"
+        class="joincode"
+      ></div>
+
+
+      <div
+        class="small"
+        style="margin-top:8px"
+      >
+        Den som går med börjar på
+        gruppens aktuella dag.
+        Tidigare dagar räknas inte
+        som missade.
+      </div>
+
+
+      <button
+        class="btn primary full"
+        onclick="shareJoinCode()"
+      >
         DELA JOIN-KOD
       </button>
+
     </div>
 
   </div>
 
 
-  <!-- HISTORY -->
-  <div id="tabHistory" class="hidden">
+  <!-- ===================================
+       HISTORY
+       =================================== -->
+
+  <div
+    id="tabHistory"
+    class="hidden"
+  >
 
     <div class="card">
+
       <div class="card-title">
-        <h2>Min 40-dagarsresa</h2>
-        <span id="historyScore" class="badge"></span>
+
+        <h2>
+          Min 40-dagarsresa
+        </h2>
+
+        <span
+          id="historyScore"
+          class="badge"
+        ></span>
+
       </div>
 
-      <div id="history" class="history"
-           style="margin-top:15px"></div>
+
+      <div
+        id="history"
+        class="history"
+        style="margin-top:15px"
+      ></div>
+
     </div>
 
+
     <div class="small">
-      ✅ klar &nbsp; ◐ påbörjad &nbsp; ○ missad
-      &nbsp; ➖ innan du gick med
+
+      ✅ klar
+      &nbsp;
+      ◐ påbörjad
+      &nbsp;
+      ○ missad
+
+      <br>
+
+      ➖ innan du gick med
+
     </div>
 
   </div>
@@ -884,36 +1743,54 @@ input:focus{
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- =====================================
+     SUPABASE
+     ===================================== -->
+
+<script
+  src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+></script>
+
 
 <script>
+
+
+/* ========================================
+   CONFIG
+   ======================================== */
+
 const SUPABASE_URL =
   "https://ewvljphdblgfgbtoieyj.supabase.co";
+
 
 const SUPABASE_PUBLISHABLE_KEY =
   "sb_publishable_TXjgBvoHFSVmwhED6xeaNg_83ytcRQ7";
 
+
 const APP_URL =
   "https://philip1904.github.io/project40/";
 
-const sb = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY,
-  {
-    auth:{
-      persistSession:true,
-      autoRefreshToken:true,
-      detectSessionInUrl:true
+
+const sb =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY,
+    {
+      auth:{
+        persistSession:true,
+        autoRefreshToken:true,
+        detectSessionInUrl:true
+      }
     }
-  }
-);
+  );
 
 
-// ========================================
-// BMU PLAN
-// ========================================
+/* ========================================
+   BMU PLAN
+   ======================================== */
 
 const BMU_PLAN = {
+
   1:[
     {
       name:"SCAP PULL-UPS",
@@ -928,6 +1805,7 @@ const BMU_PLAN = {
       buttons:[15,30,60]
     }
   ],
+
 
   2:[
     {
@@ -944,6 +1822,7 @@ const BMU_PLAN = {
     }
   ],
 
+
   3:[
     {
       name:"EXPLOSIVA HIGH PULLS",
@@ -958,6 +1837,7 @@ const BMU_PLAN = {
       buttons:[1,5,10]
     }
   ],
+
 
   4:[
     {
@@ -974,6 +1854,7 @@ const BMU_PLAN = {
     }
   ],
 
+
   5:[
     {
       name:"EXPLOSIVA HIGH PULLS",
@@ -988,386 +1869,1228 @@ const BMU_PLAN = {
       buttons:[1,5,10]
     }
   ]
+
 };
 
 
-// ========================================
-// APP STATE
-// ========================================
+/* ========================================
+   APP STATE
+   ======================================== */
 
 let user = null;
+
 let profile = null;
+
 let membership = null;
+
 let challenge = null;
 
 let todayProgress = null;
+
 let members = [];
+
 let allProgress = [];
 
 let realtimeChannel = null;
+
 let realtimeRefreshTimer = null;
 
 let plankInterval = null;
+
 let plankStopping = false;
 
+let saveInFlight = false;
 
-// ========================================
-// DATE HELPERS
-// ========================================
+let savePending = false;
 
-function localDateKey(date = new Date()){
-  const y = date.getFullYear();
-  const m = String(date.getMonth()+1).padStart(2,"0");
-  const d = String(date.getDate()).padStart(2,"0");
+let magicCooldownInterval = null;
+
+
+/* ========================================
+   BASIC STORAGE HELPERS
+   ======================================== */
+
+function safeRead(key){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(key)
+    );
+
+  }catch{
+
+    return null;
+
+  }
+
+}
+
+
+function safeWrite(key,value){
+
+  try{
+
+    localStorage.setItem(
+      key,
+      JSON.stringify(value)
+    );
+
+  }catch(error){
+
+    console.error(
+      "Local storage error:",
+      error
+    );
+
+  }
+
+}
+
+
+/* ========================================
+   DATE HELPERS
+   ======================================== */
+
+function localDateKey(
+  date = new Date()
+){
+
+  const y =
+    date.getFullYear();
+
+  const m =
+    String(
+      date.getMonth()+1
+    ).padStart(2,"0");
+
+  const d =
+    String(
+      date.getDate()
+    ).padStart(2,"0");
+
 
   return `${y}-${m}-${d}`;
+
 }
+
 
 function parseDate(str){
-  const [y,m,d] = str.split("-").map(Number);
-  return new Date(y,m-1,d,12,0,0);
+
+  const [y,m,d] =
+    str
+      .split("-")
+      .map(Number);
+
+
+  return new Date(
+    y,
+    m-1,
+    d,
+    12,
+    0,
+    0
+  );
+
 }
 
+
 function todayDate(){
-  const now = new Date();
+
+  const now =
+    new Date();
+
 
   return new Date(
     now.getFullYear(),
     now.getMonth(),
     now.getDate(),
-    12,0,0
+    12,
+    0,
+    0
   );
+
 }
+
 
 function addDays(date,n){
-  const copy = new Date(date);
-  copy.setDate(copy.getDate()+n);
+
+  const copy =
+    new Date(date);
+
+
+  copy.setDate(
+    copy.getDate()+n
+  );
+
+
   return copy;
+
 }
+
 
 function isWeekday(date){
-  const d = date.getDay();
-  return d >= 1 && d <= 5;
-}
 
-function challengeDates(){
-  if(!challenge) return [];
+  const d =
+    date.getDay();
 
-  let d = parseDate(challenge.start_date);
-  const result = [];
 
-  while(result.length < 40){
-    if(isWeekday(d)){
-      result.push(new Date(d));
-    }
-
-    d = addDays(d,1);
-  }
-
-  return result;
-}
-
-function challengeDayForDate(date){
-  const key = localDateKey(date);
-  const dates = challengeDates();
-
-  const index = dates.findIndex(
-    d => localDateKey(d) === key
+  return (
+    d >= 1 &&
+    d <= 5
   );
 
-  return index === -1 ? null : index + 1;
 }
+
 
 function formatSwedishDate(date){
-  return date.toLocaleDateString(
-    "sv-SE",
-    {
-      weekday:"long",
-      day:"numeric",
-      month:"long"
-    }
-  );
+
+  return date
+    .toLocaleDateString(
+      "sv-SE",
+      {
+        weekday:"long",
+        day:"numeric",
+        month:"long"
+      }
+    );
+
 }
 
 
-// ========================================
-// TRAINING PLAN
-// ========================================
+/* ========================================
+   OFFLINE CACHE KEYS
+   ======================================== */
 
-function trainingPlanForDate(date){
-  const dayNumber = challengeDayForDate(date);
+function profileCacheKey(){
 
-  if(!dayNumber || !isWeekday(date)){
+  if(!user) return null;
+
+  return `p40_profile_${user.id}`;
+
+}
+
+
+function membershipCacheKey(){
+
+  if(!user) return null;
+
+  return `p40_membership_${user.id}`;
+
+}
+
+
+function challengeCacheKey(
+  challengeId
+){
+
+  if(!challengeId) return null;
+
+  return `p40_challenge_${challengeId}`;
+
+}
+
+
+function groupCacheKey(){
+
+  if(!challenge) return null;
+
+  return `p40_group_${challenge.id}`;
+
+}
+
+
+function progressCacheKey(
+  date = todayDate()
+){
+
+  if(
+    !user ||
+    !challenge
+  ){
     return null;
   }
 
-  // exakt varannan challenge-vardag
+
+  return [
+    "p40_progress",
+    challenge.id,
+    user.id,
+    localDateKey(date)
+  ].join("_");
+
+}
+
+
+/* ========================================
+   PROGRESS LOCAL BACKUP
+   ======================================== */
+
+function buildProgressPayload(row){
+
+  return {
+
+    challenge_id:
+      row.challenge_id,
+
+    user_id:
+      row.user_id,
+
+    workout_date:
+      row.workout_date,
+
+    day_number:
+      row.day_number,
+
+    main_reps:
+      row.main_reps || 0,
+
+    plank_seconds:
+      row.plank_seconds || 0,
+
+    plank_sets:
+      Array.isArray(
+        row.plank_sets
+      )
+        ? row.plank_sets
+        : [],
+
+    bmu1_value:
+      row.bmu1_value || 0,
+
+    bmu2_value:
+      row.bmu2_value || 0,
+
+    updated_at:
+      new Date().toISOString()
+
+  };
+
+}
+
+
+function saveLocalProgress(
+  row,
+  dirty = true
+){
+
+  const key =
+    progressCacheKey();
+
+
+  if(
+    !key ||
+    !row
+  ){
+    return;
+  }
+
+
+  safeWrite(
+    key,
+    {
+      row:
+        buildProgressPayload(row),
+
+      dirty,
+
+      savedAt:
+        Date.now()
+    }
+  );
+
+}
+
+
+function loadLocalProgress(
+  date = todayDate()
+){
+
+  const key =
+    progressCacheKey(date);
+
+
+  if(!key){
+    return null;
+  }
+
+
+  return safeRead(key);
+
+}
+
+
+/* ========================================
+   SAVE STATUS
+   ======================================== */
+
+function setSaveStatus(mode){
+
+  const el =
+    document.getElementById(
+      "saveStatus"
+    );
+
+
+  if(!el){
+    return;
+  }
+
+
+  el.className =
+    "save-status " + mode;
+
+
+  if(mode === "saving"){
+
+    el.textContent =
+      "SPARAR…";
+
+  }
+
+
+  if(mode === "saved"){
+
+    el.textContent =
+      "SPARAT ✓";
+
+  }
+
+
+  if(mode === "local"){
+
+    el.textContent =
+      "SPARAT PÅ TELEFONEN • VÄNTAR PÅ NÄT";
+
+  }
+
+
+  if(mode === "offline"){
+
+    el.textContent =
+      "OFFLINE • DATA SPARAS PÅ TELEFONEN";
+
+  }
+
+}
+
+
+/* ========================================
+   CHALLENGE DATES
+   ======================================== */
+
+function challengeDates(){
+
+  if(!challenge){
+    return [];
+  }
+
+
+  let d =
+    parseDate(
+      challenge.start_date
+    );
+
+
+  const result = [];
+
+
+  while(
+    result.length < 40
+  ){
+
+    if(
+      isWeekday(d)
+    ){
+
+      result.push(
+        new Date(d)
+      );
+
+    }
+
+
+    d =
+      addDays(
+        d,
+        1
+      );
+
+  }
+
+
+  return result;
+
+}
+
+
+function challengeDayForDate(date){
+
+  const key =
+    localDateKey(date);
+
+
+  const dates =
+    challengeDates();
+
+
+  const index =
+    dates.findIndex(
+      d =>
+        localDateKey(d)
+        === key
+    );
+
+
+  return (
+    index === -1
+      ? null
+      : index + 1
+  );
+
+}
+
+
+/* ========================================
+   TRAINING PLAN
+   ======================================== */
+
+function trainingPlanForDate(date){
+
+  const dayNumber =
+    challengeDayForDate(date);
+
+
+  if(
+    !dayNumber ||
+    !isWeekday(date)
+  ){
+
+    return null;
+
+  }
+
+
+  /*
+    Dag 1 Push
+    Dag 2 Squat
+    Dag 3 Push
+    osv.
+
+    Det betyder automatiskt:
+    Vecka A = Push M/W/F
+    Vecka B = Squat M/W/F
+  */
+
   const mainName =
     dayNumber % 2 === 1
       ? "PUSH-UPS"
       : "AIR SQUATS";
 
-  const bmu = BMU_PLAN[date.getDay()];
+
+  const bmu =
+    BMU_PLAN[
+      date.getDay()
+    ];
+
 
   return {
+
     dayNumber,
+
     main:{
       name:mainName,
       target:100
     },
-    bmu1:bmu[0],
-    bmu2:bmu[1]
+
+    bmu1:
+      bmu[0],
+
+    bmu2:
+      bmu[1]
+
   };
+
 }
+
 
 function emptyProgress(date){
+
   return {
-    challenge_id:challenge.id,
-    user_id:user.id,
-    workout_date:localDateKey(date),
-    day_number:challengeDayForDate(date),
+
+    challenge_id:
+      challenge.id,
+
+    user_id:
+      user.id,
+
+    workout_date:
+      localDateKey(date),
+
+    day_number:
+      challengeDayForDate(date),
+
     main_reps:0,
+
     plank_seconds:0,
+
     plank_sets:[],
+
     bmu1_value:0,
+
     bmu2_value:0
+
   };
+
 }
 
-function progressComplete(row,date){
-  if(!row) return false;
 
-  const plan = trainingPlanForDate(date);
+function progressComplete(
+  row,
+  date
+){
 
-  if(!plan) return false;
+  if(!row){
+    return false;
+  }
+
+
+  const plan =
+    trainingPlanForDate(date);
+
+
+  if(!plan){
+    return false;
+  }
+
 
   return (
-    row.main_reps >= 100 &&
-    row.plank_seconds >= 300 &&
-    row.bmu1_value >= plan.bmu1.target &&
-    row.bmu2_value >= plan.bmu2.target
+
+    row.main_reps >= 100
+
+    &&
+
+    row.plank_seconds >= 300
+
+    &&
+
+    row.bmu1_value
+      >= plan.bmu1.target
+
+    &&
+
+    row.bmu2_value
+      >= plan.bmu2.target
+
   );
+
 }
+
 
 function progressPartial(row){
-  if(!row) return false;
+
+  if(!row){
+    return false;
+  }
+
 
   return (
-    row.main_reps > 0 ||
-    row.plank_seconds > 0 ||
-    row.bmu1_value > 0 ||
+
+    row.main_reps > 0
+
+    ||
+
+    row.plank_seconds > 0
+
+    ||
+
+    row.bmu1_value > 0
+
+    ||
+
     row.bmu2_value > 0
+
   );
+
 }
 
 
-// ========================================
-// AUTH
-// ========================================
+/* ========================================
+   AUTH
+   ======================================== */
 
 async function sendMagicLink(){
+
   const name =
-    document.getElementById("loginName")
-      .value.trim();
+    document
+      .getElementById(
+        "loginName"
+      )
+      .value
+      .trim();
+
 
   const email =
-    document.getElementById("loginEmail")
-      .value.trim();
+    document
+      .getElementById(
+        "loginEmail"
+      )
+      .value
+      .trim();
 
-  const message =
-    document.getElementById("loginMessage");
 
-  if(!name || !email){
+  if(
+    !name ||
+    !email
+  ){
+
     showLoginMessage(
       "Fyll i både namn och e-post.",
       true
     );
+
     return;
+
   }
 
+
   const button =
-    document.getElementById("magicButton");
+    document.getElementById(
+      "magicButton"
+    );
+
 
   button.disabled = true;
-  button.textContent = "SKICKAR...";
+
+  button.textContent =
+    "SKICKAR…";
+
 
   localStorage.setItem(
     "p40_pending_name",
     name
   );
 
-  const { error } =
+
+  const {error} =
     await sb.auth.signInWithOtp({
       email,
+
       options:{
-        emailRedirectTo:APP_URL,
-        shouldCreateUser:true,
+        emailRedirectTo:
+          APP_URL,
+
+        shouldCreateUser:
+          true,
+
         data:{
           display_name:name
         }
       }
     });
 
-  button.disabled = false;
-  button.textContent = "SKICKA MAGIC LINK";
 
   if(error){
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "SKICKA MAGIC LINK";
+
+
+    let text =
+      error.message;
+
+
+    if(
+      text
+        .toLowerCase()
+        .includes(
+          "rate limit"
+        )
+    ){
+
+      text =
+        "För många inloggningsmail har skickats. Vänta en stund och försök igen.";
+
+    }
+
+
     showLoginMessage(
-      error.message,
+      text,
       true
     );
+
+
     return;
+
   }
+
 
   showLoginMessage(
     "✅ Klart! Öppna mejlet och tryck på Sign in.",
     false
   );
+
+
+  startMagicCooldown(60);
+
 }
 
-function showLoginMessage(text,error){
+
+function startMagicCooldown(seconds){
+
+  clearInterval(
+    magicCooldownInterval
+  );
+
+
+  const button =
+    document.getElementById(
+      "magicButton"
+    );
+
+
+  let remaining =
+    seconds;
+
+
+  button.disabled =
+    true;
+
+
+  button.textContent =
+    `SKICKAT ✓ (${remaining}s)`;
+
+
+  magicCooldownInterval =
+    setInterval(
+      ()=>{
+
+        remaining--;
+
+
+        if(
+          remaining <= 0
+        ){
+
+          clearInterval(
+            magicCooldownInterval
+          );
+
+
+          button.disabled =
+            false;
+
+
+          button.textContent =
+            "SKICKA MAGIC LINK";
+
+
+          return;
+
+        }
+
+
+        button.textContent =
+          `SKICKAT ✓ (${remaining}s)`;
+
+      },
+      1000
+    );
+
+}
+
+
+function showLoginMessage(
+  text,
+  error
+){
+
   const el =
-    document.getElementById("loginMessage");
+    document.getElementById(
+      "loginMessage"
+    );
 
-  el.textContent = text;
-  el.classList.remove("hidden","ok","error");
-  el.classList.add(error ? "error" : "ok");
+
+  el.textContent =
+    text;
+
+
+  el.classList.remove(
+    "hidden",
+    "ok",
+    "error"
+  );
+
+
+  el.classList.add(
+    error
+      ? "error"
+      : "ok"
+  );
+
 }
+
 
 async function signOut(){
+
   stopRealtime();
+
   stopPlankInterval();
+
 
   await sb.auth.signOut();
 
-  location.href = APP_URL;
+
+  location.href =
+    APP_URL;
+
 }
 
 
-// ========================================
-// INITIAL LOAD
-// ========================================
+/* ========================================
+   INITIAL LOAD
+   ======================================== */
 
 async function boot(){
+
   const {
     data:{session}
-  } = await sb.auth.getSession();
+  } =
+    await sb.auth.getSession();
+
 
   if(!session){
+
     showLogin();
+
     return;
+
   }
 
-  user = session.user;
+
+  user =
+    session.user;
+
 
   await loadProfile();
 
+
   if(!profile){
-    toast("Profilen kunde inte laddas.");
+
+    toast(
+      "Profilen kunde inte laddas."
+    );
+
     return;
+
   }
+
 
   await loadMembership();
+
 }
+
+
+/* ========================================
+   PROFILE
+   ======================================== */
 
 async function loadProfile(){
+
+  const key =
+    profileCacheKey();
+
+
+  const cached =
+    key
+      ? safeRead(key)
+      : null;
+
+
   const pendingName =
-    localStorage.getItem("p40_pending_name");
-
-  if(pendingName){
-    await sb
-      .from("profiles")
-      .update({
-        display_name:pendingName
-      })
-      .eq("id",user.id);
-
-    localStorage.removeItem(
+    localStorage.getItem(
       "p40_pending_name"
     );
+
+
+  if(
+    pendingName &&
+    navigator.onLine
+  ){
+
+    const {error} =
+      await sb
+        .from("profiles")
+        .update({
+          display_name:
+            pendingName
+        })
+        .eq(
+          "id",
+          user.id
+        );
+
+
+    if(!error){
+
+      localStorage.removeItem(
+        "p40_pending_name"
+      );
+
+    }
+
   }
 
-  const {data,error} =
-    await sb
-      .from("profiles")
-      .select("*")
-      .eq("id",user.id)
-      .maybeSingle();
 
-  if(error){
-    console.error(error);
-    return;
+  if(navigator.onLine){
+
+    const {data,error} =
+      await sb
+        .from("profiles")
+        .select("*")
+        .eq(
+          "id",
+          user.id
+        )
+        .maybeSingle();
+
+
+    if(
+      !error &&
+      data
+    ){
+
+      profile =
+        data;
+
+
+      if(key){
+
+        safeWrite(
+          key,
+          profile
+        );
+
+      }
+
+
+      return;
+
+    }
+
+
+    if(error){
+
+      console.error(
+        error
+      );
+
+    }
+
   }
 
-  profile = data;
+
+  if(cached){
+
+    profile =
+      cached;
+
+
+    if(pendingName){
+
+      profile.display_name =
+        pendingName;
+
+    }
+
+  }
+
 }
+
+
+/* ========================================
+   MEMBERSHIP
+   ======================================== */
 
 async function loadMembership(){
-  const {data,error} =
-    await sb
-      .from("challenge_members")
-      .select("challenge_id,joined_at,role")
-      .eq("user_id",user.id)
-      .order("joined_at",{
-        ascending:true
-      })
-      .limit(1)
-      .maybeSingle();
 
-  if(error){
-    console.error(error);
-    toast(error.message);
-    return;
+  const key =
+    membershipCacheKey();
+
+
+  const cached =
+    key
+      ? safeRead(key)
+      : null;
+
+
+  let remote = null;
+
+
+  if(navigator.onLine){
+
+    const {data,error} =
+      await sb
+        .from(
+          "challenge_members"
+        )
+        .select(
+          "challenge_id,joined_at,role"
+        )
+        .eq(
+          "user_id",
+          user.id
+        )
+        .order(
+          "joined_at",
+          {
+            ascending:true
+          }
+        )
+        .limit(1)
+        .maybeSingle();
+
+
+    if(error){
+
+      console.error(
+        error
+      );
+
+    }else{
+
+      remote =
+        data;
+
+    }
+
   }
 
-  membership = data;
+
+  membership =
+    remote || cached;
+
+
+  if(
+    remote &&
+    key
+  ){
+
+    safeWrite(
+      key,
+      remote
+    );
+
+  }
+
 
   if(!membership){
+
     showChallengeChooser();
+
     return;
+
   }
+
 
   await loadChallenge();
+
 }
 
 
-// ========================================
-// CREATE / JOIN
-// ========================================
+/* ========================================
+   CREATE / JOIN
+   ======================================== */
 
 function showChallengeChooser(){
-  document.getElementById("loginView")
-    .classList.add("hidden");
 
-  document.getElementById("appView")
-    .classList.add("hidden");
+  document
+    .getElementById(
+      "loginView"
+    )
+    .classList
+    .add("hidden");
 
-  document.getElementById("challengeView")
-    .classList.remove("hidden");
 
-  document.getElementById(
-    "challengeUserLine"
-  ).textContent =
-    `${profile.display_name} • ${user.email}`;
+  document
+    .getElementById(
+      "appView"
+    )
+    .classList
+    .add("hidden");
 
-  document.getElementById(
-    "createStart"
-  ).value = localDateKey();
+
+  document
+    .getElementById(
+      "challengeView"
+    )
+    .classList
+    .remove("hidden");
+
+
+  document
+    .getElementById(
+      "challengeUserLine"
+    )
+    .textContent =
+      `${profile.display_name} • ${user.email}`;
+
+
+  document
+    .getElementById(
+      "createStart"
+    )
+    .value =
+      localDateKey();
+
 }
 
+
 async function createChallenge(){
+
+  if(!navigator.onLine){
+
+    toast(
+      "Du behöver internet för att skapa en challenge."
+    );
+
+    return;
+
+  }
+
+
   const name =
-    document.getElementById("createName")
-      .value.trim() || "PROJECT 40";
+    document
+      .getElementById(
+        "createName"
+      )
+      .value
+      .trim()
+      ||
+      "PROJECT 40";
+
 
   const start =
-    document.getElementById("createStart")
+    document
+      .getElementById(
+        "createStart"
+      )
       .value;
 
+
   if(!start){
-    toast("Välj ett startdatum.");
+
+    toast(
+      "Välj ett startdatum."
+    );
+
     return;
+
   }
+
 
   const {data,error} =
     await sb.rpc(
@@ -1378,406 +3101,1188 @@ async function createChallenge(){
       }
     );
 
+
   if(error){
-    console.error(error);
-    toast(error.message);
+
+    console.error(
+      error
+    );
+
+
+    toast(
+      error.message
+    );
+
+
     return;
+
   }
+
 
   toast(
     `🦍 Challenge skapad! Kod: ${data[0].join_code}`
   );
 
+
   await loadMembership();
+
 }
 
+
 async function joinChallenge(){
+
+  if(!navigator.onLine){
+
+    toast(
+      "Du behöver internet för att gå med."
+    );
+
+    return;
+
+  }
+
+
   const code =
-    document.getElementById("joinCode")
-      .value.trim()
+    document
+      .getElementById(
+        "joinCode"
+      )
+      .value
+      .trim()
       .toUpperCase();
 
+
   if(!code){
-    toast("Skriv in join-koden.");
+
+    toast(
+      "Skriv in join-koden."
+    );
+
     return;
+
   }
+
 
   const {error} =
     await sb.rpc(
       "join_project40_challenge",
       {
-        p_join_code:code
+        p_join_code:
+          code
       }
     );
 
+
   if(error){
-    console.error(error);
-    toast(
-      error.message.includes("Invalid")
-        ? "Fel join-kod."
-        : error.message
+
+    console.error(
+      error
     );
+
+
+    toast(
+      error.message
+        .toLowerCase()
+        .includes("invalid")
+          ? "Fel join-kod."
+          : error.message
+    );
+
+
     return;
+
   }
 
-  toast("🦍 Du är med!");
+
+  /*
+    Rensa eventuell gammal
+    membership-cache så att
+    rätt challenge laddas.
+  */
+
+  const key =
+    membershipCacheKey();
+
+
+  if(key){
+
+    localStorage.removeItem(
+      key
+    );
+
+  }
+
+
+  toast(
+    "🦍 Du är med!"
+  );
+
 
   await loadMembership();
+
 }
 
 
-// ========================================
-// LOAD CHALLENGE
-// ========================================
+/* ========================================
+   LOAD CHALLENGE
+   ======================================== */
 
 async function loadChallenge(){
-  const {data,error} =
-    await sb
-      .from("challenges")
-      .select("*")
-      .eq("id",membership.challenge_id)
-      .single();
 
-  if(error){
-    console.error(error);
-    toast(error.message);
-    return;
+  const key =
+    challengeCacheKey(
+      membership.challenge_id
+    );
+
+
+  const cached =
+    key
+      ? safeRead(key)
+      : null;
+
+
+  let remote = null;
+
+
+  if(navigator.onLine){
+
+    const {data,error} =
+      await sb
+        .from(
+          "challenges"
+        )
+        .select("*")
+        .eq(
+          "id",
+          membership.challenge_id
+        )
+        .single();
+
+
+    if(error){
+
+      console.error(
+        error
+      );
+
+    }else{
+
+      remote =
+        data;
+
+    }
+
   }
 
-  challenge = data;
 
-  document.getElementById(
-    "challengeView"
-  ).classList.add("hidden");
+  challenge =
+    remote || cached;
 
-  document.getElementById(
-    "loginView"
-  ).classList.add("hidden");
 
-  document.getElementById(
-    "appView"
-  ).classList.remove("hidden");
+  if(!challenge){
 
-  document.getElementById(
-    "appSubline"
-  ).textContent =
-    `${profile.display_name} • ${challenge.name}`;
+    toast(
+      "Challengen kunde inte laddas."
+    );
 
-  document.getElementById(
-    "displayJoinCode"
-  ).textContent =
-    challenge.join_code;
+    return;
+
+  }
+
+
+  if(
+    remote &&
+    key
+  ){
+
+    safeWrite(
+      key,
+      remote
+    );
+
+  }
+
+
+  document
+    .getElementById(
+      "challengeView"
+    )
+    .classList
+    .add("hidden");
+
+
+  document
+    .getElementById(
+      "loginView"
+    )
+    .classList
+    .add("hidden");
+
+
+  document
+    .getElementById(
+      "appView"
+    )
+    .classList
+    .remove("hidden");
+
+
+  document
+    .getElementById(
+      "appSubline"
+    )
+    .textContent =
+      `${profile.display_name} • ${challenge.name}`;
+
+
+  document
+    .getElementById(
+      "displayJoinCode"
+    )
+    .textContent =
+      challenge.join_code;
+
 
   await refreshAll();
-  startRealtime();
+
+
+  if(navigator.onLine){
+
+    startRealtime();
+
+  }
+
 }
 
 
-// ========================================
-// DATA
-// ========================================
+/* ========================================
+   LOAD DATA
+   ======================================== */
 
 async function refreshAll(){
+
   await Promise.all([
     loadTodayProgress(),
     loadGroupData()
   ]);
 
+
+  /*
+    Om dagens data kommer från
+    lokal backup ska den synas även
+    i historik och gruppvy.
+  */
+
+  mergeTodayIntoAllProgress();
+
+
+  const cached =
+    loadLocalProgress();
+
+
+  if(
+    cached?.dirty
+  ){
+
+    if(
+      navigator.onLine
+    ){
+
+      setSaveStatus(
+        "saving"
+      );
+
+    }else{
+
+      setSaveStatus(
+        "local"
+      );
+
+    }
+
+  }else{
+
+    setSaveStatus(
+      navigator.onLine
+        ? "saved"
+        : "offline"
+    );
+
+  }
+
+
   renderEverything();
+
+
+  /*
+    Om vi startade appen med
+    osynkade lokala ändringar
+    försöker vi synka direkt.
+  */
+
+  if(
+    cached?.dirty &&
+    navigator.onLine
+  ){
+
+    await saveToday();
+
+  }
+
 }
+
+
+/* ========================================
+   LOAD TODAY
+   ======================================== */
 
 async function loadTodayProgress(){
-  const t = todayDate();
-  const day = challengeDayForDate(t);
+
+  const t =
+    todayDate();
+
+
+  const day =
+    challengeDayForDate(t);
+
 
   if(!day){
-    todayProgress = null;
+
+    todayProgress =
+      null;
+
     return;
+
   }
 
-  if(parseDate(membership.joined_at) > t){
-    todayProgress = null;
+
+  if(
+    parseDate(
+      membership.joined_at
+    )
+    >
+    t
+  ){
+
+    todayProgress =
+      null;
+
     return;
+
   }
 
-  const {data,error} =
-    await sb
-      .from("daily_progress")
-      .select("*")
-      .eq("challenge_id",challenge.id)
-      .eq("user_id",user.id)
-      .eq("workout_date",localDateKey(t))
-      .maybeSingle();
 
-  if(error){
-    console.error(error);
-    return;
+  const cached =
+    loadLocalProgress(t);
+
+
+  let remote =
+    null;
+
+
+  if(navigator.onLine){
+
+    const {data,error} =
+      await sb
+        .from(
+          "daily_progress"
+        )
+        .select("*")
+        .eq(
+          "challenge_id",
+          challenge.id
+        )
+        .eq(
+          "user_id",
+          user.id
+        )
+        .eq(
+          "workout_date",
+          localDateKey(t)
+        )
+        .maybeSingle();
+
+
+    if(error){
+
+      console.error(
+        error
+      );
+
+    }else{
+
+      remote =
+        data;
+
+    }
+
   }
 
-  todayProgress =
-    data || emptyProgress(t);
+
+  /*
+    Osynkade lokala ändringar
+    går före Supabase.
+  */
+
+  if(
+    cached?.dirty &&
+    cached?.row
+  ){
+
+    todayProgress =
+      cached.row;
+
+  }
+
+  else if(remote){
+
+    todayProgress =
+      remote;
+
+
+    saveLocalProgress(
+      remote,
+      false
+    );
+
+  }
+
+  else if(
+    cached?.row
+  ){
+
+    todayProgress =
+      cached.row;
+
+  }
+
+  else{
+
+    todayProgress =
+      emptyProgress(t);
+
+  }
+
 }
 
-async function loadGroupData(){
-  const memberResult =
-    await sb
-      .from("challenge_members")
-      .select("challenge_id,user_id,joined_at,role")
-      .eq("challenge_id",challenge.id);
 
-  if(memberResult.error){
-    console.error(memberResult.error);
+/* ========================================
+   GROUP CACHE
+   ======================================== */
+
+function saveGroupCache(){
+
+  const key =
+    groupCacheKey();
+
+
+  if(!key){
     return;
   }
 
-  members = memberResult.data || [];
+
+  safeWrite(
+    key,
+    {
+      members,
+      allProgress,
+      savedAt:
+        Date.now()
+    }
+  );
+
+}
+
+
+function loadCachedGroup(){
+
+  const key =
+    groupCacheKey();
+
+
+  if(!key){
+    return false;
+  }
+
+
+  const cached =
+    safeRead(key);
+
+
+  if(!cached){
+    return false;
+  }
+
+
+  members =
+    cached.members || [];
+
+
+  allProgress =
+    cached.allProgress || [];
+
+
+  return true;
+
+}
+
+
+/* ========================================
+   LOAD GROUP
+   ======================================== */
+
+async function loadGroupData(){
+
+  if(!navigator.onLine){
+
+    loadCachedGroup();
+
+    return;
+
+  }
+
+
+  const memberResult =
+    await sb
+      .from(
+        "challenge_members"
+      )
+      .select(
+        "challenge_id,user_id,joined_at,role"
+      )
+      .eq(
+        "challenge_id",
+        challenge.id
+      );
+
+
+  if(memberResult.error){
+
+    console.error(
+      memberResult.error
+    );
+
+
+    loadCachedGroup();
+
+    return;
+
+  }
+
+
+  members =
+    memberResult.data || [];
+
 
   const ids =
-    members.map(m => m.user_id);
+    members.map(
+      m => m.user_id
+    );
+
 
   if(ids.length){
+
     const profileResult =
       await sb
-        .from("profiles")
-        .select("id,display_name")
-        .in("id",ids);
-
-    if(!profileResult.error){
-      const profileMap =
-        Object.fromEntries(
-          (profileResult.data || [])
-            .map(p => [p.id,p])
+        .from(
+          "profiles"
+        )
+        .select(
+          "id,display_name"
+        )
+        .in(
+          "id",
+          ids
         );
 
-      members = members.map(
-        m => ({
-          ...m,
-          profile:profileMap[m.user_id]
-        })
+
+    if(
+      !profileResult.error
+    ){
+
+      const profileMap =
+        Object.fromEntries(
+          (
+            profileResult.data
+            || []
+          )
+          .map(
+            p => [
+              p.id,
+              p
+            ]
+          )
+        );
+
+
+      members =
+        members.map(
+          m => ({
+            ...m,
+            profile:
+              profileMap[
+                m.user_id
+              ]
+          })
+        );
+
+    }else{
+
+      console.error(
+        profileResult.error
       );
+
     }
+
   }
+
 
   const progressResult =
     await sb
-      .from("daily_progress")
+      .from(
+        "daily_progress"
+      )
       .select("*")
-      .eq("challenge_id",challenge.id);
+      .eq(
+        "challenge_id",
+        challenge.id
+      );
+
 
   if(progressResult.error){
-    console.error(progressResult.error);
+
+    console.error(
+      progressResult.error
+    );
+
+
+    loadCachedGroup();
+
     return;
+
   }
+
 
   allProgress =
     progressResult.data || [];
+
+
+  saveGroupCache();
+
 }
 
 
-// ========================================
-// SAVE PROGRESS
-// ========================================
+/* ========================================
+   MERGE TODAY INTO GROUP DATA
+   ======================================== */
 
-async function saveToday(){
-  if(!todayProgress) return;
+function mergeTodayIntoAllProgress(){
 
-  const payload = {
-    challenge_id: todayProgress.challenge_id,
-    user_id: todayProgress.user_id,
-    workout_date: todayProgress.workout_date,
-    day_number: todayProgress.day_number,
-    main_reps: todayProgress.main_reps,
-    plank_seconds: todayProgress.plank_seconds,
-    plank_sets: todayProgress.plank_sets,
-    bmu1_value: todayProgress.bmu1_value,
-    bmu2_value: todayProgress.bmu2_value,
-    updated_at: new Date().toISOString()
-  };
-
-  const {data,error} =
-    await sb
-      .from("daily_progress")
-      .upsert(
-        payload,
-        {
-          onConflict:
-            "challenge_id,user_id,workout_date"
-        }
-      )
-      .select()
-      .single();
-
-  if(error){
-    console.error(error);
-    alert("SPARFEL:\n" + error.message);
+  if(!todayProgress){
     return;
   }
 
-  todayProgress = data;
 
   const index =
     allProgress.findIndex(
       p =>
-        p.user_id === user.id &&
+        p.user_id ===
+          user.id
+        &&
         p.workout_date ===
           todayProgress.workout_date
     );
 
+
   if(index >= 0){
-    allProgress[index] = todayProgress;
+
+    allProgress[index] =
+      todayProgress;
+
   }else{
-    allProgress.push(todayProgress);
+
+    allProgress.push(
+      todayProgress
+    );
+
   }
 
-  renderEverything();
+
+  saveGroupCache();
+
 }
 
 
-// ========================================
-// REPS
-// ========================================
+/* ========================================
+   SAVE TODAY
+   ======================================== */
+
+async function saveToday(){
+
+  if(!todayProgress){
+    return;
+  }
+
+
+  /*
+    STEG 1:
+    Spara omedelbart på telefonen.
+  */
+
+  saveLocalProgress(
+    todayProgress,
+    true
+  );
+
+
+  mergeTodayIntoAllProgress();
+
+
+  /*
+    STEG 2:
+    Om vi saknar internet slutar vi här.
+    Datan finns tryggt på telefonen.
+  */
+
+  if(!navigator.onLine){
+
+    setSaveStatus(
+      "local"
+    );
+
+    return;
+
+  }
+
+
+  /*
+    Om en Supabase-save redan körs
+    markerar vi att ytterligare en
+    save behövs när den första är klar.
+  */
+
+  if(saveInFlight){
+
+    savePending =
+      true;
+
+
+    setSaveStatus(
+      "saving"
+    );
+
+
+    return;
+
+  }
+
+
+  saveInFlight =
+    true;
+
+
+  setSaveStatus(
+    "saving"
+  );
+
+
+  try{
+
+    do{
+
+      savePending =
+        false;
+
+
+      const payload =
+        buildProgressPayload(
+          todayProgress
+        );
+
+
+      /*
+        ID skickas INTE med.
+        Det var det som orsakade
+        vårt tidigare Supabase-fel.
+      */
+
+      const {data,error} =
+        await sb
+          .from(
+            "daily_progress"
+          )
+          .upsert(
+            payload,
+            {
+              onConflict:
+                "challenge_id,user_id,workout_date"
+            }
+          )
+          .select()
+          .single();
+
+
+      if(error){
+
+        console.error(
+          error
+        );
+
+
+        saveLocalProgress(
+          todayProgress,
+          true
+        );
+
+
+        setSaveStatus(
+          "local"
+        );
+
+
+        toast(
+          "Sparat på telefonen – Supabase synkar senare."
+        );
+
+
+        return;
+
+      }
+
+
+      /*
+        Vi kopierar bara metadata
+        tillbaka från Supabase.
+        Vi ersätter INTE hela
+        todayProgress eftersom någon
+        kan ha tryckt på fler knappar
+        medan requesten kördes.
+      */
+
+      if(data?.id){
+
+        todayProgress.id =
+          data.id;
+
+      }
+
+
+      if(data?.updated_at){
+
+        todayProgress.updated_at =
+          data.updated_at;
+
+      }
+
+
+      /*
+        Om inga nya knapptryck kom
+        under sparningen är vi klara.
+      */
+
+      if(!savePending){
+
+        saveLocalProgress(
+          todayProgress,
+          false
+        );
+
+
+        setSaveStatus(
+          "saved"
+        );
+
+      }
+
+
+    }while(
+      savePending
+      &&
+      navigator.onLine
+    );
+
+
+  }finally{
+
+    saveInFlight =
+      false;
+
+  }
+
+
+  mergeTodayIntoAllProgress();
+
+
+  renderEverything();
+
+}
+
+
+/* ========================================
+   MAIN REPS
+   ======================================== */
 
 async function addMain(amount){
-  if(!todayProgress) return;
+
+  if(!todayProgress){
+    return;
+  }
+
 
   todayProgress.main_reps =
     Math.min(
       100,
-      todayProgress.main_reps + amount
+      todayProgress.main_reps
+        + amount
     );
 
+
   renderDay();
+
+
   await saveToday();
+
 }
 
-async function addBmu(index,amount){
-  if(!todayProgress) return;
+
+/* ========================================
+   BMU REPS
+   ======================================== */
+
+async function addBmu(
+  index,
+  amount
+){
+
+  if(!todayProgress){
+    return;
+  }
+
 
   const plan =
-    trainingPlanForDate(todayDate());
+    trainingPlanForDate(
+      todayDate()
+    );
+
 
   const task =
     index === 1
       ? plan.bmu1
       : plan.bmu2;
 
+
   const key =
     index === 1
       ? "bmu1_value"
       : "bmu2_value";
 
+
   todayProgress[key] =
     Math.min(
       task.target,
-      todayProgress[key] + amount
+      todayProgress[key]
+        + amount
     );
 
+
   renderDay();
+
+
   await saveToday();
+
 }
 
 
-// ========================================
-// PLANK TIMER
-// ========================================
+/* ========================================
+   PLANK
+   ======================================== */
 
 function plankStorageKey(){
-  if(!user) return null;
+
+  if(!user){
+    return null;
+  }
+
 
   return [
     "p40_plank",
     user.id,
     localDateKey()
   ].join("_");
+
 }
+
 
 function activePlank(){
-  const key = plankStorageKey();
 
-  if(!key) return null;
+  const key =
+    plankStorageKey();
 
-  try{
-    return JSON.parse(
-      localStorage.getItem(key)
-    );
-  }catch{
+
+  if(!key){
     return null;
   }
+
+
+  return safeRead(key);
+
 }
 
-function displayedPlankSeconds(){
-  if(!todayProgress) return 0;
 
-  const active = activePlank();
+function displayedPlankSeconds(){
+
+  if(!todayProgress){
+    return 0;
+  }
+
+
+  const active =
+    activePlank();
+
 
   if(!active){
-    return todayProgress.plank_seconds;
+
+    return (
+      todayProgress
+        .plank_seconds
+      || 0
+    );
+
   }
+
 
   const elapsed =
     Math.floor(
-      (Date.now() - active.startedAt)
-      / 1000
+      (
+        Date.now()
+        -
+        active.startedAt
+      )
+      /
+      1000
     );
+
 
   return Math.min(
     300,
-    todayProgress.plank_seconds +
-      Math.max(0,elapsed)
+
+    todayProgress.plank_seconds
+      +
+      Math.max(
+        0,
+        elapsed
+      )
   );
+
 }
+
 
 function togglePlank(){
+
   if(activePlank()){
+
     stopPlank();
+
   }else{
+
     startPlank();
+
   }
+
 }
+
 
 function startPlank(){
-  if(!todayProgress) return;
 
-  if(todayProgress.plank_seconds >= 300){
+  if(!todayProgress){
     return;
   }
 
-  localStorage.setItem(
+
+  if(
+    todayProgress
+      .plank_seconds
+    >=
+    300
+  ){
+
+    return;
+
+  }
+
+
+  safeWrite(
     plankStorageKey(),
-    JSON.stringify({
-      startedAt:Date.now()
-    })
+    {
+      startedAt:
+        Date.now()
+    }
   );
 
+
   startPlankInterval();
+
+
   renderPlank();
+
 }
 
-async function stopPlank(auto=false){
-  if(plankStopping) return;
 
-  const active = activePlank();
+async function stopPlank(
+  auto = false
+){
 
-  if(!active || !todayProgress){
+  if(plankStopping){
     return;
   }
 
-  plankStopping = true;
+
+  const active =
+    activePlank();
+
+
+  if(
+    !active ||
+    !todayProgress
+  ){
+
+    return;
+
+  }
+
+
+  plankStopping =
+    true;
+
 
   let elapsed =
     Math.floor(
-      (Date.now() - active.startedAt)
-      / 1000
+      (
+        Date.now()
+        -
+        active.startedAt
+      )
+      /
+      1000
     );
 
-  elapsed = Math.max(1,elapsed);
+
+  elapsed =
+    Math.max(
+      1,
+      elapsed
+    );
+
 
   const remaining =
     Math.max(
       0,
-      300 -
-        todayProgress.plank_seconds
+      300
+      -
+      todayProgress
+        .plank_seconds
     );
+
 
   const added =
     Math.min(
@@ -1785,165 +4290,361 @@ async function stopPlank(auto=false){
       remaining
     );
 
+
   if(added > 0){
-    todayProgress.plank_seconds += added;
+
+    todayProgress
+      .plank_seconds
+      += added;
+
 
     if(
       !Array.isArray(
-        todayProgress.plank_sets
+        todayProgress
+          .plank_sets
       )
     ){
-      todayProgress.plank_sets = [];
+
+      todayProgress
+        .plank_sets =
+          [];
+
     }
 
-    todayProgress.plank_sets.push(added);
+
+    todayProgress
+      .plank_sets
+      .push(
+        added
+      );
+
   }
+
 
   localStorage.removeItem(
     plankStorageKey()
   );
 
+
   stopPlankInterval();
+
 
   await saveToday();
 
-  plankStopping = false;
+
+  plankStopping =
+    false;
+
 
   if(!auto){
+
     renderPlank();
+
   }
+
 }
 
+
 async function undoPlank(){
+
   if(
-    !todayProgress ||
+    !todayProgress
+    ||
     activePlank()
   ){
+
     return;
+
   }
+
 
   const sets =
     Array.isArray(
-      todayProgress.plank_sets
+      todayProgress
+        .plank_sets
     )
-      ? [...todayProgress.plank_sets]
-      : [];
+      ?
+      [
+        ...todayProgress
+          .plank_sets
+      ]
+      :
+      [];
 
-  if(!sets.length) return;
 
-  const last = sets.pop();
+  if(!sets.length){
+    return;
+  }
 
-  todayProgress.plank_sets = sets;
 
-  todayProgress.plank_seconds =
-    Math.max(
-      0,
-      todayProgress.plank_seconds - last
-    );
+  const last =
+    sets.pop();
+
+
+  todayProgress
+    .plank_sets =
+      sets;
+
+
+  todayProgress
+    .plank_seconds =
+      Math.max(
+        0,
+        todayProgress
+          .plank_seconds
+        -
+        last
+      );
+
 
   await saveToday();
+
 }
 
+
 function startPlankInterval(){
+
   stopPlankInterval();
+
 
   plankInterval =
     setInterval(
       async ()=>{
+
         renderPlank();
 
+
         if(
-          displayedPlankSeconds() >= 300 &&
+          displayedPlankSeconds()
+            >= 300
+          &&
           activePlank()
         ){
-          await stopPlank(true);
+
+          await stopPlank(
+            true
+          );
+
         }
+
       },
       250
     );
+
 }
+
 
 function stopPlankInterval(){
+
   if(plankInterval){
-    clearInterval(plankInterval);
-    plankInterval = null;
+
+    clearInterval(
+      plankInterval
+    );
+
+
+    plankInterval =
+      null;
+
   }
+
 }
 
 
-// ========================================
-// RESET
-// ========================================
+/* ========================================
+   RESET TODAY
+   ======================================== */
 
 async function resetToday(){
-  if(!todayProgress) return;
 
-  const ok = confirm(
-    "Återställa ALLT för idag?"
-  );
+  if(!todayProgress){
+    return;
+  }
 
-  if(!ok) return;
 
-  localStorage.removeItem(
-    plankStorageKey()
-  );
+  if(!navigator.onLine){
 
-  stopPlankInterval();
+    toast(
+      "Återställ kräver internet så att telefon och Supabase inte hamnar ur synk."
+    );
+
+    return;
+
+  }
+
+
+  const ok =
+    confirm(
+      "Återställa ALLT för idag?\n\nDetta tar bort reps, planktid och BMU-data."
+    );
+
+
+  if(!ok){
+    return;
+  }
+
+
+  /*
+    Radera först från Supabase.
+    Om detta misslyckas låter vi
+    telefonens data vara kvar.
+  */
 
   const {error} =
     await sb
-      .from("daily_progress")
+      .from(
+        "daily_progress"
+      )
       .delete()
-      .eq("challenge_id",challenge.id)
-      .eq("user_id",user.id)
+      .eq(
+        "challenge_id",
+        challenge.id
+      )
+      .eq(
+        "user_id",
+        user.id
+      )
       .eq(
         "workout_date",
         localDateKey()
       );
 
+
   if(error){
-    toast(error.message);
+
+    console.error(
+      error
+    );
+
+
+    toast(
+      "Kunde inte återställa. Försök igen."
+    );
+
+
     return;
+
   }
+
+
+  /*
+    Supabase är nu rensat.
+    Rensa även telefonens backup.
+  */
+
+  const plankKey =
+    plankStorageKey();
+
+
+  if(plankKey){
+
+    localStorage.removeItem(
+      plankKey
+    );
+
+  }
+
+
+  const progressKey =
+    progressCacheKey();
+
+
+  if(progressKey){
+
+    localStorage.removeItem(
+      progressKey
+    );
+
+  }
+
+
+  stopPlankInterval();
+
 
   allProgress =
     allProgress.filter(
       p =>
         !(
-          p.user_id === user.id &&
+          p.user_id ===
+            user.id
+          &&
           p.workout_date ===
             localDateKey()
         )
     );
 
+
   todayProgress =
-    emptyProgress(todayDate());
+    emptyProgress(
+      todayDate()
+    );
+
+
+  /*
+    Spara rent 0-läge lokalt
+    som "redan synkat".
+  */
+
+  saveLocalProgress(
+    todayProgress,
+    false
+  );
+
+
+  saveGroupCache();
+
+
+  setSaveStatus(
+    "saved"
+  );
+
 
   renderEverything();
 
-  toast("Dagen är återställd.");
+
+  toast(
+    "Dagen är återställd."
+  );
+
 }
 
 
-// ========================================
-// RENDER
-// ========================================
+/* ========================================
+   RENDER EVERYTHING
+   ======================================== */
 
 function renderEverything(){
+
   renderHeader();
+
   renderDay();
+
   renderGroup();
+
   renderHistory();
+
 }
 
+
+/* ========================================
+   HEADER
+   ======================================== */
+
 function renderHeader(){
-  const t = todayDate();
-  const day = challengeDayForDate(t);
+
+  const t =
+    todayDate();
+
+
+  const day =
+    challengeDayForDate(t);
+
 
   const eligible =
     eligibleDaysForMember(
       membership.joined_at
     );
+
 
   const completed =
     completedDaysForMember(
@@ -1951,121 +4652,232 @@ function renderHeader(){
       membership.joined_at
     );
 
-  document.getElementById(
-    "heroProgress"
-  ).innerHTML =
-    `${completed}/${eligible}<br>KLARA`;
+
+  document
+    .getElementById(
+      "heroProgress"
+    )
+    .innerHTML =
+      `${completed}/${eligible}<br>KLARA`;
+
 
   const pct =
     eligible
-      ? Math.round(
-          completed / eligible * 100
-        )
-      : 0;
+      ?
+      Math.round(
+        completed
+        /
+        eligible
+        *
+        100
+      )
+      :
+      0;
 
-  document.getElementById(
-    "progressFill"
-  ).style.width =
-    `${pct}%`;
+
+  document
+    .getElementById(
+      "progressFill"
+    )
+    .style
+    .width =
+      `${pct}%`;
+
 
   if(day){
-    document.getElementById(
-      "dayTitle"
-    ).textContent =
-      `DAG ${day}`;
 
-    document.getElementById(
-      "dateTitle"
-    ).textContent =
-      formatSwedishDate(t)
-        .toUpperCase();
+    document
+      .getElementById(
+        "dayTitle"
+      )
+      .textContent =
+        `DAG ${day}`;
+
+
+    document
+      .getElementById(
+        "dateTitle"
+      )
+      .textContent =
+        formatSwedishDate(t)
+          .toUpperCase();
+
   }else{
-    const dates = challengeDates();
 
-    if(t < dates[0]){
-      document.getElementById(
-        "dayTitle"
-      ).textContent =
-        "SNART DAGS";
-    }else if(t > dates[39]){
-      document.getElementById(
-        "dayTitle"
-      ).textContent =
-        "40/40";
-    }else{
-      document.getElementById(
-        "dayTitle"
-      ).textContent =
-        "VILODAG";
+    const dates =
+      challengeDates();
+
+
+    if(
+      t < dates[0]
+    ){
+
+      document
+        .getElementById(
+          "dayTitle"
+        )
+        .textContent =
+          "SNART DAGS";
+
     }
 
-    document.getElementById(
-      "dateTitle"
-    ).textContent =
-      formatSwedishDate(t)
-        .toUpperCase();
+    else if(
+      t > dates[39]
+    ){
+
+      document
+        .getElementById(
+          "dayTitle"
+        )
+        .textContent =
+          "40/40";
+
+    }
+
+    else{
+
+      document
+        .getElementById(
+          "dayTitle"
+        )
+        .textContent =
+          "VILODAG";
+
+    }
+
+
+    document
+      .getElementById(
+        "dateTitle"
+      )
+      .textContent =
+        formatSwedishDate(t)
+          .toUpperCase();
+
   }
+
 }
 
+
+/* ========================================
+   RENDER DAY
+   ======================================== */
+
 function renderDay(){
-  const t = todayDate();
+
+  const t =
+    todayDate();
+
+
   const plan =
     trainingPlanForDate(t);
+
 
   const rest =
     document.getElementById(
       "restCard"
     );
 
+
   const taskArea =
     document.getElementById(
       "taskArea"
     );
 
-  if(
-    !plan ||
-    parseDate(membership.joined_at) > t
-  ){
-    rest.classList.remove("hidden");
-    taskArea.classList.add("hidden");
 
-    document.getElementById(
-      "completeBanner"
-    ).classList.remove("show");
+  if(
+    !plan
+    ||
+    parseDate(
+      membership.joined_at
+    )
+    >
+    t
+  ){
+
+    rest.classList
+      .remove("hidden");
+
+
+    taskArea.classList
+      .add("hidden");
+
+
+    document
+      .getElementById(
+        "completeBanner"
+      )
+      .classList
+      .remove("show");
+
 
     return;
+
   }
 
-  rest.classList.add("hidden");
-  taskArea.classList.remove("hidden");
+
+  rest.classList
+    .add("hidden");
+
+
+  taskArea.classList
+    .remove("hidden");
+
 
   if(!todayProgress){
+
     todayProgress =
       emptyProgress(t);
+
   }
 
-  document.getElementById(
-    "mainName"
-  ).textContent =
-    `100 ${plan.main.name}`;
 
-  document.getElementById(
-    "mainNumber"
-  ).textContent =
-    todayProgress.main_reps;
+  /*
+    MAIN
+  */
 
-  document.getElementById(
-    "mainBadge"
-  ).textContent =
-    `${todayProgress.main_reps} / 100`;
+  document
+    .getElementById(
+      "mainName"
+    )
+    .textContent =
+      `100 ${plan.main.name}`;
+
+
+  document
+    .getElementById(
+      "mainNumber"
+    )
+    .textContent =
+      todayProgress.main_reps;
+
+
+  document
+    .getElementById(
+      "mainBadge"
+    )
+    .textContent =
+      `${todayProgress.main_reps} / 100`;
+
 
   toggleDone(
     "mainCard",
     "mainBadge",
-    todayProgress.main_reps >= 100
+    todayProgress.main_reps
+      >= 100
   );
 
+
+  /*
+    PLANK
+  */
+
   renderPlank();
+
+
+  /*
+    BMU
+  */
 
   renderBmu(
     1,
@@ -2073,38 +4885,64 @@ function renderDay(){
     todayProgress.bmu1_value
   );
 
+
   renderBmu(
     2,
     plan.bmu2,
     todayProgress.bmu2_value
   );
 
-  document.getElementById(
-    "completeBanner"
-  ).classList.toggle(
-    "show",
-    progressComplete(
-      todayProgress,
-      t
+
+  /*
+    COMPLETE
+  */
+
+  document
+    .getElementById(
+      "completeBanner"
     )
-  );
+    .classList
+    .toggle(
+      "show",
+      progressComplete(
+        todayProgress,
+        t
+      )
+    );
+
 }
 
+
+/* ========================================
+   RENDER PLANK
+   ======================================== */
+
 function renderPlank(){
-  if(!todayProgress) return;
+
+  if(!todayProgress){
+    return;
+  }
+
 
   const total =
     displayedPlankSeconds();
 
-  document.getElementById(
-    "timerDisplay"
-  ).textContent =
-    formatSeconds(total);
 
-  document.getElementById(
-    "plankBadge"
-  ).textContent =
-    `${formatSeconds(total)} / 5:00`;
+  document
+    .getElementById(
+      "timerDisplay"
+    )
+    .textContent =
+      formatSeconds(total);
+
+
+  document
+    .getElementById(
+      "plankBadge"
+    )
+    .textContent =
+      `${formatSeconds(total)} / 5:00`;
+
 
   toggleDone(
     "plankCard",
@@ -2112,90 +4950,162 @@ function renderPlank(){
     total >= 300
   );
 
+
   const active =
     activePlank();
+
 
   const button =
     document.getElementById(
       "timerButton"
     );
 
+
   if(total >= 300){
+
     button.textContent =
       "✓ KLAR";
 
-    button.disabled = true;
+
+    button.disabled =
+      true;
+
+
     button.className =
       "btn green";
-  }else if(active){
+
+  }
+
+  else if(active){
+
     button.textContent =
       "■ STOPPA";
 
-    button.disabled = false;
+
+    button.disabled =
+      false;
+
+
     button.className =
       "btn red";
-  }else{
+
+  }
+
+  else{
+
     button.textContent =
       "▶ STARTA";
 
-    button.disabled = false;
+
+    button.disabled =
+      false;
+
+
     button.className =
       "btn primary";
+
   }
+
 
   const sets =
     Array.isArray(
-      todayProgress.plank_sets
+      todayProgress
+        .plank_sets
     )
-      ? todayProgress.plank_sets
-      : [];
+      ?
+      todayProgress
+        .plank_sets
+      :
+      [];
 
-  document.getElementById(
-    "undoButton"
-  ).disabled =
-    !!active ||
-    sets.length === 0;
 
-  document.getElementById(
-    "plankSets"
-  ).textContent =
-    sets.length
-      ? "SET: " +
+  document
+    .getElementById(
+      "undoButton"
+    )
+    .disabled =
+      !!active
+      ||
+      sets.length === 0;
+
+
+  document
+    .getElementById(
+      "plankSets"
+    )
+    .textContent =
+      sets.length
+        ?
+        "SET: "
+        +
         sets
-          .map(formatSeconds)
+          .map(
+            formatSeconds
+          )
           .join(" + ")
-      : "Inga plank-set registrerade ännu.";
+        :
+        "Inga plank-set registrerade ännu.";
+
 }
 
-function renderBmu(index,task,value){
+
+/* ========================================
+   RENDER BMU
+   ======================================== */
+
+function renderBmu(
+  index,
+  task,
+  value
+){
+
   const prefix =
     `bmu${index}`;
 
-  document.getElementById(
-    `${prefix}Name`
-  ).textContent =
-    task.name;
 
-  document.getElementById(
-    `${prefix}Number`
-  ).textContent =
-    task.unit === "sec"
-      ? formatSeconds(value)
-      : value;
+  document
+    .getElementById(
+      `${prefix}Name`
+    )
+    .textContent =
+      task.name;
 
-  document.getElementById(
-    `${prefix}Target`
-  ).textContent =
-    task.unit === "sec"
-      ? `av ${formatSeconds(task.target)} totalt`
-      : `av ${task.target} reps totalt`;
 
-  document.getElementById(
-    `${prefix}Badge`
-  ).textContent =
-    task.unit === "sec"
-      ? `${formatSeconds(value)} / ${formatSeconds(task.target)}`
-      : `${value} / ${task.target}`;
+  document
+    .getElementById(
+      `${prefix}Number`
+    )
+    .textContent =
+      task.unit === "sec"
+        ?
+        formatSeconds(value)
+        :
+        value;
+
+
+  document
+    .getElementById(
+      `${prefix}Target`
+    )
+    .textContent =
+      task.unit === "sec"
+        ?
+        `av ${formatSeconds(task.target)} totalt`
+        :
+        `av ${task.target} reps totalt`;
+
+
+  document
+    .getElementById(
+      `${prefix}Badge`
+    )
+    .textContent =
+      task.unit === "sec"
+        ?
+        `${formatSeconds(value)} / ${formatSeconds(task.target)}`
+        :
+        `${value} / ${task.target}`;
+
 
   toggleDone(
     `${prefix}Card`,
@@ -2203,36 +5113,51 @@ function renderBmu(index,task,value){
     value >= task.target
   );
 
+
   const holder =
     document.getElementById(
       `${prefix}Buttons`
     );
 
-  holder.innerHTML = "";
+
+  holder.innerHTML =
+    "";
+
 
   task.buttons.forEach(
     (amount,i)=>{
+
       const button =
         document.createElement(
           "button"
         );
 
+
       button.className =
-        "btn" +
+        "btn"
+        +
         (
-          i ===
+          i
+          ===
           task.buttons.length-1
-            ? " primary"
-            : ""
+            ?
+            " primary"
+            :
+            ""
         );
+
 
       button.textContent =
         task.unit === "sec"
-          ? `+${amount}s`
-          : `+${amount}`;
+          ?
+          `+${amount}s`
+          :
+          `+${amount}`;
+
 
       button.disabled =
         value >= task.target;
+
 
       button.onclick =
         ()=>addBmu(
@@ -2240,202 +5165,339 @@ function renderBmu(index,task,value){
           amount
         );
 
-      holder.appendChild(button);
+
+      holder.appendChild(
+        button
+      );
+
     }
   );
+
 }
 
+
+/* ========================================
+   RENDER GROUP
+   ======================================== */
+
 function renderGroup(){
-  document.getElementById(
-    "memberCount"
-  ).textContent =
-    `${members.length} PERSONER`;
+
+  document
+    .getElementById(
+      "memberCount"
+    )
+    .textContent =
+      `${members.length} PERSONER`;
+
 
   const holder =
     document.getElementById(
       "memberList"
     );
 
-  holder.innerHTML = "";
 
-  const t = todayDate();
+  holder.innerHTML =
+    "";
+
+
+  const t =
+    todayDate();
+
 
   members
     .slice()
     .sort(
       (a,b)=>
-        memberCompletionPercent(b) -
+        memberCompletionPercent(b)
+        -
         memberCompletionPercent(a)
     )
-    .forEach(member=>{
+    .forEach(
+      member=>{
 
-      const name =
-        member.profile
-          ?.display_name ||
-        "Medlem";
+        const name =
+          member.profile
+            ?.display_name
+          ||
+          "Medlem";
 
-      const todayRow =
-        allProgress.find(
-          p =>
-            p.user_id ===
-              member.user_id &&
-            p.workout_date ===
-              localDateKey(t)
-        );
 
-      const completeToday =
-        progressComplete(
-          todayRow,
-          t
-        );
+        const todayRow =
+          allProgress.find(
+            p =>
+              p.user_id
+                ===
+                member.user_id
+              &&
+              p.workout_date
+                ===
+                localDateKey(t)
+          );
 
-      const eligible =
-        eligibleDaysForMember(
-          member.joined_at
-        );
 
-      const completed =
-        completedDaysForMember(
-          member.user_id,
-          member.joined_at
-        );
+        const completeToday =
+          progressComplete(
+            todayRow,
+            t
+          );
 
-      const row =
-        document.createElement(
-          "div"
-        );
 
-      row.className = "member";
+        const eligible =
+          eligibleDaysForMember(
+            member.joined_at
+          );
 
-      row.innerHTML = `
-        <div class="avatar">
-          ${escapeHtml(name.charAt(0).toUpperCase())}
-        </div>
 
-        <div class="member-main">
-          <div class="member-name">
-            ${escapeHtml(name)}
-            ${
-              member.user_id === user.id
-                ? " • DU"
-                : ""
-            }
+        const completed =
+          completedDaysForMember(
+            member.user_id,
+            member.joined_at
+          );
+
+
+        const row =
+          document.createElement(
+            "div"
+          );
+
+
+        row.className =
+          "member";
+
+
+        row.innerHTML = `
+
+          <div class="avatar">
+            ${escapeHtml(
+              name
+                .charAt(0)
+                .toUpperCase()
+            )}
           </div>
 
-          <div class="member-status">
-            ${
-              completeToday
-                ? "Dagen klar 🦍"
-                : todayStatusText(todayRow)
-            }
-          </div>
-        </div>
+          <div class="member-main">
 
-        <div class="member-score">
-          <div class="${completeToday ? "green" : ""}">
-            ${completed}/${eligible}
-          </div>
-          <div class="small">
-            ${memberCompletionPercent(member)}%
-          </div>
-        </div>
-      `;
+            <div class="member-name">
 
-      holder.appendChild(row);
-    });
+              ${escapeHtml(name)}
+
+              ${
+                member.user_id
+                  === user.id
+                  ?
+                  " • DU"
+                  :
+                  ""
+              }
+
+            </div>
+
+            <div class="member-status">
+
+              ${
+                completeToday
+                  ?
+                  "Dagen klar 🦍"
+                  :
+                  todayStatusText(
+                    todayRow
+                  )
+              }
+
+            </div>
+
+          </div>
+
+          <div class="member-score">
+
+            <div
+              class="${
+                completeToday
+                  ?
+                  "green"
+                  :
+                  ""
+              }"
+            >
+
+              ${completed}/${eligible}
+
+            </div>
+
+            <div class="small">
+
+              ${
+                memberCompletionPercent(
+                  member
+                )
+              }%
+
+            </div>
+
+          </div>
+
+        `;
+
+
+        holder.appendChild(
+          row
+        );
+
+      }
+    );
+
 }
 
+
+/* ========================================
+   RENDER HISTORY
+   ======================================== */
+
 function renderHistory(){
+
   const holder =
     document.getElementById(
       "history"
     );
 
-  holder.innerHTML = "";
+
+  holder.innerHTML =
+    "";
+
 
   const dates =
     challengeDates();
+
 
   const join =
     parseDate(
       membership.joined_at
     );
 
+
   const t =
     todayDate();
 
+
   dates.forEach(
     (date,index)=>{
+
       const row =
         allProgress.find(
           p =>
-            p.user_id === user.id &&
-            p.workout_date ===
+            p.user_id
+              ===
+              user.id
+            &&
+            p.workout_date
+              ===
               localDateKey(date)
         );
+
 
       const box =
         document.createElement(
           "div"
         );
 
+
       box.className =
         "daybox";
 
-      let symbol = "○";
+
+      let symbol =
+        "○";
+
 
       if(date < join){
+
         box.classList.add(
           "prejoin"
         );
 
-        symbol = "➖";
+
+        symbol =
+          "➖";
+
       }
+
       else if(date > t){
+
         box.classList.add(
           "future"
         );
 
-        symbol = "·";
+
+        symbol =
+          "·";
+
       }
+
       else if(
         progressComplete(
           row,
           date
         )
       ){
+
         box.classList.add(
           "complete"
         );
 
-        symbol = "✅";
+
+        symbol =
+          "✅";
+
       }
+
       else if(
         progressPartial(row)
       ){
+
         box.classList.add(
           "partial"
         );
 
-        symbol = "◐";
+
+        symbol =
+          "◐";
+
       }
 
+
       if(
-        localDateKey(date) ===
+        localDateKey(date)
+        ===
         localDateKey(t)
       ){
+
         box.classList.add(
           "today"
         );
+
       }
 
+
       box.innerHTML = `
-        <strong>${index+1}</strong>
-        <span>${symbol}</span>
+
+        <strong>
+          ${index+1}
+        </strong>
+
+        <span>
+          ${symbol}
+        </span>
+
       `;
 
-      holder.appendChild(box);
-    });
+
+      holder.appendChild(
+        box
+      );
+
+    }
+  );
+
 
   const completed =
     completedDaysForMember(
@@ -2443,80 +5505,120 @@ function renderHistory(){
       membership.joined_at
     );
 
+
   const eligible =
     eligibleDaysForMember(
       membership.joined_at
     );
 
-  document.getElementById(
-    "historyScore"
-  ).textContent =
-    `${completed}/${eligible}`;
+
+  document
+    .getElementById(
+      "historyScore"
+    )
+    .textContent =
+      `${completed}/${eligible}`;
+
 }
 
 
-// ========================================
-// SCORE HELPERS
-// ========================================
+/* ========================================
+   SCORE HELPERS
+   ======================================== */
 
-function eligibleDaysForMember(joinedAt){
+function eligibleDaysForMember(
+  joinedAt
+){
+
   const join =
-    parseDate(joinedAt);
+    parseDate(
+      joinedAt
+    );
+
 
   const t =
     todayDate();
 
+
   return challengeDates()
     .filter(
       d =>
-        d >= join &&
+        d >= join
+        &&
         d <= t
     )
     .length;
+
 }
+
 
 function completedDaysForMember(
   userId,
   joinedAt
 ){
+
   const join =
-    parseDate(joinedAt);
+    parseDate(
+      joinedAt
+    );
+
 
   const t =
     todayDate();
 
+
   return challengeDates()
+
     .filter(
       date =>
-        date >= join &&
+        date >= join
+        &&
         date <= t
     )
+
     .filter(
-      date => {
+      date=>{
+
         const row =
           allProgress.find(
             p =>
-              p.user_id === userId &&
-              p.workout_date ===
+              p.user_id
+                ===
+                userId
+              &&
+              p.workout_date
+                ===
                 localDateKey(date)
           );
+
 
         return progressComplete(
           row,
           date
         );
+
       }
     )
+
     .length;
+
 }
 
-function memberCompletionPercent(member){
+
+function memberCompletionPercent(
+  member
+){
+
   const eligible =
     eligibleDaysForMember(
       member.joined_at
     );
 
-  if(!eligible) return 0;
+
+  if(!eligible){
+    return 0;
+  }
+
 
   const complete =
     completedDaysForMember(
@@ -2524,38 +5626,48 @@ function memberCompletionPercent(member){
       member.joined_at
     );
 
+
   return Math.round(
-    complete / eligible * 100
+    complete
+    /
+    eligible
+    *
+    100
   );
+
 }
 
+
 function todayStatusText(row){
+
   if(!row){
+
     return "Inte påbörjad";
+
   }
 
-  const parts = [];
 
-  parts.push(
+  return (
     `${row.main_reps}/100`
-  );
-
-  parts.push(
+    +
+    " • "
+    +
     `${formatSeconds(
       row.plank_seconds
     )}/5:00 plank`
   );
 
-  return parts.join(" • ");
 }
 
 
-// ========================================
-// REALTIME
-// ========================================
+/* ========================================
+   REALTIME
+   ======================================== */
 
 function startRealtime(){
+
   stopRealtime();
+
 
   realtimeChannel =
     sb
@@ -2588,47 +5700,102 @@ function startRealtime(){
       )
 
       .subscribe();
+
 }
 
+
 function scheduleRealtimeRefresh(){
+
   clearTimeout(
     realtimeRefreshTimer
   );
 
+
   realtimeRefreshTimer =
     setTimeout(
       async ()=>{
+
         await loadGroupData();
+
+
+        const cached =
+          loadLocalProgress();
+
+
+        /*
+          Om våra egna ändringar är
+          osynkade ska de lokala värdena
+          fortsätta vinna.
+        */
+
+        if(
+          cached?.dirty
+          &&
+          cached?.row
+        ){
+
+          todayProgress =
+            cached.row;
+
+        }
+
+
+        mergeTodayIntoAllProgress();
+
+
         renderGroup();
+
         renderHistory();
+
         renderHeader();
+
+        renderDay();
+
       },
       350
     );
+
 }
 
+
 function stopRealtime(){
+
   if(realtimeChannel){
+
     sb.removeChannel(
       realtimeChannel
     );
 
-    realtimeChannel = null;
+
+    realtimeChannel =
+      null;
+
   }
+
 }
 
 
-// ========================================
-// SHARE
-// ========================================
+/* ========================================
+   SHARE STATUS
+   ======================================== */
 
 async function shareStatus(){
-  if(!todayProgress) return;
+
+  if(!todayProgress){
+    return;
+  }
+
 
   const plan =
     trainingPlanForDate(
       todayDate()
     );
+
+
+  if(!plan){
+    return;
+  }
+
 
   const complete =
     progressComplete(
@@ -2636,7 +5803,9 @@ async function shareStatus(){
       todayDate()
     );
 
+
   const text =
+
 `🦍 PROJECT 40 — DAG ${plan.dayNumber}
 ${profile.display_name}
 
@@ -2647,215 +5816,485 @@ ${plan.bmu2.name}: ${formatTask(todayProgress.bmu2_value,plan.bmu2)} ${todayProg
 
 ${complete ? "🦍 DAGEN KLAR!" : "⏳ PÅGÅR"}`;
 
+
   await shareText(
     "PROJECT 40",
     text
   );
+
 }
 
+
+/* ========================================
+   SHARE JOIN CODE
+   ======================================== */
+
 async function shareJoinCode(){
+
   const text =
+
 `🦍 JOINA PROJECT 40
 
 Kod: ${challenge.join_code}
 
 ${APP_URL}`;
 
+
   await shareText(
     "PROJECT 40",
     text
   );
+
 }
 
-async function shareText(title,text){
+
+async function shareText(
+  title,
+  text
+){
+
   try{
+
     if(navigator.share){
+
       await navigator.share({
         title,
         text
       });
-    }else{
-      await navigator.clipboard
-        .writeText(text);
 
-      toast("Kopierat!");
+    }else{
+
+      await navigator
+        .clipboard
+        .writeText(
+          text
+        );
+
+
+      toast(
+        "Kopierat!"
+      );
+
     }
-  }catch{}
+
+  }catch(error){
+
+    /*
+      Användaren kan själv avbryta
+      delningsdialogen.
+      Det behöver inte visas som fel.
+    */
+
+  }
+
 }
 
 
-// ========================================
-// NAVIGATION
-// ========================================
+/* ========================================
+   NAVIGATION
+   ======================================== */
 
 function showTab(tab){
-  ["day","group","history"]
-    .forEach(name=>{
 
-      document.getElementById(
-        `tab${capitalize(name)}`
-      ).classList.toggle(
-        "hidden",
-        name !== tab
-      );
+  [
+    "day",
+    "group",
+    "history"
+  ]
+  .forEach(
+    name=>{
 
-      document.getElementById(
-        `nav${capitalize(name)}`
-      ).classList.toggle(
-        "active",
-        name === tab
-      );
-    });
+      document
+        .getElementById(
+          `tab${capitalize(name)}`
+        )
+        .classList
+        .toggle(
+          "hidden",
+          name !== tab
+        );
+
+
+      document
+        .getElementById(
+          `nav${capitalize(name)}`
+        )
+        .classList
+        .toggle(
+          "active",
+          name === tab
+        );
+
+    }
+  );
+
 }
+
 
 function capitalize(s){
+
   return (
-    s.charAt(0).toUpperCase() +
+    s
+      .charAt(0)
+      .toUpperCase()
+    +
     s.slice(1)
   );
+
 }
 
 
-// ========================================
-// GENERAL HELPERS
-// ========================================
+/* ========================================
+   GENERAL HELPERS
+   ======================================== */
 
 function toggleDone(
   cardId,
   badgeId,
   done
 ){
-  document.getElementById(
-    cardId
-  ).classList.toggle(
-    "done",
-    done
-  );
 
-  document.getElementById(
-    badgeId
-  ).classList.toggle(
-    "done",
-    done
-  );
+  document
+    .getElementById(
+      cardId
+    )
+    .classList
+    .toggle(
+      "done",
+      done
+    );
+
+
+  document
+    .getElementById(
+      badgeId
+    )
+    .classList
+    .toggle(
+      "done",
+      done
+    );
+
 }
 
+
 function formatSeconds(sec){
+
   sec =
     Math.max(
       0,
-      Math.floor(sec || 0)
+      Math.floor(
+        sec || 0
+      )
     );
 
+
   const min =
-    Math.floor(sec/60);
+    Math.floor(
+      sec / 60
+    );
+
 
   const seconds =
     sec % 60;
 
+
   return (
-    `${min}:` +
+    `${min}:`
+    +
     String(seconds)
-      .padStart(2,"0")
+      .padStart(
+        2,
+        "0"
+      )
   );
+
 }
 
-function formatTask(value,task){
-  if(task.unit === "sec"){
+
+function formatTask(
+  value,
+  task
+){
+
+  if(
+    task.unit === "sec"
+  ){
+
     return (
-      `${formatSeconds(value)}/` +
-      formatSeconds(task.target)
+      `${formatSeconds(value)}/${formatSeconds(task.target)}`
     );
+
   }
+
 
   return (
     `${value}/${task.target}`
   );
+
 }
 
+
 function escapeHtml(text){
+
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
+
 
   div.textContent =
     text || "";
 
+
   return div.innerHTML;
+
 }
 
+
 function toast(text){
+
   const el =
     document.getElementById(
       "toast"
     );
 
-  el.textContent = text;
 
-  el.classList.add("show");
+  el.textContent =
+    text;
+
+
+  el.classList.add(
+    "show"
+  );
+
 
   setTimeout(
     ()=>{
+
       el.classList.remove(
         "show"
       );
+
     },
     2800
   );
+
 }
+
+
+/* ========================================
+   VIEW HELPERS
+   ======================================== */
 
 function showLogin(){
-  document.getElementById(
-    "loginView"
-  ).classList.remove("hidden");
 
-  document.getElementById(
-    "challengeView"
-  ).classList.add("hidden");
+  document
+    .getElementById(
+      "loginView"
+    )
+    .classList
+    .remove("hidden");
 
-  document.getElementById(
-    "appView"
-  ).classList.add("hidden");
+
+  document
+    .getElementById(
+      "challengeView"
+    )
+    .classList
+    .add("hidden");
+
+
+  document
+    .getElementById(
+      "appView"
+    )
+    .classList
+    .add("hidden");
+
 }
 
 
-// ========================================
-// AUTH LISTENER
-// ========================================
+/* ========================================
+   NETWORK EVENTS
+   ======================================== */
 
-sb.auth.onAuthStateChange(
-  async (event,session)=>{
+window.addEventListener(
+  "offline",
+  ()=>{
+
     if(
-      event === "SIGNED_IN" &&
-      session?.user
+      user &&
+      challenge
     ){
-      user = session.user;
-      await boot();
+
+      const cached =
+        loadLocalProgress();
+
+
+      setSaveStatus(
+        cached?.dirty
+          ? "local"
+          : "offline"
+      );
+
     }
 
-    if(event === "SIGNED_OUT"){
-      showLogin();
-    }
   }
 );
 
 
-// ========================================
-// START
-// ========================================
+window.addEventListener(
+  "online",
+  async ()=>{
+
+    if(
+      !user ||
+      !challenge
+    ){
+      return;
+    }
+
+
+    const cached =
+      loadLocalProgress();
+
+
+    if(
+      cached?.dirty
+    ){
+
+      /*
+        Viktigt:
+        ladda tillbaka senaste lokala
+        version innan sync.
+      */
+
+      if(cached.row){
+
+        todayProgress =
+          cached.row;
+
+      }
+
+
+      setSaveStatus(
+        "saving"
+      );
+
+
+      await saveToday();
+
+    }else{
+
+      setSaveStatus(
+        "saved"
+      );
+
+    }
+
+
+    await loadGroupData();
+
+
+    mergeTodayIntoAllProgress();
+
+
+    renderEverything();
+
+
+    startRealtime();
+
+  }
+);
+
+
+/* ========================================
+   AUTH LISTENER
+   ======================================== */
+
+sb.auth.onAuthStateChange(
+  async (
+    event,
+    session
+  )=>{
+
+    if(
+      event === "SIGNED_IN"
+      &&
+      session?.user
+    ){
+
+      user =
+        session.user;
+
+
+      await boot();
+
+    }
+
+
+    if(
+      event === "SIGNED_OUT"
+    ){
+
+      showLogin();
+
+    }
+
+  }
+);
+
+
+/* ========================================
+   START APP
+   ======================================== */
 
 boot();
 
+
 </script>
+
+
+<!-- =====================================
+     SERVICE WORKER
+     ===================================== -->
+
 <script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/project40/service-worker.js")
-      .catch(error => {
-        console.error("Service Worker error:", error);
-      });
-  });
+
+if(
+  "serviceWorker"
+  in
+  navigator
+){
+
+  window.addEventListener(
+    "load",
+    ()=>{
+
+      navigator
+        .serviceWorker
+        .register(
+          "/project40/service-worker.js"
+        )
+        .catch(
+          error=>{
+
+            console.error(
+              "Service Worker error:",
+              error
+            );
+
+          }
+        );
+
+    }
+  );
+
 }
+
 </script>
+
+
 </body>
 </html>
