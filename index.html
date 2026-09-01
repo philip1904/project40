@@ -1,0 +1,1155 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111111">
+<title>PROJECT 40 🦍</title>
+
+<style>
+:root{
+  --bg:#0c0c0d;
+  --panel:#171719;
+  --panel2:#202023;
+  --text:#f5f5f4;
+  --muted:#a4a4aa;
+  --yellow:#f5c518;
+  --green:#39d98a;
+  --red:#ff5d5d;
+  --line:#2b2b2f;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+}
+button,input{font:inherit}
+button{touch-action:manipulation}
+
+.app{
+  width:min(100%,560px);
+  margin:0 auto;
+  padding:18px 16px 110px;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+  margin-bottom:16px;
+}
+.brand{
+  font-weight:950;
+  font-size:28px;
+  line-height:.95;
+  letter-spacing:-1px;
+}
+.brand span{color:var(--yellow)}
+.sub{
+  margin-top:7px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.pill{
+  border:1px solid var(--line);
+  background:var(--panel);
+  color:var(--text);
+  padding:9px 11px;
+  border-radius:999px;
+  font-weight:800;
+  font-size:12px;
+}
+
+.hero{
+  background:linear-gradient(135deg,#f5c518,#dca900);
+  color:#111;
+  border-radius:22px;
+  padding:20px;
+  margin-bottom:14px;
+  box-shadow:0 10px 30px rgba(0,0,0,.22);
+}
+.hero-top{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+.day{
+  font-size:34px;
+  font-weight:950;
+  letter-spacing:-1px;
+}
+.date{
+  margin-top:3px;
+  font-size:13px;
+  font-weight:800;
+  opacity:.72;
+}
+.hero-status{
+  text-align:right;
+  font-size:13px;
+  font-weight:900;
+}
+.progressbar{
+  height:10px;
+  background:rgba(0,0,0,.16);
+  border-radius:100px;
+  margin-top:18px;
+  overflow:hidden;
+}
+.progressbar>div{
+  height:100%;
+  width:0%;
+  background:#111;
+  border-radius:100px;
+  transition:.25s;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:16px;
+  margin-bottom:12px;
+}
+.card.done{
+  border-color:rgba(57,217,138,.5);
+  box-shadow:inset 0 0 0 1px rgba(57,217,138,.08);
+}
+.card-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+.card-title h2{
+  margin:0;
+  font-size:18px;
+  letter-spacing:-.25px;
+}
+.badge{
+  font-size:12px;
+  font-weight:900;
+  padding:6px 9px;
+  border-radius:999px;
+  background:var(--panel2);
+  color:var(--muted);
+}
+.badge.done{
+  background:rgba(57,217,138,.15);
+  color:var(--green);
+}
+
+.big-number{
+  font-size:42px;
+  line-height:1;
+  font-weight:950;
+  margin:18px 0 6px;
+  letter-spacing:-2px;
+}
+.target{
+  color:var(--muted);
+  font-size:14px;
+  font-weight:700;
+}
+
+.btnrow{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:16px;
+}
+.btnrow.three{
+  grid-template-columns:repeat(3,1fr);
+}
+.btn{
+  border:0;
+  border-radius:14px;
+  padding:13px 6px;
+  background:var(--panel2);
+  color:var(--text);
+  font-weight:900;
+}
+.btn:active{transform:scale(.97)}
+.btn.primary{
+  background:var(--yellow);
+  color:#111;
+}
+.btn.green{
+  background:var(--green);
+  color:#071a11;
+}
+.btn.danger{
+  background:rgba(255,93,93,.14);
+  color:#ff7b7b;
+}
+.btn:disabled{
+  opacity:.38;
+  transform:none;
+}
+
+.timer{
+  text-align:center;
+  font-size:64px;
+  line-height:1;
+  font-weight:950;
+  letter-spacing:-3px;
+  margin:20px 0 12px;
+  font-variant-numeric:tabular-nums;
+}
+.timer-sub{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+}
+.timer-buttons{
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:10px;
+  margin-top:16px;
+}
+.timer-buttons .btn{
+  padding:16px;
+  font-size:16px;
+}
+
+.sets{
+  margin-top:13px;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.rulebox{
+  border:1px solid rgba(245,197,24,.45);
+  background:rgba(245,197,24,.07);
+}
+.rulebox strong{
+  color:var(--yellow);
+}
+.rules{
+  margin:10px 0 0 18px;
+  padding:0;
+  color:#d3d3d5;
+  font-size:14px;
+  line-height:1.55;
+}
+
+.section-title{
+  margin:26px 2px 10px;
+  font-size:12px;
+  color:var(--muted);
+  font-weight:950;
+  letter-spacing:1.4px;
+}
+
+.history{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:8px;
+}
+.daybox{
+  min-height:60px;
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:13px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:3px;
+}
+.daybox strong{font-size:15px}
+.daybox span{
+  font-size:11px;
+  color:var(--muted);
+}
+.daybox.complete{
+  background:rgba(57,217,138,.14);
+  border-color:rgba(57,217,138,.5);
+}
+.daybox.partial{
+  background:rgba(245,197,24,.1);
+  border-color:rgba(245,197,24,.35);
+}
+.daybox.prejoin{
+  opacity:.38;
+}
+.daybox.future{
+  opacity:.25;
+}
+.daybox.today{
+  outline:2px solid var(--yellow);
+}
+
+.actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.actions .btn{padding:15px}
+
+.setup{
+  position:fixed;
+  inset:0;
+  background:var(--bg);
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.setup.hidden{display:none}
+.setupbox{
+  width:min(100%,480px);
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:22px;
+}
+.setupbox h1{
+  margin:0 0 6px;
+  font-size:32px;
+}
+.setupbox p{
+  margin:0 0 20px;
+  color:var(--muted);
+  line-height:1.5;
+}
+label{
+  display:block;
+  margin:14px 0 7px;
+  color:#d3d3d5;
+  font-weight:800;
+  font-size:13px;
+}
+input{
+  width:100%;
+  border:1px solid var(--line);
+  background:#101012;
+  color:var(--text);
+  border-radius:13px;
+  padding:14px;
+  outline:none;
+}
+.setupbox .btn{
+  width:100%;
+  margin-top:20px;
+  padding:16px;
+}
+
+.rest{
+  text-align:center;
+  padding:40px 18px;
+}
+.rest .emoji{
+  font-size:64px;
+}
+.rest h2{
+  font-size:30px;
+  margin:10px 0 5px;
+}
+.rest p{
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.completeBanner{
+  display:none;
+  text-align:center;
+  background:var(--green);
+  color:#071a11;
+  padding:17px;
+  border-radius:18px;
+  margin-bottom:12px;
+  font-weight:950;
+  font-size:19px;
+}
+.completeBanner.show{display:block}
+
+.small{
+  font-size:12px;
+  color:var(--muted);
+}
+</style>
+</head>
+
+<body>
+
+<div id="setup" class="setup">
+  <div class="setupbox">
+    <h1>🦍 PROJECT 40</h1>
+    <p>40 vardagar. Exakt dos. Ingen ikappträning. Ingen bonusvolym.</p>
+
+    <label>Ditt namn</label>
+    <input id="setupName" placeholder="Philip">
+
+    <label>Challenge startdatum</label>
+    <input id="setupStart" type="date">
+
+    <label>Datum du går med</label>
+    <input id="setupJoin" type="date">
+
+    <div class="small" style="margin-top:10px">
+      Philip och Kennet använder samma startdatum. En person som går med senare sätter sitt faktiska join-datum.
+    </div>
+
+    <button class="btn primary" onclick="saveSetup()">STARTA PROJECT 40</button>
+  </div>
+</div>
+
+
+<div class="app">
+
+  <div class="header">
+    <div>
+      <div class="brand">PROJECT <span>40</span> 🦍</div>
+      <div class="sub" id="profileLine">40 vardagar mot första BMU</div>
+    </div>
+    <button class="pill" onclick="editSetup()">INSTÄLLNINGAR</button>
+  </div>
+
+  <div id="completeBanner" class="completeBanner">
+    🦍 DAGEN KLAR!
+  </div>
+
+  <div class="hero">
+    <div class="hero-top">
+      <div>
+        <div class="day" id="dayTitle">DAG 1</div>
+        <div class="date" id="dateTitle"></div>
+      </div>
+      <div class="hero-status" id="heroStatus"></div>
+    </div>
+
+    <div class="progressbar">
+      <div id="progressFill"></div>
+    </div>
+  </div>
+
+  <div id="restView" class="card rest" style="display:none">
+    <div class="emoji">🛋️</div>
+    <h2>VILA</h2>
+    <p>
+      Ingen challenge-volym idag.<br>
+      Inga reps att ta igen.<br>
+      CrossFit körs som vanligt.
+    </p>
+  </div>
+
+  <div id="challengeView">
+
+    <div class="card" id="mainTaskCard">
+      <div class="card-title">
+        <h2 id="mainTaskName">100 PUSH-UPS</h2>
+        <span id="mainTaskBadge" class="badge">0 / 100</span>
+      </div>
+      <div class="big-number" id="mainTaskNumber">0</div>
+      <div class="target">av <span id="mainTarget">100</span></div>
+
+      <div class="btnrow">
+        <button class="btn" onclick="addMain(5)">+5</button>
+        <button class="btn" onclick="addMain(10)">+10</button>
+        <button class="btn" onclick="addMain(20)">+20</button>
+        <button class="btn primary" onclick="addMain(25)">+25</button>
+      </div>
+    </div>
+
+
+    <div class="card" id="plankCard">
+      <div class="card-title">
+        <h2>PLANKA</h2>
+        <span id="plankBadge" class="badge">0:00 / 5:00</span>
+      </div>
+
+      <div class="timer" id="timerDisplay">0:00</div>
+      <div class="timer-sub">Dagens sammanlagda tid</div>
+
+      <div class="timer-buttons">
+        <button id="timerButton" class="btn primary" onclick="toggleTimer()">▶ STARTA</button>
+        <button id="undoPlankButton" class="btn" onclick="undoPlank()">ÅNGRA</button>
+      </div>
+
+      <div class="sets" id="plankSets"></div>
+    </div>
+
+
+    <div class="card" id="bmu1Card">
+      <div class="card-title">
+        <h2 id="bmu1Name">BMU #1</h2>
+        <span id="bmu1Badge" class="badge"></span>
+      </div>
+
+      <div class="big-number" id="bmu1Number">0</div>
+      <div class="target" id="bmu1Target"></div>
+
+      <div class="btnrow three" id="bmu1Buttons"></div>
+    </div>
+
+
+    <div class="card" id="bmu2Card">
+      <div class="card-title">
+        <h2 id="bmu2Name">BMU #2</h2>
+        <span id="bmu2Badge" class="badge"></span>
+      </div>
+
+      <div class="big-number" id="bmu2Number">0</div>
+      <div class="target" id="bmu2Target"></div>
+
+      <div class="btnrow three" id="bmu2Buttons"></div>
+    </div>
+
+    <div class="card rulebox">
+      <strong>DEN HELIGA REGELN</strong>
+      <ul class="rules">
+        <li>Gör exakt dagens dos — inte mer.</li>
+        <li>Missad dag tas aldrig igen.</li>
+        <li>BMU-reps görs aldrig till failure.</li>
+        <li>Kvalitet slår ego.</li>
+      </ul>
+    </div>
+
+    <div class="actions">
+      <button class="btn green" onclick="shareStatus()">DELA STATUS</button>
+      <button class="btn danger" onclick="resetToday()">ÅTERSTÄLL IDAG</button>
+    </div>
+
+  </div>
+
+
+  <div class="section-title">40-DAGARS HISTORIK</div>
+  <div id="history" class="history"></div>
+
+</div>
+
+
+<script>
+const STORAGE_KEY = "project40_v1";
+
+const BMU_PLAN = {
+  1: [
+    {name:"SCAP PULL-UPS", target:20, unit:"reps", buttons:[1,5,10]},
+    {name:"HANG", target:120, unit:"sec", buttons:[15,30,60]}
+  ],
+  2: [
+    {name:"STRICT PULL-UPS", target:10, unit:"reps", buttons:[1,2,5]},
+    {name:"HOLLOW / ARCH", target:20, unit:"reps", buttons:[1,5,10]}
+  ],
+  3: [
+    {name:"EXPLOSIVA HIGH PULLS", target:10, unit:"reps", buttons:[1,2,5]},
+    {name:"HANGING KNEE RAISES", target:20, unit:"reps", buttons:[1,5,10]}
+  ],
+  4: [
+    {name:"SCAP PULL-UPS", target:20, unit:"reps", buttons:[1,5,10]},
+    {name:"ACTIVE HANG", target:120, unit:"sec", buttons:[15,30,60]}
+  ],
+  5: [
+    {name:"EXPLOSIVA HIGH PULLS", target:10, unit:"reps", buttons:[1,2,5]},
+    {name:"KONTROLLERADE KIP SWINGS", target:20, unit:"reps", buttons:[1,5,10]}
+  ]
+};
+
+let state = loadState();
+
+function defaultState(){
+  return {
+    profile:null,
+    days:{},
+    activePlank:null
+  };
+}
+
+function loadState(){
+  try{
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || defaultState();
+  }catch(e){
+    return defaultState();
+  }
+}
+
+function saveState(){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function dateKey(date){
+  const y=date.getFullYear();
+  const m=String(date.getMonth()+1).padStart(2,"0");
+  const d=String(date.getDate()).padStart(2,"0");
+  return `${y}-${m}-${d}`;
+}
+
+function parseDate(str){
+  const [y,m,d]=str.split("-").map(Number);
+  return new Date(y,m-1,d,12,0,0);
+}
+
+function today(){
+  const d=new Date();
+  return new Date(d.getFullYear(),d.getMonth(),d.getDate(),12,0,0);
+}
+
+function isWeekday(d){
+  const x=d.getDay();
+  return x>=1 && x<=5;
+}
+
+function addDays(d,n){
+  const x=new Date(d);
+  x.setDate(x.getDate()+n);
+  return x;
+}
+
+function challengeDates(){
+  if(!state.profile) return [];
+  let d=parseDate(state.profile.startDate);
+  let arr=[];
+  while(arr.length<40){
+    if(isWeekday(d)) arr.push(new Date(d));
+    d=addDays(d,1);
+  }
+  return arr;
+}
+
+function getChallengeDayForDate(date){
+  const dates=challengeDates();
+  const key=dateKey(date);
+  const idx=dates.findIndex(d=>dateKey(d)===key);
+  return idx===-1 ? null : idx+1;
+}
+
+function getTodayInfo(){
+  if(!state.profile) return null;
+  const t=today();
+  const day=getChallengeDayForDate(t);
+  const dates=challengeDates();
+  const start=dates[0];
+  const end=dates[39];
+
+  return {
+    date:t,
+    day,
+    before:t<start,
+    after:t>end,
+    weekend:!isWeekday(t)
+  };
+}
+
+function getProgress(date){
+  const key=dateKey(date);
+  if(!state.days[key]){
+    state.days[key]={
+      main:0,
+      plankSeconds:0,
+      plankSets:[],
+      bmu1:0,
+      bmu2:0
+    };
+  }
+  return state.days[key];
+}
+
+function weekdaySlot(date){
+  const d=date.getDay();
+  return d; // Monday = 1 ... Friday = 5
+}
+
+function weekIndexForDate(date){
+  const dates=challengeDates();
+  const day=getChallengeDayForDate(date);
+  if(!day) return 0;
+  return Math.floor((day-1)/5);
+}
+
+function mainTaskForDate(date){
+  const weekday=weekdaySlot(date);
+  const week=weekIndexForDate(date);
+  const weekA = week % 2 === 0;
+
+  let push;
+
+  if(weekA){
+    push = [1,3,5].includes(weekday);
+  }else{
+    push = [2,4].includes(weekday);
+  }
+
+  return {
+    name:push ? "PUSH-UPS" : "AIR SQUATS",
+    target:100
+  };
+}
+
+function bmuTasksForDate(date){
+  return BMU_PLAN[weekdaySlot(date)] || null;
+}
+
+function formatSeconds(sec){
+  sec=Math.max(0,Math.floor(sec));
+  const m=Math.floor(sec/60);
+  const s=sec%60;
+  return `${m}:${String(s).padStart(2,"0")}`;
+}
+
+function formatSwedishDate(d){
+  return d.toLocaleDateString("sv-SE",{
+    weekday:"long",
+    day:"numeric",
+    month:"long"
+  });
+}
+
+function currentPlankSeconds(){
+  const t=today();
+  const p=getProgress(t);
+
+  if(!state.activePlank) return p.plankSeconds;
+
+  if(state.activePlank.date !== dateKey(t)){
+    state.activePlank=null;
+    saveState();
+    return p.plankSeconds;
+  }
+
+  const elapsed=Math.floor((Date.now()-state.activePlank.startedAt)/1000);
+  return Math.min(300, p.plankSeconds + elapsed);
+}
+
+function isDayComplete(date){
+  if(!isWeekday(date)) return false;
+
+  const day=getChallengeDayForDate(date);
+  if(!day) return false;
+
+  if(parseDate(state.profile.joinDate)>date) return false;
+
+  const p=getProgress(date);
+  const main=mainTaskForDate(date);
+  const bmu=bmuTasksForDate(date);
+
+  return (
+    p.main >= main.target &&
+    p.plankSeconds >= 300 &&
+    p.bmu1 >= bmu[0].target &&
+    p.bmu2 >= bmu[1].target
+  );
+}
+
+function isPartial(date){
+  const p=state.days[dateKey(date)];
+  if(!p) return false;
+
+  return (
+    p.main>0 ||
+    p.plankSeconds>0 ||
+    p.bmu1>0 ||
+    p.bmu2>0
+  );
+}
+
+function completedCount(){
+  const join=parseDate(state.profile.joinDate);
+  return challengeDates().filter(d=>d>=join && d<=today() && isDayComplete(d)).length;
+}
+
+function eligibleCount(){
+  const join=parseDate(state.profile.joinDate);
+  return challengeDates().filter(d=>d>=join && d<=today()).length;
+}
+
+function render(){
+  if(!state.profile){
+    showSetup();
+    return;
+  }
+
+  document.getElementById("setup").classList.add("hidden");
+  document.getElementById("profileLine").textContent =
+    `${state.profile.name} • 40 vardagar mot första BMU`;
+
+  const info=getTodayInfo();
+  const challengeView=document.getElementById("challengeView");
+  const restView=document.getElementById("restView");
+  const banner=document.getElementById("completeBanner");
+
+  if(info.day){
+    challengeView.style.display="block";
+    restView.style.display="none";
+
+    document.getElementById("dayTitle").textContent=`DAG ${info.day}`;
+    document.getElementById("dateTitle").textContent=
+      formatSwedishDate(info.date).toUpperCase();
+
+    const eligible=eligibleCount();
+    const completed=completedCount();
+
+    document.getElementById("heroStatus").innerHTML=
+      `${completed}/${eligible}<br>GENOMFÖRDA`;
+
+    const pct=eligible ? Math.round((completed/eligible)*100) : 0;
+    document.getElementById("progressFill").style.width=`${pct}%`;
+
+    renderToday();
+
+    banner.classList.toggle("show",isDayComplete(info.date));
+
+  }else{
+    challengeView.style.display="none";
+    restView.style.display="block";
+    banner.classList.remove("show");
+
+    if(info.before){
+      document.getElementById("dayTitle").textContent="SNART DAGS";
+      document.getElementById("dateTitle").textContent=
+        `START ${state.profile.startDate}`;
+    }else if(info.after){
+      document.getElementById("dayTitle").textContent="40/40";
+      document.getElementById("dateTitle").textContent="PROJECT 40 AVSLUTAT";
+    }else{
+      document.getElementById("dayTitle").textContent="VILODAG";
+      document.getElementById("dateTitle").textContent=
+        formatSwedishDate(info.date).toUpperCase();
+    }
+
+    const eligible=eligibleCount();
+    const completed=completedCount();
+    document.getElementById("heroStatus").innerHTML=
+      `${completed}/${eligible}<br>GENOMFÖRDA`;
+    const pct=eligible ? Math.round((completed/eligible)*100) : 0;
+    document.getElementById("progressFill").style.width=`${pct}%`;
+  }
+
+  renderHistory();
+}
+
+function renderToday(){
+  const d=today();
+  const p=getProgress(d);
+  const main=mainTaskForDate(d);
+  const bmu=bmuTasksForDate(d);
+
+  document.getElementById("mainTaskName").textContent=`100 ${main.name}`;
+  document.getElementById("mainTaskNumber").textContent=p.main;
+  document.getElementById("mainTarget").textContent=main.target;
+  document.getElementById("mainTaskBadge").textContent=
+    `${p.main} / ${main.target}`;
+
+  const mainDone=p.main>=main.target;
+  toggleDone("mainTaskCard","mainTaskBadge",mainDone);
+
+  renderPlank();
+  renderBmu(1,bmu[0],p.bmu1);
+  renderBmu(2,bmu[1],p.bmu2);
+
+  saveState();
+}
+
+function toggleDone(cardId,badgeId,done){
+  document.getElementById(cardId).classList.toggle("done",done);
+  document.getElementById(badgeId).classList.toggle("done",done);
+}
+
+function addMain(n){
+  const d=today();
+  const p=getProgress(d);
+  const target=100;
+
+  p.main=Math.min(target,p.main+n);
+  saveState();
+  render();
+}
+
+function renderPlank(){
+  const p=getProgress(today());
+  const total=currentPlankSeconds();
+
+  document.getElementById("timerDisplay").textContent=formatSeconds(total);
+  document.getElementById("plankBadge").textContent=
+    `${formatSeconds(total)} / 5:00`;
+
+  const done=total>=300;
+  toggleDone("plankCard","plankBadge",done);
+
+  const timerBtn=document.getElementById("timerButton");
+
+  if(done){
+    timerBtn.textContent="✓ KLAR";
+    timerBtn.disabled=true;
+    if(state.activePlank) stopTimer(true);
+  }else{
+    timerBtn.disabled=false;
+    timerBtn.textContent=state.activePlank ? "■ STOPPA" : "▶ STARTA";
+    timerBtn.className=state.activePlank ? "btn danger" : "btn primary";
+  }
+
+  document.getElementById("undoPlankButton").disabled=
+    !p.plankSets.length || !!state.activePlank;
+
+  document.getElementById("plankSets").textContent=
+    p.plankSets.length
+      ? "SET: " + p.plankSets.map(formatSeconds).join(" + ")
+      : "Inga plank-set registrerade ännu.";
+}
+
+function toggleTimer(){
+  if(state.activePlank){
+    stopTimer(false);
+  }else{
+    startTimer();
+  }
+}
+
+function startTimer(){
+  const p=getProgress(today());
+  if(p.plankSeconds>=300) return;
+
+  state.activePlank={
+    date:dateKey(today()),
+    startedAt:Date.now()
+  };
+  saveState();
+  renderPlank();
+}
+
+function stopTimer(auto){
+  if(!state.activePlank) return;
+
+  const p=getProgress(today());
+  const elapsed=Math.max(
+    1,
+    Math.floor((Date.now()-state.activePlank.startedAt)/1000)
+  );
+
+  const remaining=Math.max(0,300-p.plankSeconds);
+  const added=Math.min(elapsed,remaining);
+
+  if(added>0){
+    p.plankSeconds+=added;
+    p.plankSets.push(added);
+  }
+
+  state.activePlank=null;
+  saveState();
+
+  if(!auto) render();
+}
+
+function undoPlank(){
+  const p=getProgress(today());
+  if(state.activePlank || !p.plankSets.length) return;
+
+  const last=p.plankSets.pop();
+  p.plankSeconds=Math.max(0,p.plankSeconds-last);
+  saveState();
+  render();
+}
+
+function renderBmu(index,task,value){
+  const prefix=`bmu${index}`;
+
+  document.getElementById(`${prefix}Name`).textContent=task.name;
+  document.getElementById(`${prefix}Number`).textContent=
+    task.unit==="sec" ? formatSeconds(value) : value;
+
+  document.getElementById(`${prefix}Target`).textContent=
+    task.unit==="sec"
+      ? `av ${formatSeconds(task.target)} totalt`
+      : `av ${task.target} reps totalt`;
+
+  document.getElementById(`${prefix}Badge`).textContent=
+    task.unit==="sec"
+      ? `${formatSeconds(value)} / ${formatSeconds(task.target)}`
+      : `${value} / ${task.target}`;
+
+  const holder=document.getElementById(`${prefix}Buttons`);
+  holder.innerHTML="";
+
+  task.buttons.forEach(amount=>{
+    const b=document.createElement("button");
+    b.className="btn" + (
+      amount===task.buttons[task.buttons.length-1] ? " primary" : ""
+    );
+
+    b.textContent=task.unit==="sec"
+      ? `+${amount}s`
+      : `+${amount}`;
+
+    b.disabled=value>=task.target;
+
+    b.onclick=()=>addBmu(index,amount,task.target);
+    holder.appendChild(b);
+  });
+
+  toggleDone(
+    `${prefix}Card`,
+    `${prefix}Badge`,
+    value>=task.target
+  );
+}
+
+function addBmu(index,amount,target){
+  const p=getProgress(today());
+  const key=index===1 ? "bmu1" : "bmu2";
+
+  p[key]=Math.min(target,p[key]+amount);
+  saveState();
+  render();
+}
+
+function renderHistory(){
+  const holder=document.getElementById("history");
+  holder.innerHTML="";
+
+  if(!state.profile) return;
+
+  const dates=challengeDates();
+  const join=parseDate(state.profile.joinDate);
+  const t=today();
+
+  dates.forEach((d,i)=>{
+    const box=document.createElement("div");
+    box.className="daybox";
+
+    if(d<join){
+      box.classList.add("prejoin");
+    }else if(d>t){
+      box.classList.add("future");
+    }else if(isDayComplete(d)){
+      box.classList.add("complete");
+    }else if(isPartial(d)){
+      box.classList.add("partial");
+    }
+
+    if(dateKey(d)===dateKey(t)){
+      box.classList.add("today");
+    }
+
+    const status=
+      d<join ? "➖" :
+      d>t ? "·" :
+      isDayComplete(d) ? "✅" :
+      isPartial(d) ? "◐" : "○";
+
+    box.innerHTML=
+      `<strong>${i+1}</strong>
+       <span>${status}</span>`;
+
+    holder.appendChild(box);
+  });
+}
+
+async function shareStatus(){
+  const d=today();
+  const day=getChallengeDayForDate(d);
+  const p=getProgress(d);
+  const main=mainTaskForDate(d);
+  const bmu=bmuTasksForDate(d);
+
+  const complete=isDayComplete(d);
+
+  const text=
+`🦍 PROJECT 40 — DAG ${day}
+${state.profile.name}
+
+${main.name}: ${p.main}/100 ${p.main>=100?"✅":""}
+PLANKA: ${formatSeconds(currentPlankSeconds())}/5:00 ${currentPlankSeconds()>=300?"✅":""}
+${bmu[0].name}: ${formatTaskValue(p.bmu1,bmu[0])} ${p.bmu1>=bmu[0].target?"✅":""}
+${bmu[1].name}: ${formatTaskValue(p.bmu2,bmu[1])} ${p.bmu2>=bmu[1].target?"✅":""}
+
+${complete ? "🦍 DAGEN KLAR!" : "⏳ PÅGÅR"}`;
+
+  try{
+    if(navigator.share){
+      await navigator.share({
+        title:"PROJECT 40",
+        text
+      });
+    }else{
+      await navigator.clipboard.writeText(text);
+      alert("Status kopierad!");
+    }
+  }catch(e){}
+}
+
+function formatTaskValue(value,task){
+  if(task.unit==="sec"){
+    return `${formatSeconds(value)}/${formatSeconds(task.target)}`;
+  }
+  return `${value}/${task.target}`;
+}
+
+function resetToday(){
+  if(!confirm("Återställa dagens PROJECT 40-data?")) return;
+
+  const key=dateKey(today());
+  delete state.days[key];
+  state.activePlank=null;
+  saveState();
+  render();
+}
+
+function showSetup(){
+  document.getElementById("setup").classList.remove("hidden");
+
+  if(state.profile){
+    document.getElementById("setupName").value=state.profile.name;
+    document.getElementById("setupStart").value=state.profile.startDate;
+    document.getElementById("setupJoin").value=state.profile.joinDate;
+  }else{
+    document.getElementById("setupJoin").value=dateKey(today());
+  }
+}
+
+function editSetup(){
+  showSetup();
+}
+
+function saveSetup(){
+  const name=document.getElementById("setupName").value.trim();
+  const start=document.getElementById("setupStart").value;
+  const join=document.getElementById("setupJoin").value;
+
+  if(!name || !start || !join){
+    alert("Fyll i namn, startdatum och join-datum.");
+    return;
+  }
+
+  const startD=parseDate(start);
+  const joinD=parseDate(join);
+
+  if(joinD<startD){
+    alert("Join-datum kan inte ligga före challenge-start.");
+    return;
+  }
+
+  state.profile={
+    name,
+    startDate:start,
+    joinDate:join
+  };
+
+  saveState();
+  document.getElementById("setup").classList.add("hidden");
+  render();
+}
+
+setInterval(()=>{
+  if(state.profile && state.activePlank){
+    renderPlank();
+
+    if(currentPlankSeconds()>=300){
+      stopTimer(true);
+      render();
+    }
+  }
+},250);
+
+render();
+</script>
+
+</body>
+</html>
