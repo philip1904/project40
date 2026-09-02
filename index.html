@@ -13675,6 +13675,501 @@ renderDay =
     }
 
   };
+
+ /* ========================================
+   PROJECT 40 — PERSONAL STATS v1
+
+   Visas i HISTORIK.
+
+   Läser bara befintlig progress.
+   Ingen SQL.
+   Ingen migration.
+   Ingen träningsdata ändras.
+   ======================================== */
+
+
+/* ========================================
+   BEST STREAK
+   ======================================== */
+
+function p40BestStreakForMember(
+  userId,
+  joinedAt
+){
+
+  const join =
+    parseDate(
+      joinedAt
+    );
+
+
+  const t =
+    todayDate();
+
+
+  const dates =
+    challengeDates()
+      .filter(
+        date =>
+          date >= join
+          &&
+          date <= t
+      );
+
+
+  let best =
+    0;
+
+
+  let current =
+    0;
+
+
+  dates.forEach(
+    date=>{
+
+
+      const row =
+        allProgress.find(
+          p =>
+            p.user_id ===
+              userId
+            &&
+            p.workout_date ===
+              localDateKey(date)
+        );
+
+
+      if(
+        progressComplete(
+          row,
+          date
+        )
+      ){
+
+        current++;
+
+
+        best =
+          Math.max(
+            best,
+            current
+          );
+
+      }else{
+
+        current =
+          0;
+
+      }
+
+
+    }
+  );
+
+
+  return best;
+
+}
+
+
+/* ========================================
+   STATS UI
+   ======================================== */
+
+function p40EnsurePersonalStatsUI(){
+
+  if(
+    document.getElementById(
+      "p40PersonalStats"
+    )
+  ){
+    return;
+  }
+
+
+  const history =
+    document.getElementById(
+      "history"
+    );
+
+
+  if(!history){
+    return;
+  }
+
+
+  /*
+    CSS
+  */
+
+  if(
+    !document.getElementById(
+      "p40PersonalStatsStyles"
+    )
+  ){
+
+    const style =
+      document.createElement(
+        "style"
+      );
+
+
+    style.id =
+      "p40PersonalStatsStyles";
+
+
+    style.textContent = `
+
+      .p40-personal-stats{
+        display:grid;
+
+        grid-template-columns:
+          repeat(2,1fr);
+
+        gap:8px;
+
+        margin:
+          16px 0
+          18px;
+      }
+
+
+      .p40-personal-stat{
+        min-height:96px;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+        justify-content:center;
+
+        padding:13px 8px;
+
+        border-radius:15px;
+
+        background:#101012;
+
+        border:
+          1px solid
+          var(--line);
+
+        text-align:center;
+      }
+
+
+      .p40-personal-stat-value{
+        color:var(--yellow);
+
+        font-size:26px;
+        font-weight:950;
+
+        line-height:1;
+
+        letter-spacing:-.7px;
+      }
+
+
+      .p40-personal-stat-label{
+        margin-top:8px;
+
+        color:var(--muted);
+
+        font-size:9px;
+        font-weight:950;
+
+        line-height:1.25;
+
+        letter-spacing:.65px;
+
+        text-transform:uppercase;
+      }
+
+
+      .p40-personal-stat.green
+      .p40-personal-stat-value{
+        color:var(--green);
+      }
+
+
+      @media
+      (min-width:500px){
+
+        .p40-personal-stats{
+          grid-template-columns:
+            repeat(4,1fr);
+        }
+
+      }
+
+    `;
+
+
+    document.head
+      .appendChild(
+        style
+      );
+
+  }
+
+
+  /*
+    HTML
+
+    Lägg stats direkt ovanför
+    de 40 dagrutorna.
+  */
+
+  const stats =
+    document.createElement(
+      "div"
+    );
+
+
+  stats.id =
+    "p40PersonalStats";
+
+
+  stats.className =
+    "p40-personal-stats";
+
+
+  stats.innerHTML = `
+
+    <div
+      class="p40-personal-stat"
+    >
+
+      <div
+        id="p40StatCompleted"
+        class="p40-personal-stat-value"
+      >
+        0/0
+      </div>
+
+      <div
+        class="p40-personal-stat-label"
+      >
+        KLARA DAGAR
+      </div>
+
+    </div>
+
+
+    <div
+      class="p40-personal-stat"
+    >
+
+      <div
+        id="p40StatCurrentStreak"
+        class="p40-personal-stat-value"
+      >
+        0
+      </div>
+
+      <div
+        class="p40-personal-stat-label"
+      >
+        🔥 NUVARANDE STREAK
+      </div>
+
+    </div>
+
+
+    <div
+      class="p40-personal-stat"
+    >
+
+      <div
+        id="p40StatBestStreak"
+        class="p40-personal-stat-value"
+      >
+        0
+      </div>
+
+      <div
+        class="p40-personal-stat-label"
+      >
+        🏆 BÄSTA STREAK
+      </div>
+
+    </div>
+
+
+    <div
+      class="p40-personal-stat green"
+    >
+
+      <div
+        id="p40StatCompletion"
+        class="p40-personal-stat-value"
+      >
+        0%
+      </div>
+
+      <div
+        class="p40-personal-stat-label"
+      >
+        GENOMFÖRT
+      </div>
+
+    </div>
+
+  `;
+
+
+  history.parentNode
+    .insertBefore(
+      stats,
+      history
+    );
+
+}
+
+
+/* ========================================
+   CALCULATE + RENDER STATS
+   ======================================== */
+
+function p40RenderPersonalStats(){
+
+  if(
+    !user ||
+    !membership
+  ){
+    return;
+  }
+
+
+  p40EnsurePersonalStatsUI();
+
+
+  const completed =
+    completedDaysForMember(
+      user.id,
+      membership.joined_at
+    );
+
+
+  const eligible =
+    eligibleDaysForMember(
+      membership.joined_at
+    );
+
+
+  const currentStreak =
+    currentStreakForMember(
+      user.id,
+      membership.joined_at
+    );
+
+
+  const bestStreak =
+    p40BestStreakForMember(
+      user.id,
+      membership.joined_at
+    );
+
+
+  const percentage =
+    eligible
+      ?
+      Math.round(
+        completed
+        /
+        eligible
+        *
+        100
+      )
+      :
+      0;
+
+
+  const completedEl =
+    document.getElementById(
+      "p40StatCompleted"
+    );
+
+
+  const currentEl =
+    document.getElementById(
+      "p40StatCurrentStreak"
+    );
+
+
+  const bestEl =
+    document.getElementById(
+      "p40StatBestStreak"
+    );
+
+
+  const percentageEl =
+    document.getElementById(
+      "p40StatCompletion"
+    );
+
+
+  if(completedEl){
+
+    completedEl.textContent =
+      `${completed}/${eligible}`;
+
+  }
+
+
+  if(currentEl){
+
+    currentEl.textContent =
+      currentStreak;
+
+  }
+
+
+  if(bestEl){
+
+    bestEl.textContent =
+      bestStreak;
+
+  }
+
+
+  if(percentageEl){
+
+    percentageEl.textContent =
+      `${percentage}%`;
+
+  }
+
+}
+
+
+/* ========================================
+   EXTEND EXISTING HISTORY RENDER
+   ======================================== */
+
+const p40PersonalStatsBaseRenderHistory =
+  renderHistory;
+
+
+renderHistory =
+  function(){
+
+
+    /*
+      Kör befintliga HISTORIK först.
+    */
+
+    p40PersonalStatsBaseRenderHistory();
+
+
+    /*
+      Lägg därefter på stats.
+    */
+
+    p40RenderPersonalStats();
+
+  }; 
   
 /* ========================================
    START
