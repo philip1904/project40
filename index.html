@@ -11911,6 +11911,929 @@ document.addEventListener(
 
   }
 );
+
+/* ========================================
+   PROJECT 40 — LIVE GRUPPPROGRESS v1
+
+   Dagens progress:
+   25% huvuduppgift
+   25% planka
+   25% teknik 1
+   25% teknik 2
+
+   Ingen SQL.
+   Ingen migration.
+   Ingen befintlig progress skrivs om.
+   ======================================== */
+
+
+/* ========================================
+   TODAY PERCENT
+   ======================================== */
+
+function p40TodayProgressPercent(
+  row,
+  date = todayDate()
+){
+
+  const plan =
+    trainingPlanForDate(
+      date
+    );
+
+
+  if(
+    !plan ||
+    !row
+  ){
+
+    return 0;
+
+  }
+
+
+  const main =
+    Math.min(
+      1,
+      Math.max(
+        0,
+        Number(
+          row.main_reps || 0
+        )
+        /
+        plan.main.target
+      )
+    );
+
+
+  const plank =
+    Math.min(
+      1,
+      Math.max(
+        0,
+        Number(
+          row.plank_seconds || 0
+        )
+        /
+        300
+      )
+    );
+
+
+  const technique1 =
+    Math.min(
+      1,
+      Math.max(
+        0,
+        Number(
+          row.bmu1_value || 0
+        )
+        /
+        plan.bmu1.target
+      )
+    );
+
+
+  const technique2 =
+    Math.min(
+      1,
+      Math.max(
+        0,
+        Number(
+          row.bmu2_value || 0
+        )
+        /
+        plan.bmu2.target
+      )
+    );
+
+
+  return Math.min(
+    100,
+    Math.round(
+      (
+        main
+        +
+        plank
+        +
+        technique1
+        +
+        technique2
+      )
+      /
+      4
+      *
+      100
+    )
+  );
+
+}
+
+
+/* ========================================
+   GROUP PROGRESS CSS
+   ======================================== */
+
+function p40InjectGroupProgressStyles(){
+
+  if(
+    document.getElementById(
+      "p40GroupProgressStyles"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  const style =
+    document.createElement(
+      "style"
+    );
+
+
+  style.id =
+    "p40GroupProgressStyles";
+
+
+  style.textContent = `
+
+    .p40-member-progress{
+      width:100%;
+      height:6px;
+
+      margin-top:8px;
+
+      border-radius:999px;
+
+      background:#2c2c30;
+
+      overflow:hidden;
+    }
+
+
+    .p40-member-progress-fill{
+      height:100%;
+
+      width:0%;
+
+      border-radius:999px;
+
+      background:var(--yellow);
+
+      transition:
+        width .35s ease;
+    }
+
+
+    .p40-member-progress-fill.complete{
+      background:var(--green);
+    }
+
+
+    .p40-today-percent{
+      margin-top:5px;
+
+      color:var(--yellow);
+
+      font-size:11px;
+      font-weight:950;
+    }
+
+
+    .p40-today-percent.complete{
+      color:var(--green);
+    }
+
+
+    .member-score .p40-total-label{
+      margin-top:2px;
+
+      font-size:9px;
+
+      color:var(--muted);
+
+      font-weight:800;
+    }
+
+  `;
+
+
+  document.head
+    .appendChild(
+      style
+    );
+
+}
+
+
+p40InjectGroupProgressStyles();
+
+
+/* ========================================
+   OFFICE WALL SIT →
+   SHARE PARTIAL PROGRESS
+
+   När ett wall-sit-set stoppas
+   sparas dess andel i de två
+   befintliga teknikfälten.
+
+   60 / 120 sekunder =
+   50% av teknikdelen.
+
+   Vi skriver fortfarande inga
+   nya kolumner.
+   ======================================== */
+
+const p40GroupV1BaseStopWallSit =
+  typeof p40StopWallSit ===
+    "function"
+      ?
+      p40StopWallSit
+      :
+      null;
+
+
+if(
+  p40GroupV1BaseStopWallSit
+){
+
+  p40StopWallSit =
+    async function(
+      auto = false
+    ){
+
+
+      await p40GroupV1BaseStopWallSit(
+        auto
+      );
+
+
+      if(
+        !todayProgress
+        ||
+        p40GetDayMode()
+          !==
+          "office"
+      ){
+
+        return;
+
+      }
+
+
+      const plan =
+        trainingPlanForDate(
+          todayDate()
+        );
+
+
+      if(!plan){
+        return;
+      }
+
+
+      const seconds =
+        Math.min(
+          120,
+          p40DisplayedWallSitSeconds()
+        );
+
+
+      const ratio =
+        seconds
+        /
+        120;
+
+
+      /*
+        Gör wall sit-progress synlig
+        för resten av gruppen.
+
+        Vid 2:00 blir båda exakt
+        target och dagen fungerar
+        precis som tidigare.
+      */
+
+      todayProgress.bmu1_value =
+        seconds >= 120
+          ?
+          plan.bmu1.target
+          :
+          Math.floor(
+            plan.bmu1.target
+            *
+            ratio
+          );
+
+
+      todayProgress.bmu2_value =
+        seconds >= 120
+          ?
+          plan.bmu2.target
+          :
+          Math.floor(
+            plan.bmu2.target
+            *
+            ratio
+          );
+
+
+      saveLocalProgress(
+        todayProgress,
+        true
+      );
+
+
+      await saveToday();
+
+    };
+
+}
+
+
+/* ========================================
+   NEW GROUP RENDER
+   ======================================== */
+
+renderGroup =
+  function(){
+
+
+    p40InjectGroupProgressStyles();
+
+
+    document
+      .getElementById(
+        "memberCount"
+      )
+      .textContent =
+        `${members.length} PERSONER`;
+
+
+    const holder =
+      document.getElementById(
+        "memberList"
+      );
+
+
+    holder.innerHTML =
+      "";
+
+
+    const t =
+      todayDate();
+
+
+    const plan =
+      trainingPlanForDate(
+        t
+      );
+
+
+    const dates =
+      challengeDates();
+
+
+    const preStart =
+      dates.length
+      &&
+      t < dates[0];
+
+
+    let doneToday =
+      0;
+
+
+    let todayTotal =
+      0;
+
+
+    let todayMemberCount =
+      0;
+
+
+    /*
+      Räkna gruppens genomsnitt
+      för IDAG.
+    */
+
+    members.forEach(
+      member=>{
+
+
+        if(
+          parseDate(
+            member.joined_at
+          )
+          >
+          t
+        ){
+
+          return;
+
+        }
+
+
+        const row =
+          allProgress.find(
+            p =>
+              p.user_id ===
+                member.user_id
+              &&
+              p.workout_date ===
+                localDateKey(t)
+          );
+
+
+        if(plan){
+
+          const pct =
+            p40TodayProgressPercent(
+              row,
+              t
+            );
+
+
+          todayTotal +=
+            pct;
+
+
+          todayMemberCount++;
+
+
+          if(
+            progressComplete(
+              row,
+              t
+            )
+          ){
+
+            doneToday++;
+
+          }
+
+        }
+
+
+      }
+    );
+
+
+    const avgToday =
+      todayMemberCount
+        ?
+        Math.round(
+          todayTotal
+          /
+          todayMemberCount
+        )
+        :
+        0;
+
+
+    /*
+      TOPPEN AV GRUPPVYN
+    */
+
+    let middleValue =
+      "–";
+
+
+    let middleLabel =
+      "VILODAG";
+
+
+    let rightValue =
+      "–";
+
+
+    let rightLabel =
+      "KLARA IDAG";
+
+
+    if(preStart){
+
+      middleLabel =
+        "STARTAR SNART";
+
+      rightLabel =
+        "KLARA IDAG";
+
+    }
+
+    else if(plan){
+
+      middleValue =
+        `${avgToday}%`;
+
+      middleLabel =
+        "GRUPPEN IDAG";
+
+      rightValue =
+        doneToday;
+
+      rightLabel =
+        "KLARA IDAG";
+
+    }
+
+
+    document
+      .getElementById(
+        "groupSummary"
+      )
+      .innerHTML = `
+
+        <div class="statbox">
+
+          <strong>
+            ${members.length}
+          </strong>
+
+          <span>
+            MED
+          </span>
+
+        </div>
+
+
+        <div class="statbox">
+
+          <strong>
+            ${middleValue}
+          </strong>
+
+          <span>
+            ${middleLabel}
+          </span>
+
+        </div>
+
+
+        <div class="statbox">
+
+          <strong>
+            ${rightValue}
+          </strong>
+
+          <span>
+            ${rightLabel}
+          </span>
+
+        </div>
+
+      `;
+
+
+    /*
+      DELTAGARNA
+
+      Sortering:
+      1. mest progress idag
+      2. total challenge-progress
+    */
+
+    members
+      .slice()
+      .sort(
+        (
+          a,
+          b
+        )=>{
+
+
+          const rowA =
+            allProgress.find(
+              p =>
+                p.user_id ===
+                  a.user_id
+                &&
+                p.workout_date ===
+                  localDateKey(t)
+            );
+
+
+          const rowB =
+            allProgress.find(
+              p =>
+                p.user_id ===
+                  b.user_id
+                &&
+                p.workout_date ===
+                  localDateKey(t)
+            );
+
+
+          const todayA =
+            plan
+              ?
+              p40TodayProgressPercent(
+                rowA,
+                t
+              )
+              :
+              0;
+
+
+          const todayB =
+            plan
+              ?
+              p40TodayProgressPercent(
+                rowB,
+                t
+              )
+              :
+              0;
+
+
+          if(
+            todayB !==
+            todayA
+          ){
+
+            return (
+              todayB
+              -
+              todayA
+            );
+
+          }
+
+
+          return (
+            memberCompletionPercent(
+              b
+            )
+            -
+            memberCompletionPercent(
+              a
+            )
+          );
+
+        }
+      )
+
+      .forEach(
+        member=>{
+
+
+          const name =
+            member.profile
+              ?.display_name
+            ||
+            "Medlem";
+
+
+          const todayRow =
+            allProgress.find(
+              p =>
+                p.user_id ===
+                  member.user_id
+                &&
+                p.workout_date ===
+                  localDateKey(t)
+            );
+
+
+          const completeToday =
+            plan
+              ?
+              progressComplete(
+                todayRow,
+                t
+              )
+              :
+              false;
+
+
+          const todayPct =
+            plan
+              ?
+              p40TodayProgressPercent(
+                todayRow,
+                t
+              )
+              :
+              0;
+
+
+          const eligible =
+            eligibleDaysForMember(
+              member.joined_at
+            );
+
+
+          const completed =
+            completedDaysForMember(
+              member.user_id,
+              member.joined_at
+            );
+
+
+          const streak =
+            currentStreakForMember(
+              member.user_id,
+              member.joined_at
+            );
+
+
+          let statusText;
+
+
+          if(preStart){
+
+            statusText =
+              "Redo för start 🦍";
+
+          }
+
+          else if(!plan){
+
+            statusText =
+              "Vilodag 🛋️";
+
+          }
+
+          else if(
+            completeToday
+          ){
+
+            statusText =
+              "Dagen klar 🦍";
+
+          }
+
+          else{
+
+            statusText =
+              todayStatusText(
+                todayRow
+              );
+
+          }
+
+
+          const row =
+            document.createElement(
+              "div"
+            );
+
+
+          row.className =
+            "member";
+
+
+          row.innerHTML = `
+
+            <div class="avatar">
+
+              ${escapeHtml(
+                name
+                  .charAt(0)
+                  .toUpperCase()
+              )}
+
+            </div>
+
+
+            <div class="member-main">
+
+              <div class="member-name">
+
+                ${escapeHtml(name)}
+
+                ${
+                  member.user_id ===
+                    user.id
+                    ?
+                    " • DU"
+                    :
+                    ""
+                }
+
+              </div>
+
+
+              ${
+                plan &&
+                !preStart
+                  ?
+                  `
+
+                    <div
+                      class="p40-today-percent ${
+                        completeToday
+                          ?
+                          "complete"
+                          :
+                          ""
+                      }"
+                    >
+                      ${
+                        completeToday
+                          ?
+                          "100% IDAG ✓"
+                          :
+                          `${todayPct}% IDAG`
+                      }
+                    </div>
+
+
+                    <div
+                      class="p40-member-progress"
+                    >
+
+                      <div
+                        class="p40-member-progress-fill ${
+                          completeToday
+                            ?
+                            "complete"
+                            :
+                            ""
+                        }"
+                        style="
+                          width:${todayPct}%;
+                        "
+                      ></div>
+
+                    </div>
+
+                  `
+                  :
+                  ""
+              }
+
+
+              <div class="member-status">
+                ${statusText}
+              </div>
+
+
+              <div class="member-streak">
+
+                🔥 ${streak}
+
+                ${
+                  streak === 1
+                    ?
+                    "dag"
+                    :
+                    "dagar"
+                }
+
+                i rad
+
+              </div>
+
+            </div>
+
+
+            <div class="member-score">
+
+              <div
+                class="${
+                  completeToday
+                    ?
+                    "green"
+                    :
+                    ""
+                }"
+              >
+
+                ${completed}/${eligible}
+
+              </div>
+
+
+              <div class="small">
+
+                ${memberCompletionPercent(
+                  member
+                )}%
+
+              </div>
+
+
+              <div class="p40-total-label">
+                TOTALT
+              </div>
+
+            </div>
+
+          `;
+
+
+          holder.appendChild(
+            row
+          );
+
+
+        }
+      );
+
+  };
   
 /* ========================================
    START
