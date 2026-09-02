@@ -12843,6 +12843,838 @@ renderGroup =
       );
 
   };
+
+/* ========================================
+   PROJECT 40 — 100% CELEBRATION v1
+
+   Visas när dagens progress går
+   från EJ KLAR → KLAR.
+
+   Ingen SQL.
+   Ingen progress ändras.
+   Visas max en gång per dag.
+   ======================================== */
+
+
+let p40CelebrationLastComplete =
+  null;
+
+
+/* ========================================
+   STORAGE KEY
+   ======================================== */
+
+function p40CelebrationKey(){
+
+  if(
+    !user ||
+    !challenge
+  ){
+    return null;
+  }
+
+
+  return [
+    "p40_celebration",
+    challenge.id,
+    user.id,
+    localDateKey()
+  ].join("_");
+
+}
+
+
+/* ========================================
+   CELEBRATION COPY
+   ======================================== */
+
+function p40CelebrationCopy(
+  dayNumber
+){
+
+  let title =
+    `DAG ${dayNumber} LÅST IN`;
+
+
+  let milestone =
+    "100 % • DAGEN KLAR";
+
+
+  if(
+    dayNumber === 5
+  ){
+
+    title =
+      "VECKA 1 AVSLUTAD 🦍";
+
+    milestone =
+      "DAG 5 LÅST IN";
+
+  }
+
+
+  else if(
+    dayNumber === 10
+  ){
+
+    title =
+      "10 DAGAR IN 🦍";
+
+    milestone =
+      "DAG 10 LÅST IN";
+
+  }
+
+
+  else if(
+    dayNumber === 20
+  ){
+
+    title =
+      "HALVVÄGS 🦍";
+
+    milestone =
+      "DAG 20 LÅST IN";
+
+  }
+
+
+  else if(
+    dayNumber === 30
+  ){
+
+    title =
+      "30 DAGAR IN 🔥";
+
+    milestone =
+      "DAG 30 LÅST IN";
+
+  }
+
+
+  else if(
+    dayNumber === 40
+  ){
+
+    title =
+      "PROJECT 40 — MÅLGÅNG 🦍";
+
+    milestone =
+      "DAG 40 LÅST IN";
+
+  }
+
+
+  return {
+    title,
+    milestone
+  };
+
+}
+
+
+/* ========================================
+   CSS + HTML
+   ======================================== */
+
+function p40EnsureCelebrationUI(){
+
+  if(
+    document.getElementById(
+      "p40CelebrationStyles"
+    )
+  ){
+    return;
+  }
+
+
+  const style =
+    document.createElement(
+      "style"
+    );
+
+
+  style.id =
+    "p40CelebrationStyles";
+
+
+  style.textContent = `
+
+    .p40-celebration{
+      position:fixed;
+
+      inset:0;
+
+      z-index:5000;
+
+      display:none;
+
+      align-items:center;
+      justify-content:center;
+
+      padding:
+        calc(20px + env(safe-area-inset-top))
+        18px
+        calc(20px + env(safe-area-inset-bottom));
+
+      background:
+        rgba(0,0,0,.93);
+
+      overflow:hidden;
+    }
+
+
+    .p40-celebration.show{
+      display:flex;
+    }
+
+
+    .p40-celebration-card{
+      position:relative;
+
+      z-index:2;
+
+      width:min(100%,460px);
+
+      padding:30px 22px 22px;
+
+      border:
+        1px solid rgba(245,197,24,.55);
+
+      border-radius:27px;
+
+      background:
+        linear-gradient(
+          160deg,
+          #202022,
+          #111113
+        );
+
+      text-align:center;
+
+      box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.65);
+
+      animation:
+        p40CelebrationPop
+        .42s
+        cubic-bezier(.2,.9,.25,1.25);
+    }
+
+
+    .p40-celebration-gorilla{
+      font-size:74px;
+
+      line-height:1;
+
+      margin-bottom:13px;
+
+      animation:
+        p40GorillaBounce
+        .6s
+        ease-out;
+    }
+
+
+    .p40-celebration-kicker{
+      color:var(--yellow);
+
+      font-size:12px;
+      font-weight:950;
+
+      letter-spacing:1.2px;
+
+      text-transform:uppercase;
+    }
+
+
+    .p40-celebration-title{
+      margin-top:8px;
+
+      color:white;
+
+      font-size:31px;
+      font-weight:950;
+
+      line-height:1.05;
+
+      letter-spacing:-1.2px;
+    }
+
+
+    .p40-celebration-100{
+      margin-top:17px;
+
+      color:var(--green);
+
+      font-size:54px;
+      font-weight:950;
+
+      line-height:1;
+
+      letter-spacing:-2px;
+    }
+
+
+    .p40-celebration-text{
+      margin-top:16px;
+
+      color:#d7d7da;
+
+      font-size:14px;
+
+      line-height:1.55;
+    }
+
+
+    .p40-celebration-button{
+      width:100%;
+
+      margin-top:22px;
+
+      border:0;
+
+      border-radius:15px;
+
+      padding:16px;
+
+      background:var(--yellow);
+
+      color:#111;
+
+      font-weight:950;
+    }
+
+
+    .p40-confetti{
+      position:absolute;
+
+      inset:0;
+
+      z-index:1;
+
+      pointer-events:none;
+
+      overflow:hidden;
+    }
+
+
+    .p40-confetti-piece{
+      position:absolute;
+
+      top:-30px;
+
+      width:9px;
+      height:18px;
+
+      border-radius:2px;
+
+      animation:
+        p40ConfettiFall
+        var(--duration)
+        linear
+        var(--delay)
+        forwards;
+    }
+
+
+    @keyframes p40CelebrationPop{
+
+      0%{
+        opacity:0;
+        transform:
+          scale(.7)
+          translateY(20px);
+      }
+
+      100%{
+        opacity:1;
+        transform:
+          scale(1)
+          translateY(0);
+      }
+
+    }
+
+
+    @keyframes p40GorillaBounce{
+
+      0%{
+        transform:
+          scale(.5)
+          rotate(-8deg);
+      }
+
+      55%{
+        transform:
+          scale(1.18)
+          rotate(4deg);
+      }
+
+      100%{
+        transform:
+          scale(1)
+          rotate(0);
+      }
+
+    }
+
+
+    @keyframes p40ConfettiFall{
+
+      0%{
+        transform:
+          translateY(-30px)
+          rotate(0deg);
+
+        opacity:1;
+      }
+
+      100%{
+        transform:
+          translateY(110vh)
+          rotate(720deg);
+
+        opacity:.15;
+      }
+
+    }
+
+
+    @media
+    (prefers-reduced-motion:reduce){
+
+      .p40-celebration-card,
+      .p40-celebration-gorilla,
+      .p40-confetti-piece{
+        animation:none!important;
+      }
+
+    }
+
+  `;
+
+
+  document.head
+    .appendChild(
+      style
+    );
+
+
+  const overlay =
+    document.createElement(
+      "div"
+    );
+
+
+  overlay.id =
+    "p40CelebrationOverlay";
+
+
+  overlay.className =
+    "p40-celebration";
+
+
+  overlay.setAttribute(
+    "role",
+    "dialog"
+  );
+
+
+  overlay.setAttribute(
+    "aria-modal",
+    "true"
+  );
+
+
+  overlay.innerHTML = `
+
+    <div
+      id="p40Confetti"
+      class="p40-confetti"
+    ></div>
+
+
+    <div class="p40-celebration-card">
+
+      <div class="p40-celebration-gorilla">
+        🦍
+      </div>
+
+
+      <div
+        id="p40CelebrationMilestone"
+        class="p40-celebration-kicker"
+      >
+        100 % • DAGEN KLAR
+      </div>
+
+
+      <div
+        id="p40CelebrationTitle"
+        class="p40-celebration-title"
+      >
+        DAG LÅST IN
+      </div>
+
+
+      <div class="p40-celebration-100">
+        100%
+      </div>
+
+
+      <div class="p40-celebration-text">
+
+        Exakt dos.<br>
+
+        Ingen bonusvolym.<br>
+
+        <strong>
+          Nu räcker det.
+        </strong>
+
+      </div>
+
+
+      <button
+        class="p40-celebration-button"
+        onclick="p40CloseCelebration()"
+      >
+        KLART 🦍
+      </button>
+
+    </div>
+
+  `;
+
+
+  document.body
+    .appendChild(
+      overlay
+    );
+
+}
+
+
+/* ========================================
+   CONFETTI
+   ======================================== */
+
+function p40BuildConfetti(){
+
+  const holder =
+    document.getElementById(
+      "p40Confetti"
+    );
+
+
+  if(!holder){
+    return;
+  }
+
+
+  holder.innerHTML =
+    "";
+
+
+  const colors = [
+    "#f5c518",
+    "#39d98a",
+    "#ffffff",
+    "#ffbf69"
+  ];
+
+
+  for(
+    let i=0;
+    i<34;
+    i++
+  ){
+
+    const piece =
+      document.createElement(
+        "div"
+      );
+
+
+    piece.className =
+      "p40-confetti-piece";
+
+
+    piece.style.left =
+      `${Math.random()*100}%`;
+
+
+    piece.style.background =
+      colors[
+        Math.floor(
+          Math.random()
+          *
+          colors.length
+        )
+      ];
+
+
+    piece.style.setProperty(
+      "--duration",
+      `${
+        2.2
+        +
+        Math.random()*2
+      }s`
+    );
+
+
+    piece.style.setProperty(
+      "--delay",
+      `${
+        Math.random()*.8
+      }s`
+    );
+
+
+    holder.appendChild(
+      piece
+    );
+
+  }
+
+}
+
+
+/* ========================================
+   SHOW
+   ======================================== */
+
+function p40ShowCelebration(){
+
+  if(
+    !user ||
+    !challenge ||
+    !todayProgress
+  ){
+    return;
+  }
+
+
+  const plan =
+    trainingPlanForDate(
+      todayDate()
+    );
+
+
+  if(
+    !plan ||
+    !progressComplete(
+      todayProgress,
+      todayDate()
+    )
+  ){
+    return;
+  }
+
+
+  const key =
+    p40CelebrationKey();
+
+
+  if(
+    key &&
+    localStorage.getItem(
+      key
+    )
+  ){
+    return;
+  }
+
+
+  /*
+    Sätt flaggan INNAN overlay visas.
+
+    Då kan flera render-anrop aldrig
+    skapa flera celebrations.
+  */
+
+  if(key){
+
+    localStorage.setItem(
+      key,
+      "shown"
+    );
+
+  }
+
+
+  p40EnsureCelebrationUI();
+
+
+  const copy =
+    p40CelebrationCopy(
+      plan.dayNumber
+    );
+
+
+  document
+    .getElementById(
+      "p40CelebrationTitle"
+    )
+    .textContent =
+      copy.title;
+
+
+  document
+    .getElementById(
+      "p40CelebrationMilestone"
+    )
+    .textContent =
+      copy.milestone;
+
+
+  p40BuildConfetti();
+
+
+  document
+    .getElementById(
+      "p40CelebrationOverlay"
+    )
+    .classList
+    .add(
+      "show"
+    );
+
+
+  document.body.style
+    .overflow =
+      "hidden";
+
+}
+
+
+/* ========================================
+   CLOSE
+   ======================================== */
+
+function p40CloseCelebration(){
+
+  const overlay =
+    document.getElementById(
+      "p40CelebrationOverlay"
+    );
+
+
+  if(overlay){
+
+    overlay.classList.remove(
+      "show"
+    );
+
+  }
+
+
+  document.body.style
+    .overflow =
+      "";
+
+}
+
+
+/* ========================================
+   WATCH DAY COMPLETION
+   ======================================== */
+
+const p40CelebrationBaseRenderDay =
+  renderDay;
+
+
+renderDay =
+  function(){
+
+
+    /*
+      Kör hela nuvarande renderDay först.
+
+      Det inkluderar dagslägen,
+      axelläge och övrig befintlig UI-logik.
+    */
+
+    p40CelebrationBaseRenderDay();
+
+
+    const t =
+      todayDate();
+
+
+    const plan =
+      trainingPlanForDate(
+        t
+      );
+
+
+    const nowComplete =
+      !!(
+        plan
+        &&
+        todayProgress
+        &&
+        progressComplete(
+          todayProgress,
+          t
+        )
+      );
+
+
+    /*
+      Första rendern efter att appen öppnats
+      används bara för att läsa nuläget.
+
+      Därför får någon som redan var klar
+      innan uppdateringen inte en random
+      celebration när appen startas.
+    */
+
+    if(
+      p40CelebrationLastComplete
+      ===
+      null
+    ){
+
+      p40CelebrationLastComplete =
+        nowComplete;
+
+      return;
+
+    }
+
+
+    const justCompleted =
+      (
+        !p40CelebrationLastComplete
+        &&
+        nowComplete
+      );
+
+
+    p40CelebrationLastComplete =
+      nowComplete;
+
+
+    if(
+      justCompleted
+    ){
+
+      setTimeout(
+        ()=>{
+
+          p40ShowCelebration();
+
+        },
+        150
+      );
+
+    }
+
+  };
   
 /* ========================================
    START
