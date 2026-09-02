@@ -2584,12 +2584,13 @@ const BMU_PLAN = {
   ],
 
   3:[
-    {
-      name:"EXPLOSIVA HIGH PULLS",
-      target:10,
-      unit:"reps",
-      buttons:[1,2,5]
-    },
+   {
+  name:"EXPLOSIVA HIGH PULL-UPS",
+  target:10,
+  unit:"reps",
+  buttons:[1,2,5],
+  note:"Explosiva singlar i pull-up-stången. Dra så högt du kan med kontroll. Alternativ: 10 strikta pull-ups om du inte kan göra high pull-ups ännu. Aldrig till failure."
+},
     {
       name:"HANGING KNEE RAISES",
       target:20,
@@ -2614,12 +2615,13 @@ const BMU_PLAN = {
   ],
 
   5:[
-    {
-      name:"EXPLOSIVA HIGH PULLS",
-      target:10,
-      unit:"reps",
-      buttons:[1,2,5]
-    },
+   {
+  name:"EXPLOSIVA HIGH PULL-UPS",
+  target:10,
+  unit:"reps",
+  buttons:[1,2,5],
+  note:"Explosiva singlar i pull-up-stången. Dra så högt du kan med kontroll. Alternativ: 10 strikta pull-ups om du inte kan göra high pull-ups ännu. Aldrig till failure."
+},
     {
       name:"KONTROLLERADE KIP SWINGS",
       target:20,
@@ -7911,17 +7913,24 @@ function renderBmu(
         value;
 
 
-  document
-    .getElementById(
-      `${prefix}Target`
-    )
-    .textContent =
-      task.unit ===
-        "sec"
-        ?
-        `av ${formatSeconds(task.target)} totalt`
-        :
-        `av ${task.target} reps totalt`;
+  const targetText =
+  task.unit === "sec"
+    ?
+    `av ${formatSeconds(task.target)} totalt`
+    :
+    `av ${task.target} reps totalt`;
+
+
+document
+  .getElementById(
+    `${prefix}Target`
+  )
+  .textContent =
+    task.note
+      ?
+      `${targetText} • ${task.note}`
+      :
+      targetText;
 
 
   document
@@ -10761,7 +10770,7 @@ function p40EnsureModeUI(){
           onclick="p40SetDayMode('office')"
         >
           🏢<br>
-          INGEN STÅNG / RINGAR
+          INGEN RIGG / RINGAR
         </button>
 
         <button
@@ -10869,7 +10878,7 @@ function p40EnsureModeUI(){
 
 
       <div class="exercise-note">
-        Ingen stång eller ringar?
+        Ingen pull-up-stång/rigg eller ringar?
         Gör dagens huvuduppgift och
         5:00 planka som vanligt.
         Teknikdelen ersätts av exakt
@@ -11220,8 +11229,8 @@ function p40RenderModeUI(){
     shoulder:
       "Axelvänligt läge. Huvuduppgiften skalas vid behov, plankan blir glute bridge hold och provocerande axelarbete hoppas över.",
 
-    office:
-      "Ingen stång eller ringar. Huvuduppgift + 5:00 planka som vanligt. Teknikdelen ersätts av 2:00 wall sit med timer.",
+   office:
+  "Ingen pull-up-stång/rigg eller ringar? Huvuduppgift + 5:00 planka som vanligt. Teknikdelen ersätts av 2:00 wall sit med timer. Har du axelproblem väljer du AXEL istället.",
 
     recovery:
       "Skadad eller rejält sliten. Hela dagens PROJECT 40 ersätts av 15 000 smärtfria steg."
